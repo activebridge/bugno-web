@@ -11,12 +11,14 @@ import { ToastrService } from 'ngx-toastr';
 
 export class Login {
   signInUser:any = {};
+  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(private tokenAuthSerivce: AngularTokenService,
               private router: Router,
               private toastr: ToastrService) { }
 
   onSignInSubmit() {
+    console.log(this.signInUser)
     this.tokenAuthSerivce.signIn(this.signInUser).subscribe((res) => {
         this.toastr.success('Successfully logged in.');
         this.router.navigate(['dashboard']);
