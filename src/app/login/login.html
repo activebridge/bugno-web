@@ -2,12 +2,22 @@
   <div class="row">
     <div class="input-field col s12">
       <input id="email"
+             #email="ngModel"
              type="email"
              required
              name='login'
              [(ngModel)]="signInUser.login"
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
              class="validate">
       <label for="email">Email</label>
+    </div>
+    <div class="md-errors-spacer" [hidden]="email.valid || email.untouched">
+      <div  *ngIf="email.errors && email.errors.required">
+        Email is required
+      </div>
+      <div  *ngIf="email.errors && email.errors.pattern">
+        Email is invalid
+      </div>
     </div>
     <div class="input-field col s12">
       <input id="password"
@@ -20,7 +30,7 @@
     </div>
     <div class="col s12 ">
       <button type="submit"
-              [disabled]="!(f.valid)"
+              [disabled]="f.invalid"
               [ngClass]="{'disabled': !(f.valid)}"
               class="waves-effect waves-light btn blue right">
         Login </button>
