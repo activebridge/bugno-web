@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 
 export class Navbar {
   constructor(public tokenAuthSerivce: AngularTokenService,
-              private router: Router, ) { }
+              private router: Router) { }
 
   signOut() {
     this.tokenAuthSerivce.signOut().subscribe();
