@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
-  styleUrls: ['./login.scss']
 })
 
 export class Login {
