@@ -26,8 +26,9 @@ import { Registration } from './registration/registration';
     HttpClientModule,
     FormsModule,
     AngularTokenModule.forRoot({
-      apiBase: environment.apiEndpoint,
-      signInPath: 'api/sign_in'
+      apiBase:            environment.apiEndpoint,
+      signInPath:         'api/sign_in',
+      registerAccountPath:'api/'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()

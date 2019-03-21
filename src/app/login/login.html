@@ -23,7 +23,7 @@
         <button type="submit"
                 class="btn btm-success"
                 [disabled]="f.invalid"
-                [ngClass]="{'disabled': !(f.valid)}">
+                [ngClass]="{'disabled': (f.invalid)}">
                 login </button>
         <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
           <div *ngIf="email.errors && email.errors.required">

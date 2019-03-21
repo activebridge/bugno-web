@@ -14,8 +14,8 @@ export class Login {
   signInUser:any = {};
 
   constructor(private tokenAuthSerivce: AngularTokenService,
-              private router: Router,
-              private toastr: ToastrService) { }
+              private router:           Router,
+              private toastr:           ToastrService) { }
 
   onSignInSubmit() {
     this.tokenAuthSerivce.signIn(this.signInUser).subscribe((res) => {
