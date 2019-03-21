@@ -21,10 +21,9 @@
                 [(ngModel)]="signInUser.password"
                 required>
         <button type="submit"
-                class="btn btm-success"
+                class="btn btn-success"
                 [disabled]="f.invalid"
-                [ngClass]="{'disabled': (f.invalid)}">
-                login </button>
+                [ngClass]="{'disabled': (f.invalid)}">login</button>
         <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
           <div *ngIf="email.errors && email.errors.required">
             Email is required

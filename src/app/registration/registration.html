@@ -35,10 +35,9 @@
                 [pattern]="signUpUser.password"
                 required>
         <button type="submit"
-                class="btn btm-success"
+                class="btn btn-success"
                 [disabled]="f.invalid"
-                [ngClass]="{'disabled': (f.invalid)}">
-                register </button>
+                [ngClass]="{'disabled': (f.invalid)}">register</button>
         <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
           <div *ngIf="email.errors && email.errors.required">
             Email is required

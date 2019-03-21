@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login } from './login/login';
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 import { Dashboard } from './dashboard/dashboard';
 import { Registration } from './registration/registration';
 
@@ -28,7 +28,7 @@ import { Registration } from './registration/registration';
     AngularTokenModule.forRoot({
       apiBase:            environment.apiEndpoint,
       signInPath:         'api/sign_in',
-      registerAccountPath:'api/'
+      registerAccountPath: 'api/'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()

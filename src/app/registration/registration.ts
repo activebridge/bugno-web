@@ -11,17 +11,17 @@ import { emailPattern } from '../constants';
 })
 
 export class Registration {
-  emailPattern = emailPattern
-  signUpUser:any = {}
+  emailPattern = emailPattern;
+  signUpUser: any = {};
 
   constructor(private tokenAuthSerivce: AngularTokenService,
-              private router:           Router,
-              private toastr:           ToastrService) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
-  onSignUpSubmit(){
+  onSignUpSubmit() {
     this.tokenAuthSerivce.registerAccount(this.signUpUser).subscribe((res) => {
       this.toastr.success('Successfully registered.');
-      this.router.navigate(['dashboard'])
+      this.router.navigate(['dashboard']);
     }, (err) => {
       if (err.error && err.error.errors) {
         err.error.errors.full_messages.forEach((message) => {
@@ -29,7 +29,7 @@ export class Registration {
         });
       } else {
         this.toastr.error('Whoops! Something went wrong...');
-      };
+      }
     });
   }
 }

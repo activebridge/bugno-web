@@ -11,11 +11,11 @@ import { emailPattern } from '../constants';
 
 export class Login {
   emailPattern = emailPattern;
-  signInUser:any = {};
+  signInUser: any = {};
 
   constructor(private tokenAuthSerivce: AngularTokenService,
-              private router:           Router,
-              private toastr:           ToastrService) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   onSignInSubmit() {
     this.tokenAuthSerivce.signIn(this.signInUser).subscribe((res) => {
@@ -26,7 +26,7 @@ export class Login {
         this.toastr.error(err.error.errors);
       } else {
         this.toastr.error('Whoops! Something went wrong...');
-      };
+      }
     });
   }
 }
