@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/variables';
+@import './styles/public_pages';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+body {
+  background: $mantis;
+  background: -webkit-linear-gradient(right, $mantis, $olivine);
+  background: -moz-linear-gradient(right, $mantis, $olivine);
+  background: -o-linear-gradient(right, $mantis, $olivine);
+  background: linear-gradient(to left, $mantis, $olivine);
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
