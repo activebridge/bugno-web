@@ -1,29 +1,43 @@
 <div class="public-page">
   <div class="login-page">
     <div class="form">
-      <h2>Log in to</h2>
+      <h2>Register to</h2>
       <h1 class="mb-5">Radar</h1>
-      <form class="login-form" (ngSubmit)="onSignInSubmit()" #f="ngForm">
+      <form class="login-form" (ngSubmit)="onSignUpSubmit()" #f="ngForm">
         <input  type="email"
                 class="validate"
                 placeholder="Email"
                 id="email"
                 name="login"
-                [(ngModel)]="signInUser.login"
+                [(ngModel)]="signUpUser.login"
                 [pattern]="emailPattern"
                 #email="ngModel"
                 required>
+        <input  type="name"
+                placeholder="Name"
+                id="name"
+                name="name"
+                [(ngModel)]="signUpUser.name">
         <input  type="password"
                 class="validate"
                 placeholder="Password"
                 id="password"
                 name="password"
-                [(ngModel)]="signInUser.password"
+                [(ngModel)]="signUpUser.password"
+                required>
+        <input  type="password"
+                class="validate"
+                #passwordConfirmation="ngModel"
+                placeholder="Password confirmation"
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                [(ngModel)]="signUpUser.passwordConfirmation"
+                [pattern]="signUpUser.password"
                 required>
         <button type="submit"
                 class="btn btn-success"
                 [disabled]="f.invalid"
-                [ngClass]="{'disabled': (f.invalid)}">login</button>
+                [ngClass]="{'disabled': (f.invalid)}">register</button>
         <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
           <div *ngIf="email.errors && email.errors.required">
             Email is required

@@ -9,14 +9,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login } from './login/login';
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 import { Dashboard } from './dashboard/dashboard';
+import { Registration } from './registration/registration';
 
 @NgModule({
   declarations: [
     AppComponent,
     Login,
-    Dashboard
+    Dashboard,
+    Registration
   ],
   imports: [
     BrowserModule,
@@ -24,8 +26,9 @@ import { Dashboard } from './dashboard/dashboard';
     HttpClientModule,
     FormsModule,
     AngularTokenModule.forRoot({
-      apiBase: environment.apiEndpoint,
-      signInPath: 'api/sign_in'
+      apiBase:            environment.apiEndpoint,
+      signInPath:         'api/sign_in',
+      registerAccountPath: 'api/'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
