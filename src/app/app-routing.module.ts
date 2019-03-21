@@ -15,7 +15,7 @@ const routes: Routes = [
     component: Dashboard
   },
   {
-    path: 'registration',
+    path: 'register',
     component: Registration
   },
 ];

@@ -12,13 +12,15 @@ import { Login } from './login/login';
 import { environment } from '../environments/environment';
 import { Dashboard } from './dashboard/dashboard';
 import { Registration } from './registration/registration';
+import { Navbar } from './shared/navbar/navbar';
 
 @NgModule({
   declarations: [
     AppComponent,
     Login,
     Dashboard,
-    Registration
+    Registration,
+    Navbar
   ],
   imports: [
     BrowserModule,
@@ -26,9 +28,10 @@ import { Registration } from './registration/registration';
     HttpClientModule,
     FormsModule,
     AngularTokenModule.forRoot({
-      apiBase:            environment.apiEndpoint,
-      signInPath:         'api/sign_in',
-      registerAccountPath: 'api/'
+      apiBase: environment.apiEndpoint,
+      signInPath: 'api/sign_in',
+      registerAccountPath: 'api/',
+      signOutPath: 'api/sign_out'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
