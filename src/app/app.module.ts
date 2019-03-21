@@ -11,12 +11,14 @@ import { AppComponent } from './app.component';
 import { Login } from './login/login';
 import { environment } from "../environments/environment";
 import { Dashboard } from './dashboard/dashboard';
+import { Registration } from './registration/registration';
 
 @NgModule({
   declarations: [
     AppComponent,
     Login,
-    Dashboard
+    Dashboard,
+    Registration
   ],
   imports: [
     BrowserModule,
