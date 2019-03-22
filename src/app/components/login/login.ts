@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { emailPattern } from '../constants';
+import { emailPattern } from '../../constants';
 
 @Component({
   selector: 'app-login',

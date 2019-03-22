@@ -8,11 +8,9 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login } from './login/login';
+import { Login, Registration, Dashboard, Navbar } from './components';
 import { environment } from '../environments/environment';
-import { Dashboard } from './dashboard/dashboard';
-import { Registration } from './registration/registration';
-import { Navbar } from './shared/navbar/navbar';
+import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 
 @NgModule({
   declarations: [
@@ -36,7 +34,7 @@ import { Navbar } from './shared/navbar/navbar';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
