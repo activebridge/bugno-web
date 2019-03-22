@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Login } from './login/login';
-import { Registration } from './registration/registration';
-import { Dashboard } from './dashboard/dashboard';
 
+import { Login, Registration, Dashboard } from './components';
+import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: Login
+    component: Login,
+    canActivate: [PublicGuard]
   },
   {
     path: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
-    component: Registration
+    component: Registration,
+    canActivate: [PublicGuard]
   },
+  { path: "**", redirectTo: 'login' }
 ];
 
 @NgModule({

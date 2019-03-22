@@ -12,7 +12,8 @@ export class Navbar {
               private router: Router) { }
 
   signOut() {
-    this.tokenAuthSerivce.signOut().subscribe();
-    this.router.navigate(['login']);
+    this.tokenAuthSerivce.signOut().subscribe(() => {
+      this.router.navigate(['login']);
+    });
   }
 }
