@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 
 export class Navbar {
+  isOpen: boolean;
+
   constructor(public tokenAuthSerivce: AngularTokenService,
               private router: Router) { }
 
