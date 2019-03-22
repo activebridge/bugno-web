@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'TODO'
+  apiEndpoint: 'https://api-radar.herokuapp.com'
 };
