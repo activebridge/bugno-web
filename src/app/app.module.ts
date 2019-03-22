@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar } from './components';
 import { environment } from '../environments/environment';
-import { AuthGuard, BaseGuard, PublicGuard } from "./guards";
+import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 
 @NgModule({
   declarations: [

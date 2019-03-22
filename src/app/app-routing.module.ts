@@ -20,7 +20,7 @@ const routes: Routes = [
     component: Registration,
     canActivate: [PublicGuard]
   },
-  { path: "**", redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
