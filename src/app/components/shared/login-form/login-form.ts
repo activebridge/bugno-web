@@ -21,6 +21,10 @@ export class LoginForm implements OnInit {
               private fb: FormBuilder,
               private toastr: ToastrService) { }
 
+  onSignInSubmit() {
+    this.tokenAuthSerivce.signIn(this.loginForm.value)
+                         .subscribe(this.onSignInSuccess, this.onSignInError);
+  }
   private initLoginForm() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
@@ -28,16 +32,16 @@ export class LoginForm implements OnInit {
     });
   }
 
-  onSignInSubmit() {
-    this.tokenAuthSerivce.signIn(this.loginForm.value).subscribe((res) => {
-      this.toastr.success('Successfully logged in.');
-      this.onSubmitSuccess.emit();
-    }, (err) => {
-      if (err.error && err.error.errors) {
-        this.toastr.error(err.error.errors);
-      } else {
-        this.toastr.error('Whoops! Something went wrong...');
-      }
-    });
+  private onSignInSuccess = (data) => {
+    this.toastr.success('Successfully logged in.');
+    this.onSubmitSuccess.emit();
+  }
+
+  private onSignInError = (error) => {
+    if (error.error && error.error.errors) {
+      this.toastr.error(error.error.errors);
+    } else {
+      this.toastr.error('Whoops! Something went wrong...');
+    }
   }
 }

@@ -1,0 +1,20 @@
+<form (ngSubmit)="create();" [formGroup]="projectForm">
+  <div class="form-group">
+    <input  type="text"
+            name="name"
+            formControlName="name"
+            placeholder="Title"
+            class="form-control"
+            required>
+  </div>
+  <div class="form-group">
+    <textarea  type="text"
+            name="description"
+            formControlName="description"
+            class="form-control"
+            placeholder="Description"></textarea>
+  </div>
+  <button type="submit"
+          class="btn btn-success"
+          [disabled]="projectForm.invalid">create</button>
+</form>

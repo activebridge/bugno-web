@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Login, Registration, Dashboard } from './components';
+import { Login, Registration, Dashboard, ProjectCreate } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'register',
     component: Registration,
     canActivate: [PublicGuard]
+  },
+  {
+    path: 'project/create',
+    component: ProjectCreate,
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: 'login' }
 ];
