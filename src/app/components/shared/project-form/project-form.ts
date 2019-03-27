@@ -35,13 +35,11 @@ export class ProjectForm implements OnInit {
   }
 
   private onCreateSuccess = (data) => {
-    console.log(data);
     this.toastr.success('Successfully created');
-    this.onSubmitSuccess.emit();
+    this.onSubmitSuccess.emit(data.id);
   }
 
   private onCreateError = (error) => {
-    console.log(error);
     if (error.error.error) {
       this.toastr.error(error.error.error);
     } else {

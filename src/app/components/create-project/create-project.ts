@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class ProjectCreate {
   constructor(private router: Router) { }
 
-  createProject() {
-    this.router.navigate(['dashboard']);
+  goToProject(id) {
+    this.router.navigate(['projects', id]);
   }
 }
