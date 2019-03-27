@@ -3,50 +3,7 @@
     <div class="form">
       <h2>Register to</h2>
       <h1 class="mb-5">Radar</h1>
-      <form class="login-form" (ngSubmit)="onSignUpSubmit()" #f="ngForm">
-        <input  type="email"
-                class="validate"
-                placeholder="Email"
-                id="email"
-                name="login"
-                [(ngModel)]="signUpUser.login"
-                [pattern]="emailPattern"
-                #email="ngModel"
-                required>
-        <input  type="name"
-                placeholder="Name"
-                id="name"
-                name="name"
-                [(ngModel)]="signUpUser.name">
-        <input  type="password"
-                class="validate"
-                placeholder="Password"
-                id="password"
-                name="password"
-                [(ngModel)]="signUpUser.password"
-                required>
-        <input  type="password"
-                class="validate"
-                #passwordConfirmation="ngModel"
-                placeholder="Password confirmation"
-                id="passwordConfirmation"
-                name="passwordConfirmation"
-                [(ngModel)]="signUpUser.passwordConfirmation"
-                [pattern]="signUpUser.password"
-                required>
-        <button type="submit"
-                class="btn btn-success"
-                [disabled]="f.invalid"
-                [ngClass]="{'disabled': (f.invalid)}">register</button>
-        <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
-          <div *ngIf="email.errors && email.errors.required">
-            Email is required
-          </div>
-          <div *ngIf="email.errors && email.errors.pattern">
-            Email is invalid
-          </div>
-        </div>
-      </form>
+      <app-registration-form (onSubmitSuccess)="onSignUpSubmit();"></app-registration-form>
     </div>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<form class="login-form" (ngSubmit)="onSignInSubmit()" [formGroup]="loginForm">
+  <input  type="email"
+          name="login"
+          formControlName="login"
+          placeholder="Email"
+          class="validate"
+          id="email"
+          required>
+  <input  type="password"
+          name="password"
+          formControlName="password"
+          placeholder="Password"
+          class="validate"
+          id="password"
+          required>
+  <button type="submit"
+          class="btn btn-success"
+          [disabled]="loginForm.invalid">login</button>
+  <div class="alert alert-danger" [hidden]="loginForm.valid || loginForm.untouched">
+    <div *ngIf="loginForm.controls.login.errors?.email">
+      Email has invalid format
+    </div>
+    <div *ngIf="loginForm.controls.login.errors?.required">
+      Email is required
+    </div>
+    <div *ngIf="loginForm.controls.password.errors?.required">
+      Password is required
+    </div>
+    <div *ngIf="loginForm.controls.password.errors?.minlength">
+      Password must be longer than 8
+    </div>
+  </div>
+</form>
