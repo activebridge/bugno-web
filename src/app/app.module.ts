@@ -8,9 +8,10 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm } from './components';
+import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm, ProjectCreate, ProjectForm } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { AuthGuard, BaseGuard, PublicGuard } from './guards';
     Registration,
     Navbar,
     LoginForm,
-    RegistrationForm
+    RegistrationForm,
+    ProjectCreate,
+    ProjectForm
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { AuthGuard, BaseGuard, PublicGuard } from './guards';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ApiModule,
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
       signInPath: 'api/sign_in',
