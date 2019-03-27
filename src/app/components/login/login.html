@@ -3,36 +3,7 @@
     <div class="form">
       <h2>Log in to</h2>
       <h1 class="mb-5">Radar</h1>
-      <form class="login-form" (ngSubmit)="onSignInSubmit()" #f="ngForm">
-        <input  type="email"
-                class="validate"
-                placeholder="Email"
-                id="email"
-                name="login"
-                [(ngModel)]="signInUser.login"
-                [pattern]="emailPattern"
-                #email="ngModel"
-                required>
-        <input  type="password"
-                class="validate"
-                placeholder="Password"
-                id="password"
-                name="password"
-                [(ngModel)]="signInUser.password"
-                required>
-        <button type="submit"
-                class="btn btn-success"
-                [disabled]="f.invalid"
-                [ngClass]="{'disabled': (f.invalid)}">login</button>
-        <div class="alert alert-danger" [hidden]="email.valid || email.untouched">
-          <div *ngIf="email.errors && email.errors.required">
-            Email is required
-          </div>
-          <div *ngIf="email.errors && email.errors.pattern">
-            Email is invalid
-          </div>
-        </div>
-      </form>
+      <app-login-form (onSubmitSuccess)="onSignInSubmit();"></app-login-form>
     </div>
   </div>
 </div>
