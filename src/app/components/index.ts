@@ -1,5 +1,6 @@
 export * from './dashboard/dashboard';
 export * from './login/login';
+export * from './project/project';
 export * from './registration/registration';
 export * from './create-project/create-project';
 export * from './shared/navbar/navbar';

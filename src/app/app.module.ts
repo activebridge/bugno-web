@@ -8,7 +8,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm, ProjectCreate, ProjectForm } from './components';
+import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
+         ProjectCreate, ProjectForm, Project } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -23,7 +24,8 @@ import { ApiModule } from './api/api.module';
     LoginForm,
     RegistrationForm,
     ProjectCreate,
-    ProjectForm
+    ProjectForm,
+    Project
   ],
   imports: [
     BrowserModule,
