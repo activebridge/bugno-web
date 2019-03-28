@@ -5,5 +5,6 @@
     <p>{{project.description || "Empty"}}</p>
     <h6>Api-key:</h6>
     <p>{{project.api_key}}</p>
+    <button (click)="deleteProject();" type="button" class="btn btn-large btn-danger">Delete {{project.name}}</button>
   </div>
 </div>
