@@ -5,17 +5,27 @@ import { ProjectAPI } from '../../api';
 
 @Component({
   selector: 'app-project',
-  templateUrl: './project.html'
+  templateUrl: './project.html',
+  styleUrls: ['./project.scss']
 })
 
 export class Project implements OnInit {
+  project:any = {};
+
   constructor(private projectAPI: ProjectAPI,
-              private route: ActivatedRoute) { }
+              private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.projectAPI.get(this.route.snapshot.params['id']).subscribe(
-    (data)  => { console.log(data) }
-    );
+    this.router.params.subscribe(params => {
+      if (params['id']) {
+        this.getProject(params['id']);
+      }
+    });
   }
 
+  getProject(id) {
+    this.projectAPI.get(id).subscribe((response:any) => {
+      this.project = response.data.attributes;
+    });
+  }
 }
