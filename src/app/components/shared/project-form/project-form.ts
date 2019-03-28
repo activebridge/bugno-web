@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup ,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,7 +11,7 @@ import { ProjectAPI } from '../../../api';
 })
 
 export class ProjectForm implements OnInit {
-  @Output() onSubmitSuccess:EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   projectForm: FormGroup;
 
   ngOnInit() {
@@ -34,9 +34,9 @@ export class ProjectForm implements OnInit {
     });
   }
 
-  private onCreateSuccess = (data) => {
-    this.toastr.success('Successfully created');
-    this.onSubmitSuccess.emit(data.id);
+  private onCreateSuccess = (resp) => {
+    this.toastr.success(`${this.projectForm.value.name} was created`);
+    this.onSubmitSuccess.emit(resp.data.id);
   }
 
   private onCreateError = (error) => {

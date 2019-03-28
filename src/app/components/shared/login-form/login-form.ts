@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup ,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class LoginForm implements OnInit {
-  @Output() onSubmitSuccess:EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   loginForm: FormGroup;
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginForm implements OnInit {
   private initLoginForm() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
-      password: ['',[ Validators.required, Validators.minLength(8)]]
+      password: ['', [ Validators.required, Validators.minLength(8)]]
     });
   }
 
