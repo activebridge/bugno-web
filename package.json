@@ -22,6 +22,7 @@
     "angular-token": "^7.0.1",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "lodash": "^4.17.11",
     "ng2-validation": "^4.2.0",
     "ngx-toastr": "^10.0.2",
     "rxjs": "~6.3.3",

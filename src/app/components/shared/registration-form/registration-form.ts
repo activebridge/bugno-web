@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup ,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class RegistrationForm implements OnInit {
-  @Output() onSubmitSuccess:EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   registrationForm: FormGroup;
 
   ngOnInit() {
@@ -28,15 +28,15 @@ export class RegistrationForm implements OnInit {
     this.registrationForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
       name: [''],
-      password: password,
-      passwordConfirmation: passwordConfirmation
+      password,
+      passwordConfirmation
     });
   }
 
   onSignUpSubmit() {
     this.tokenAuthSerivce.registerAccount(this.registrationForm.value).subscribe((res) => {
       this.toastr.success('Successfully registered.');
-      this.onSubmitSuccess.emit()
+      this.onSubmitSuccess.emit();
     }, (err) => {
       if (err.error && err.error.errors) {
         err.error.errors.full_messages.forEach((message) => {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup ,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class LoginForm implements OnInit {
-  @Output() onSubmitSuccess:EventEmitter<any> = new EventEmitter();
+  @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   loginForm: FormGroup;
 
   ngOnInit() {
@@ -21,23 +21,27 @@ export class LoginForm implements OnInit {
               private fb: FormBuilder,
               private toastr: ToastrService) { }
 
+  onSignInSubmit() {
+    this.tokenAuthSerivce.signIn(this.loginForm.value)
+                         .subscribe(this.onSignInSuccess, this.onSignInError);
+  }
   private initLoginForm() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
-      password: ['',[ Validators.required, Validators.minLength(8)]]
+      password: ['', [ Validators.required, Validators.minLength(8)]]
     });
   }
 
-  onSignInSubmit() {
-    this.tokenAuthSerivce.signIn(this.loginForm.value).subscribe((res) => {
-      this.toastr.success('Successfully logged in.');
-      this.onSubmitSuccess.emit();
-    }, (err) => {
-      if (err.error && err.error.errors) {
-        this.toastr.error(err.error.errors);
-      } else {
-        this.toastr.error('Whoops! Something went wrong...');
-      }
-    });
+  private onSignInSuccess = (data) => {
+    this.toastr.success('Successfully logged in.');
+    this.onSubmitSuccess.emit();
+  }
+
+  private onSignInError = (error) => {
+    if (error.error && error.error.errors) {
+      this.toastr.error(error.error.errors);
+    } else {
+      this.toastr.error('Whoops! Something went wrong...');
+    }
   }
 }
