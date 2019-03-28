@@ -8,19 +8,17 @@ import { ProjectAPI } from '../../../api';
 })
 
 export class ProjectsList implements OnInit {
-  projects:any = [];
+  projects: any = [];
 
   constructor(private projectAPI: ProjectAPI) { }
 
   ngOnInit() {
-    this.getProjects()
+    this.getProjects();
   }
 
   getProjects() {
-    this.projectAPI.query().subscribe((response:any) => {
-      console.log(response)
+    this.projectAPI.query().subscribe((response: any) => {
       this.projects = response.data;
-      console.log(this.projects)
     });
   }
 }

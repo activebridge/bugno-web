@@ -11,8 +11,8 @@ import { ProjectAPI } from '../../api';
 })
 
 export class Project implements OnInit {
-  projectId:number;
-  project:any = {};
+  projectId: number;
+  project: any = {};
 
   constructor(private projectAPI: ProjectAPI,
               private router: ActivatedRoute,
@@ -21,9 +21,9 @@ export class Project implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
-      if (params['id']) {
-        this.projectId = params['id'];
-        this.getProject(params['id']);
+      if (params.id) {
+        this.projectId = params.id;
+        this.getProject(params.id);
       }
     });
   }
@@ -34,7 +34,7 @@ export class Project implements OnInit {
 
   deleteProject() {
     this.projectAPI.delete(this.projectId)
-                   .subscribe(this.onDeleteSuccess, this.onDeleteError)
+                   .subscribe(this.onDeleteSuccess, this.onDeleteError);
   }
 
   private onGetSuccess = (resp) => {

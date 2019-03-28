@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 })
 
 export class ProjectsItem {
-  @Input() project:any = {};
+  @Input() project: any = {};
 }
