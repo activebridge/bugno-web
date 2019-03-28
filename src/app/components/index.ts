@@ -7,3 +7,5 @@ export * from './shared/navbar/navbar';
 export * from './shared/login-form/login-form';
 export * from './shared/registration-form/registration-form';
 export * from './shared/project-form/project-form';
+export * from './shared/projects-list/projects-list';
+export * from './shared/projects-item/projects-item';

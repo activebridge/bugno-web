@@ -34,9 +34,10 @@ export class ProjectForm implements OnInit {
     });
   }
 
-  private onCreateSuccess = (data) => {
+  private onCreateSuccess = (resp) => {
+    console.log(resp)
     this.toastr.success('Successfully created');
-    this.onSubmitSuccess.emit(data.id);
+    this.onSubmitSuccess.emit(resp.data.id);
   }
 
   private onCreateError = (error) => {

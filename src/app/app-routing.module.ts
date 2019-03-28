@@ -21,12 +21,12 @@ const routes: Routes = [
     canActivate: [PublicGuard]
   },
   {
-    path: 'project/create',
+    path: 'projects/new',
     component: ProjectCreate,
     canActivate: [AuthGuard]
   },
   {
-    path: 'project/:id',
+    path: 'projects/:id',
     component: Project,
     canActivate: [AuthGuard]
   },
