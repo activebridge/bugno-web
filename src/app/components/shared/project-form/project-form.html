@@ -1,4 +1,4 @@
-<form (ngSubmit)="create();" [formGroup]="projectForm">
+<form (ngSubmit)="submit();" [formGroup]="projectForm">
   <div class="form-group">
     <input  type="text"
             name="name"
@@ -16,5 +16,5 @@
   </div>
   <button type="submit"
           class="btn btn-success"
-          [disabled]="projectForm.invalid">create</button>
+          [disabled]="projectForm.invalid || submitDisabled">{{action}}</button>
 </form>

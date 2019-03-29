@@ -27,7 +27,7 @@
           required>
   <button type="submit"
           class="btn btn-success"
-          [disabled]="registrationForm.invalid">register</button>
+          [disabled]="registrationForm.invalid || submitDisabled">register</button>
   <div class="alert alert-danger" [hidden]="registrationForm.valid || registrationForm.untouched">
     <div *ngIf="registrationForm.controls.login.errors?.email">
       Email has invalid format

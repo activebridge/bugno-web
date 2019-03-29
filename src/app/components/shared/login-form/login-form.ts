@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginForm implements OnInit {
   @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   loginForm: FormGroup;
+  submitDisabled: Boolean = false;
 
   ngOnInit() {
     this.initLoginForm();
@@ -26,6 +27,7 @@ export class LoginForm implements OnInit {
                          .subscribe(this.onSignInSuccess, this.onSignInError);
   }
   private initLoginForm() {
+    this.submitDisabled = true;
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
       password: ['', [ Validators.required, Validators.minLength(8)]]
@@ -43,5 +45,6 @@ export class LoginForm implements OnInit {
     } else {
       this.toastr.error('Whoops! Something went wrong...');
     }
+    this.submitDisabled = false;
   }
 }
