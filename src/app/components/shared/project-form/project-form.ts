@@ -13,6 +13,7 @@ import { ProjectAPI } from '../../../api';
 export class ProjectForm implements OnInit {
   @Output() onSubmitSuccess: EventEmitter<any> = new EventEmitter();
   projectForm: FormGroup;
+  submitDisabled: Boolean = false;
 
   ngOnInit() {
     this.initProjectForm();
@@ -23,6 +24,7 @@ export class ProjectForm implements OnInit {
               private projectAPI: ProjectAPI) { }
 
   create() {
+    this.submitDisabled = true;
     this.projectAPI.create({project: this.projectForm.value})
                    .subscribe(this.onCreateSuccess, this.onCreateError);
   }
@@ -45,5 +47,6 @@ export class ProjectForm implements OnInit {
     } else {
       this.toastr.error('Whoops! Something went wrong...');
     }
+    this.submitDisabled = false;
   }
 }
