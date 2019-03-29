@@ -49,6 +49,7 @@ export class Project implements OnInit {
     }
     this.redirect.navigate(['dashboard']);
   }
+
   private onDeleteSuccess = (resp) => {
     this.toastr.success(`${this.project.name} was destroyed`);
     this.redirect.navigate(['dashboard']);
