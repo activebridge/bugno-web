@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NotificationService } from '../../utility/notification.service';
+import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
+
 import { ProjectAPI } from '../../api';
 
 @Component({
@@ -10,10 +12,10 @@ import { ProjectAPI } from '../../api';
 })
 
 export class Project implements OnInit {
-  projectId: number;
   project: any = {};
 
   constructor(private projectAPI: ProjectAPI,
+              private modalService: BsModalService,
               private router: ActivatedRoute,
               private redirect: Router,
               private notifyService: NotificationService) { }
@@ -21,7 +23,6 @@ export class Project implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       if (params.id) {
-        this.projectId = params.id;
         this.getProject(params.id);
       }
     });
@@ -32,8 +33,18 @@ export class Project implements OnInit {
   }
 
   deleteProject() {
-    this.projectAPI.delete(this.projectId)
+    this.projectAPI.delete(this.project.id)
                    .subscribe(this.onDeleteSuccess, this.notifyService.showError);
+  }
+
+  confirmDelete() {
+    const modal = this.modalService.show(DeleteConfirm, {class: 'modal-lg', backdrop: true});
+    modal.content.projectName = this.project.name;
+    modal.content.onClose.subscribe((result) => {
+      if (result) {
+        this.deleteProject();
+      }
+    });
   }
 
   private onGetSuccess = (resp) => {

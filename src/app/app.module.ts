@@ -5,11 +5,13 @@ import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
-         ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate } from './components';
+         ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
+         DeleteConfirm } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -28,7 +30,8 @@ import { ApiModule } from './api/api.module';
     Project,
     ProjectsList,
     ProjectsItem,
-    ProjectUpdate
+    ProjectUpdate,
+    DeleteConfirm
   ],
   imports: [
     BrowserModule,
@@ -44,9 +47,11 @@ import { ApiModule } from './api/api.module';
       signOutPath: 'api/sign_out'
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DeleteConfirm]
 })
 export class AppModule { }

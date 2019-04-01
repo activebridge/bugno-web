@@ -16,10 +16,9 @@ export class NotificationService {
   showError = (response) =>  {
     if (response.error && response.error.errors) {
       this.toastr.error(response.error.errors);
-    } else if (response.error && response.error.error){
+    } else if (response.error && response.error.error) {
       this.toastr.error(response.error.error);
-    }
-    else {
+    } else {
       this.toastr.error('Whoops! Something went wrong...');
     }
   }
