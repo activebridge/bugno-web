@@ -33,7 +33,7 @@ export class Project implements OnInit {
 
   deleteProject() {
     this.projectAPI.delete(this.projectId)
-                   .subscribe(this.onDeleteSuccess, this.onDeleteError);
+                   .subscribe(this.onDeleteSuccess, this.notifyService.showError);
   }
 
   private onGetSuccess = (resp) => {
@@ -48,9 +48,5 @@ export class Project implements OnInit {
   private onDeleteSuccess = (resp) => {
     this.notifyService.showSuccess(`${this.project.name} was destroyed`);
     this.redirect.navigate(['dashboard']);
-  }
-
-  private onDeleteError = (error) => {
-    this.notifyService.showError(error);
   }
 }

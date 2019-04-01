@@ -10,13 +10,16 @@ export class NotificationService {
   constructor(private toastr: ToastrService) { }
 
   showSuccess(message) {
-      this.toastr.success(message);
+    this.toastr.success(message);
   }
 
-  showError(response) {
+  showError = (response) =>  {
     if (response.error && response.error.errors) {
       this.toastr.error(response.error.errors);
-    } else {
+    } else if (response.error && response.error.error){
+      this.toastr.error(response.error.error);
+    }
+    else {
       this.toastr.error('Whoops! Something went wrong...');
     }
   }
