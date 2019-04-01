@@ -5,7 +5,7 @@
     <p>{{project.description || "Empty"}}</p>
     <h6>Api-key:</h6>
     <p>{{project.api_key}}</p>
-    <button (click)="deleteProject();" class="btn btn-large btn-danger">Delete</button>
+    <button (click)="confirmDelete();" class="btn btn-large btn-danger">Delete</button>
     <button [routerLink]="['/projects', project.id, 'edit']" class="ml-2 btn btn-large btn-warning">Edit</button>
   </div>
 </div>

@@ -1,0 +1,9 @@
+<div class="modal-header">
+  <h5>Enter project name to confirm</h5>
+</div>
+<div class="modal-body">
+  <input class="form-control" [(ngModel)]="name">
+</div>
+<div class="modal-footer">
+  <button [disabled]="projectName != name" class="btn btn-danger" (click)="hide(true);">Delete</button>
+</div>
