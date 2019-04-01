@@ -2,7 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
-import { ToastrService } from 'ngx-toastr';
+
+import { NotificationService } from '../../../utility/notification.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -20,7 +21,7 @@ export class RegistrationForm implements OnInit {
 
   constructor(private tokenAuthSerivce: AngularTokenService,
               private fb: FormBuilder,
-              private toastr: ToastrService) { }
+              private notifyService: NotificationService) { }
 
   onSignUpSubmit() {
     this.submitDisabled = true;
@@ -29,18 +30,12 @@ export class RegistrationForm implements OnInit {
   }
 
   private onCreateSuccess = (resp) => {
-    this.toastr.success('Successfully registered.');
+    this.notifyService.showSuccess('Successfully registered.');
     this.onSubmitSuccess.emit();
   }
 
   private onCreateError = (error) => {
-    if (error.error && error.error.errors) {
-      error.error.errors.full_messages.forEach((message) => {
-        this.toastr.error(message);
-      });
-    } else {
-      this.toastr.error('Whoops! Something went wrong...');
-    }
+    this.notifyService.showError(error);
     this.submitDisabled = false;
   }
 

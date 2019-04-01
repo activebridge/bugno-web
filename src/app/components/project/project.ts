@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
+import { NotificationService } from '../../utility/notification.service';
 import { ProjectAPI } from '../../api';
 
 @Component({
   selector: 'app-project',
-  templateUrl: './project.html',
-  styleUrls: ['./project.scss']
+  templateUrl: './project.html'
 })
 
 export class Project implements OnInit {
@@ -17,7 +16,7 @@ export class Project implements OnInit {
   constructor(private projectAPI: ProjectAPI,
               private router: ActivatedRoute,
               private redirect: Router,
-              private toastr: ToastrService) { }
+              private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -34,7 +33,7 @@ export class Project implements OnInit {
 
   deleteProject() {
     this.projectAPI.delete(this.projectId)
-                   .subscribe(this.onDeleteSuccess, this.onDeleteError);
+                   .subscribe(this.onDeleteSuccess, this.notifyService.showError);
   }
 
   private onGetSuccess = (resp) => {
@@ -42,24 +41,12 @@ export class Project implements OnInit {
   }
 
   private onGetError = (error) => {
-    if (error.error.error) {
-      this.toastr.error(error.error.error);
-    } else {
-      this.toastr.error('Whoops! Something went wrong...');
-    }
+    this.notifyService.showError(error);
     this.redirect.navigate(['dashboard']);
   }
 
   private onDeleteSuccess = (resp) => {
-    this.toastr.success(`${this.project.name} was destroyed`);
+    this.notifyService.showSuccess(`${this.project.name} was destroyed`);
     this.redirect.navigate(['dashboard']);
-  }
-
-  private onDeleteError = (error) => {
-    if (error.error.error) {
-      this.toastr.error(error.error.error);
-    } else {
-      this.toastr.error('Whoops! Something went wrong...');
-    }
   }
 }

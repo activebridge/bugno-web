@@ -2,7 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
-import { ToastrService } from 'ngx-toastr';
+
+import { NotificationService } from '../../../utility/notification.service';
 
 @Component({
   selector: 'app-login-form',
@@ -20,7 +21,7 @@ export class LoginForm implements OnInit {
 
   constructor(private tokenAuthSerivce: AngularTokenService,
               private fb: FormBuilder,
-              private toastr: ToastrService) { }
+              private notifyService: NotificationService) { }
 
   onSignInSubmit() {
     this.tokenAuthSerivce.signIn(this.loginForm.value)
@@ -35,16 +36,12 @@ export class LoginForm implements OnInit {
   }
 
   private onSignInSuccess = (data) => {
-    this.toastr.success('Successfully logged in.');
+    this.notifyService.showSuccess('Successfully logged in');
     this.onSubmitSuccess.emit();
   }
 
   private onSignInError = (error) => {
-    if (error.error && error.error.errors) {
-      this.toastr.error(error.error.errors);
-    } else {
-      this.toastr.error('Whoops! Something went wrong...');
-    }
+    this.notifyService.showError(error);
     this.submitDisabled = false;
   }
 }

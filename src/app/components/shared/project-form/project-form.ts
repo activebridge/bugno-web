@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { ToastrService } from 'ngx-toastr';
 import { compact } from 'lodash';
 
 import { ProjectAPI } from '../../../api';
+import { NotificationService } from '../../../utility/notification.service';
 
 @Component({
   selector: 'app-project-form',
@@ -23,7 +23,7 @@ export class ProjectForm implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-              private toastr: ToastrService,
+              private notifyService: NotificationService,
               private projectAPI: ProjectAPI) { }
 
   get projectParams() {
@@ -47,16 +47,12 @@ export class ProjectForm implements OnInit {
   }
 
   private onCreateSuccess = (resp) => {
-    this.toastr.success(`${this.projectForm.value.name} was ${this.action}d`);
+    this.notifyService.showSuccess(`${this.projectForm.value.name} was ${this.action}d`);
     this.onSubmitSuccess.emit(resp.data.id);
   }
 
-  private onCreateError = (resp) => {
-    if (resp.error.error) {
-      this.toastr.error(resp.error.error);
-    } else {
-      this.toastr.error('Whoops! Something went wrong...');
-    }
+  private onCreateError = (error) => {
+    this.notifyService.showError(error);
     this.submitDisabled = false;
   }
 }
