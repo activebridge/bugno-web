@@ -1,11 +1,20 @@
 <div class="container">
-  <div class="project">
-    <h1 class="text-center mb-5">{{project.name}}</h1>
-    <h6>Description:</h6>
-    <p>{{project.description || "Empty"}}</p>
-    <h6>Api-key:</h6>
-    <p>{{project.api_key}}</p>
-    <button (click)="confirmDelete();" class="btn btn-large btn-danger">Delete</button>
-    <button [routerLink]="['/projects', project.id, 'edit']" class="ml-2 btn btn-large btn-warning">Edit</button>
+  <div class="row justify-content-between border-bottom border-top align-items-center mt-3">
+    <div>
+      <h5 class="font-weight-bold">{{project.name}}</h5>
+      <h6>Api-key: {{project.api_key}}</h6>
+    </div>
+    <div>
+      <button [routerLink]="['/projects', project.id, 'edit']" class="btn btn-large btn-warning">Edit</button>
+      <button (click)="confirmDelete();" class="btn btn-large btn-danger ml-2">Delete</button>
+    </div>
   </div>
+  <h5 class="font-weight-bold">Caugth exceptions:</h5>
+  <ul>
+    <li *ngFor="let event of events">
+      <a [routerLink]="['/projects',project.id,'event',event.id]">
+        <span class="font-weight-bold">{{event.attributes.title}}:</span> {{event.attributes.message}}
+      </a>
+    </li>
+  </ul>
 </div>

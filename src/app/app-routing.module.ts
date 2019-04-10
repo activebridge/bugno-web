@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Login, Registration, Dashboard, ProjectCreate, Project, ProjectUpdate } from './components';
+import { Login, Registration, Dashboard, ProjectCreate, Project, ProjectUpdate,
+         Event } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'projects/:id',
     component: Project,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'projects/:projectId/event/:id',
+    component: Event,
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: 'login' }

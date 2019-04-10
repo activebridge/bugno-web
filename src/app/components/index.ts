@@ -4,6 +4,7 @@ export * from './project/project';
 export * from './registration/registration';
 export * from './create-project/create-project';
 export * from './update-project/update-project';
+export * from './event/event';
 export * from './shared/navbar/navbar';
 export * from './shared/login-form/login-form';
 export * from './shared/registration-form/registration-form';

@@ -1,0 +1,19 @@
+<div class="container mt-3">
+  <div class="col flex-column">
+    <div class="col-md border-bottom">
+      <h4 class="font-weight-bold">{{event.title}}: {{event.message}}</h4>
+    </div>
+    <div class="col-md border-bottom mt-2">
+      <h5 class="font-weight-bold">Headers:</h5>
+      {{event.headers | json}}
+    </div>
+    <div class="col-md border-bottom mt-2">
+      <h5 class="font-weight-bold">Backtrace:</h5>
+      <div class="d-flex flex-column list-group">
+        <div class="list-group-item list-group-item-action" *ngFor="let line of event.backtrace">
+          {{line}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
