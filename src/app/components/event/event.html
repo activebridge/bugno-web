@@ -2,6 +2,18 @@
   <div class="col flex-column">
     <div class="col-md border-bottom">
       <h4 class="font-weight-bold">{{event.title}}: {{event.message}}</h4>
+      <div class="btn-group" dropdown>
+        <button class="btn btn-sm btn-warning mb-2 dropdown-toggle" aria-controls="dropdown-basic" dropdownToggle>
+          <span class="text-capitalize">
+            status: <span class="font-weight-bold">{{event.status}}</span>
+          </span>
+        </button>
+        <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
+          <li role="menuitem" *ngFor="let status of statuses">
+            <a (click)="updateEventStatus(status)" class="dropdown-item text-capitalize" *ngIf="event.status != status">{{status}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="col-md border-bottom mt-2">
       <h5 class="font-weight-bold">Headers:</h5>

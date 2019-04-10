@@ -64,9 +64,7 @@ export class Project implements OnInit {
   }
 
   private onGetEventsSuccess = (resp) => {
-    console.log(resp)
-    this.events = resp.data
-    // this.events = resp.data.attributes;
+    this.events = resp.data;
   }
 
   private onGetEventsError = (error) => {
