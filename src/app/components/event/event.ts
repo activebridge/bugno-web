@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 import { toString, indexOf } from 'lodash';
 
+import { EventStatus } from './statuses'
 import { EventAPI } from '../../api';
 
 @Component({
@@ -11,7 +12,13 @@ import { EventAPI } from '../../api';
 })
 export class Event implements OnInit {
   event: any = {};
-  statuses: any = ['active', 'resolved', 'muted'];
+  statuses = EventStatus;
+
+  statusValues() {
+    return Object.keys(this.statuses).filter(
+      (type) => isNaN(<any>type) && type !== 'values'
+    );
+  }
 
   constructor(private router: ActivatedRoute,
               private eventAPI: EventAPI,
@@ -31,7 +38,11 @@ export class Event implements OnInit {
   }
 
   updateEventStatus(status) {
-    this.eventAPI.update(this.event.project_id, this.event.id, { event: { status: toString(indexOf(this.statuses, status)) } }).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+    this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status) ).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+  }
+
+  private eventParams(status) {
+    return { event: { status: status } }
   }
 
   private onGetSuccess = (resp) => {

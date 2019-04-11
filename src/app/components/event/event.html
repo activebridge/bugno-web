@@ -9,7 +9,7 @@
           </span>
         </button>
         <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
-          <li role="menuitem" *ngFor="let status of statuses">
+          <li role="menuitem" *ngFor="let status of statusValues()">
             <a (click)="updateEventStatus(status)" class="dropdown-item text-capitalize" *ngIf="event.status != status">{{status}}</a>
           </li>
         </ul>
@@ -17,7 +17,9 @@
     </div>
     <div class="col-md border-bottom mt-2">
       <h5 class="font-weight-bold">Headers:</h5>
-      {{event.headers | json}}
+      <div *ngFor="let header of event.headers | keyvalue">
+        <span class="font-weight-bold">{{header.key}}:</span> {{header.value}}
+      </div>
     </div>
     <div class="col-md border-bottom mt-2">
       <h5 class="font-weight-bold">Backtrace:</h5>
