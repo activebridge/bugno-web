@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 import { toString, indexOf } from 'lodash';
 
-import { EventStatus } from './statuses'
+import { EventStatus } from '../../enums/event_statuses';
 import { EventAPI } from '../../api';
 
 @Component({
@@ -16,7 +16,7 @@ export class Event implements OnInit {
 
   statusValues() {
     return Object.keys(this.statuses).filter(
-      (type) => isNaN(<any>type) && type !== 'values'
+      (type) => isNaN(type as any) && type !== 'values'
     );
   }
 
@@ -42,7 +42,7 @@ export class Event implements OnInit {
   }
 
   private eventParams(status) {
-    return { event: { status: status } }
+    return { event: { status } };
   }
 
   private onGetSuccess = (resp) => {
