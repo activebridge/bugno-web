@@ -1,9 +1,10 @@
 <div class="modal-header">
-  <h5>Enter project name to confirm</h5>
+  <h5 class="mr-auto ml-auto">Delete project</h5>
 </div>
 <div class="modal-body">
+  <label>This action cannot be undone. Enter your project's <span class="font-weight-bold bd-highlight">({{projectName}})</span> name below to confirm you want to permanently delete it:</label>
   <input class="form-control" [(ngModel)]="name">
 </div>
 <div class="modal-footer">
-  <button [disabled]="projectName != name" class="btn btn-danger" (click)="hide(true);">Delete</button>
+  <button [disabled]="projectName != name" class="btn btn-danger mr-auto ml-auto" (click)="hide(true);">I understand the consequences, delete this project</button>
 </div>

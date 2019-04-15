@@ -45,7 +45,7 @@ export class Project implements OnInit {
   }
 
   confirmDelete() {
-    const modal = this.modalService.show(DeleteConfirm, {class: 'modal-lg', backdrop: true});
+    const modal = this.modalService.show(DeleteConfirm, {class: 'modal-md', backdrop: true});
     modal.content.projectName = this.project.name;
     modal.content.onClose.subscribe((result) => {
       if (result) {

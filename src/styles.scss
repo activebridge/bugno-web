@@ -9,3 +9,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.bd-highlight {
+  background-color: rgba(92, 109, 103, 0.15);
+  border: 1px solid rgba(86,61,124,.15);
+}
