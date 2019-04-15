@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
-import { toString, indexOf } from 'lodash';
+import { pickBy, isNumber } from 'lodash';
 
 import { EventStatus } from '../../enums/event_statuses';
 import { EventAPI } from '../../api';
@@ -12,13 +12,7 @@ import { EventAPI } from '../../api';
 })
 export class Event implements OnInit {
   event: any = {};
-  statuses = EventStatus;
-
-  statusValues() {
-    return Object.keys(this.statuses).filter(
-      (type) => isNaN(type as any) && type !== 'values'
-    );
-  }
+  statuses = pickBy(EventStatus, isNumber);
 
   constructor(private router: ActivatedRoute,
               private eventAPI: EventAPI,
@@ -42,7 +36,7 @@ export class Event implements OnInit {
   }
 
   private eventParams(status) {
-    return { event: { status } };
+    return { event: { status: status.toLowerCase() } };
   }
 
   private onGetSuccess = (resp) => {
@@ -55,6 +49,7 @@ export class Event implements OnInit {
   }
 
   private onUpdateStatusSuccess = (resp) => {
+    this.notifyService.showSuccess('Status has been updated');
     this.event.status = resp.data.attributes.status;
   }
 

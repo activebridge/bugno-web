@@ -1,5 +1,5 @@
 export enum EventStatus {
-  active = 0,
-  resolved = 1,
-  muted = 2
+  Active = 0,
+  Resolved = 1,
+  Muted = 2
 }

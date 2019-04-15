@@ -9,8 +9,8 @@
           </span>
         </button>
         <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
-          <li role="menuitem" *ngFor="let status of statusValues()">
-            <a (click)="updateEventStatus(status)" class="dropdown-item text-capitalize" *ngIf="event.status != status">{{status}}</a>
+          <li role="menuitem" *ngFor="let item of statuses | keyvalue">
+            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize" *ngIf="event.status != status">{{item.key}}</a>
           </li>
         </ul>
       </div>
