@@ -1,6 +1,4 @@
 <div class="py-2 mb-2 container-fluid bg-light">
   <h5>Your projects:</h5>
-  <div class="list-group">
-    <app-projects-item *ngFor="let project of projects" class="list-group-item list-group-item-action" [project]="project"></app-projects-item>
-  </div>
+  <app-projects-item *ngFor="let project of projects" [project]="project" class="list-group"></app-projects-item>
 </div>

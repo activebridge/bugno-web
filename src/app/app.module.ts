@@ -6,12 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
-         DeleteConfirm } from './components';
+         DeleteConfirm, Event } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -31,7 +32,8 @@ import { ApiModule } from './api/api.module';
     ProjectsList,
     ProjectsItem,
     ProjectUpdate,
-    DeleteConfirm
+    DeleteConfirm,
+    Event
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { ApiModule } from './api/api.module';
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],

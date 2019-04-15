@@ -1,4 +1,3 @@
-<div class="d-flex justify-content-between">
-  <a [routerLink]="['/projects', project.id]">{{project.attributes.name}}</a>
-  <button [routerLink]="['/projects', project.id, 'edit']" class="ml-2 btn btn-sm btn-warning">Edit</button>
-</div>
+<a [routerLink]="['/projects', project.id]" class="list-group-item list-group-item-action">
+  {{project.attributes.name}}
+</a>
