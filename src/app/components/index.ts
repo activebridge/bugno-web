@@ -12,3 +12,6 @@ export * from './shared/project-form/project-form';
 export * from './shared/projects-list/projects-list';
 export * from './shared/projects-item/projects-item';
 export * from './shared/delete-confirm/delete-confirm';
+export * from './shared/events-board/events-board';
+export * from './shared/events-list/events-list';
+export * from './shared/event-item/event-item';

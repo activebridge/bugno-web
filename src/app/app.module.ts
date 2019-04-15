@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SortablejsModule } from 'angular-sortablejs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
-         DeleteConfirm, Event } from './components';
+         DeleteConfirm, Event, EventsBoard, EventItem, EventsList } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -33,7 +34,10 @@ import { ApiModule } from './api/api.module';
     ProjectsItem,
     ProjectUpdate,
     DeleteConfirm,
-    Event
+    Event,
+    EventsBoard,
+    EventItem,
+    EventsList
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { ApiModule } from './api/api.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    SortablejsModule
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],

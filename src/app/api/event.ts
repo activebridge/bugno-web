@@ -11,6 +11,10 @@ export class EventAPI {
     return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`);
   }
 
+  queryByStatus(projectId, params) {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`, params);
+  }
+
   update(projectId, id, params) {
     return this.http.patch(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events/${id}`, params);
   }
