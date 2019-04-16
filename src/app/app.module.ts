@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
-         DeleteConfirm, Event, EventsBoard, EventItem, EventsList } from './components';
+         DeleteConfirm, Event, EventsBoard, EventsList } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -36,7 +36,6 @@ import { ApiModule } from './api/api.module';
     DeleteConfirm,
     Event,
     EventsBoard,
-    EventItem,
     EventsList
   ],
   imports: [
@@ -63,7 +62,7 @@ import { ApiModule } from './api/api.module';
     }),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
-    SortablejsModule
+    SortablejsModule.forRoot({ animation: 150 })
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],

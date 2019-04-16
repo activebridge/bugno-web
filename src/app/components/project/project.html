@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-between border-bottom border-top align-items-center mt-3">
+  <div class="row justify-content-between border-bottom align-items-center mt-3">
     <div>
       <h5 class="font-weight-bold">{{project.name}}</h5>
       <h6>Api-key: <span class="bd-highlight">{{project.api_key}}</span></h6>
@@ -10,5 +10,5 @@
     </div>
   </div>
   <h5 class="font-weight-bold">Events Board:</h5>
-  <app-events-board></app-events-board>
+  <app-events-board [project]="projectId"></app-events-board>
 </div>
