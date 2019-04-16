@@ -53,7 +53,14 @@ import { ApiModule } from './api/api.module';
       signOutPath: 'api/sign_out'
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      preventDuplicates: true,
+      maxOpened: 2,
+      countDuplicates: true,
+      closeButton: true,
+      progressBar: true
+    }),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     SortablejsModule
