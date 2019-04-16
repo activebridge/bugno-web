@@ -1,3 +1,7 @@
-<a [routerLink]="['/projects', project.id]" class="list-group-item list-group-item-action">
-  {{project.attributes.name}}
-</a>
+<div class="card bg-light m-2" style="width: 18rem;">
+  <h5 class="card-header">{{project.attributes.name}}</h5>
+  <div class="card-body">
+    <p class="card-text" [hidden]="isEmpty(project)">{{project.attributes.description}}</p>
+    <button [routerLink]="['/projects', project.id]" class="btn btn-success">Go to project</button>
+  </div>
+</div>
