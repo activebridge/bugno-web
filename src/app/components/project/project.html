@@ -1,14 +1,12 @@
-<div class="container">
-  <div class="row justify-content-between border-bottom align-items-center mt-3">
-    <div>
-      <h5 class="font-weight-bold">{{project.name}}</h5>
-      <h6>Api-key: <span class="bd-highlight">{{project.api_key}}</span></h6>
-    </div>
-    <div>
-      <button [routerLink]="['/projects', project.id, 'edit']" class="btn btn-large btn-warning">Edit</button>
-      <button (click)="confirmDelete();" class="btn btn-large btn-danger ml-2">Delete</button>
-    </div>
+<div class="container border-bottom mt-2">
+  <div class="mb-2">
+    <h5 class="font-weight-bold">{{project.name}}</h5>
+    <button (click)= "copyApiKey();" class="btn btn-sm btn-primary">Copy API Key</button>
+    <button [routerLink]="['/projects', project.id, 'edit']" class="btn btn-sm btn-warning ml-2">Edit</button>
+    <button (click)="confirmDelete();" class="btn btn-sm btn-danger ml-2">Delete</button>
   </div>
+</div>
+<div class="container">
   <h5 class="font-weight-bold">Events Board:</h5>
   <app-events-board [projectId]="projectId"></app-events-board>
 </div>
