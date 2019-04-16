@@ -26,7 +26,7 @@ export class Project implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       if (params.id) {
-        this.projectId = params.id
+        this.projectId = params.id;
         this.getProject(params.id);
         this.getEvents(params.id);
       }

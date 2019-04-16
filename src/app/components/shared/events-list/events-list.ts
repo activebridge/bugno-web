@@ -18,10 +18,10 @@ export class EventsList implements OnInit {
     this.options = {
       group: 'normal-group',
       onUpdate: (event: any) => {
-        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex+1})
+        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
       },
       onAdd: (event: any) => {
-        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex+1})
+        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
       }
     };
   }
@@ -44,14 +44,12 @@ export class EventsList implements OnInit {
 
   private onUpdateStatusSuccess = (resp) => {
     this.notifyService.showSuccess(`Moved to ${resp.data.attributes.status}`, resp.data.attributes.title);
-    // this.event.status = resp.data.attributes.status;
-    console.log(resp.data.attributes)
   }
   private onUpdateStatusError = (error) => {
     this.notifyService.showError(error);
   }
 
   ngOnInit() {
-    this.getEvents(this.project, {status: this.status.key.toLowerCase()})
+    this.getEvents(this.project, {status: this.status.key.toLowerCase()});
   }
 }

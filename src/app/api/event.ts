@@ -7,7 +7,7 @@ export class EventAPI {
 
   constructor(public http: HttpClient) {}
 
-  query(projectId, params={}) {
+  query(projectId, params= {}) {
     return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`, { params });
   }
 
