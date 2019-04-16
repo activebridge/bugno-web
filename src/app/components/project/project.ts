@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
 
-import { ClipboardService } from 'ngx-clipboard'
+import { ClipboardService } from 'ngx-clipboard';
 import { ProjectAPI, EventAPI } from '../../api';
 
 @Component({
@@ -39,8 +39,8 @@ export class Project implements OnInit {
     this.projectAPI.get(id).subscribe(this.onGetSuccess, this.onGetError);
   }
 
-  copyApiKey(){
-    this._clipboardService.copyFromContent(this.project.api_key)
+  copyApiKey() {
+    this._clipboardService.copyFromContent(this.project.api_key);
     this.notifyService.showSuccess('API Key copied to clipboard.');
   }
 

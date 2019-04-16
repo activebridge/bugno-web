@@ -26,7 +26,7 @@
           id="passwordConfirmation"
           required>
   <button type="submit"
-          class="btn btn-success"
+          class="btn btn-outline-success"
           [disabled]="registrationForm.invalid || submitDisabled">register</button>
   <div class="alert alert-danger" [hidden]="registrationForm.valid || registrationForm.untouched">
     <div *ngIf="registrationForm.controls.login.errors?.email">
