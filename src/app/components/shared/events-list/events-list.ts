@@ -8,7 +8,7 @@ import { EventAPI } from '../../../api';
   templateUrl: './events-list.html',
 })
 export class EventsList implements OnInit {
-  @Input() project: any = {};
+  @Input() projectId: any = {};
   @Input() status: any;
   events: any = [];
   options: any = {};
@@ -31,7 +31,7 @@ export class EventsList implements OnInit {
   }
 
   updateEvent(id, params) {
-    this.eventAPI.update(this.project, id, {event: params}).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+    this.eventAPI.update(this.projectId, id, {event: params}).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
   }
 
   private onGetEventsSuccess = (resp) => {
@@ -50,6 +50,6 @@ export class EventsList implements OnInit {
   }
 
   ngOnInit() {
-    this.getEvents(this.project, {status: this.status.key.toLowerCase()});
+    this.getEvents(this.projectId, {status: this.status.key.toLowerCase()});
   }
 }

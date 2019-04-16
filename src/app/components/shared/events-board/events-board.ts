@@ -8,7 +8,7 @@ import { EventStatus } from '../../../enums/event_statuses';
   templateUrl: './events-board.html',
 })
 export class EventsBoard {
-  @Input() project: any = {};
+  @Input() projectId: any = {};
   statuses = pickBy(EventStatus, isNumber);
 
   constructor() { }
