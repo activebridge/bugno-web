@@ -1,11 +1,9 @@
 <div class="p-2 bg-light border-bottom">
     <h5 class="m-0">Your projects:</h5>
-</div>
-<div class="container">
-  <app-projects-list></app-projects-list>
-  <div class="border-top">
-    <button type="button" class="btn btn-large btn-success m-2" [routerLink]='["/projects/new"]'>
+    <a class="badge badge-success m-2" [routerLink]='["/projects/new"]'>
       Create project
-    </button>
-  </div>
+    </a>
+</div>
+<div class="container-fluid border-bottom">
+  <app-projects-list></app-projects-list>
 </div>
