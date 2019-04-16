@@ -7,12 +7,8 @@ export class EventAPI {
 
   constructor(public http: HttpClient) {}
 
-  query(projectId) {
-    return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`);
-  }
-
-  queryByStatus(projectId, params) {
-    return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`, params);
+  query(projectId, params={}) {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`, { params });
   }
 
   update(projectId, id, params) {
