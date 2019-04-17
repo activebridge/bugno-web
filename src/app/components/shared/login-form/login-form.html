@@ -14,7 +14,7 @@
           id="password"
           required>
   <button type="submit"
-          class="btn btn-success"
+          class="btn btn-outline-success"
           [disabled]="loginForm.invalid">login</button>
   <div class="alert alert-danger" [hidden]="loginForm.valid || loginForm.untouched">
     <div *ngIf="loginForm.controls.login.errors?.email">

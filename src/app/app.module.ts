@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SortablejsModule } from 'angular-sortablejs';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,12 +58,12 @@ import { ApiModule } from './api/api.module';
       preventDuplicates: true,
       maxOpened: 2,
       countDuplicates: true,
-      closeButton: true,
       progressBar: true
     }),
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
-    SortablejsModule.forRoot({ animation: 150 })
+    SortablejsModule.forRoot({ animation: 150 }),
+    ClipboardModule
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],

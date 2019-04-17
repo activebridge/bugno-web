@@ -11,19 +11,23 @@ export class EventsList implements OnInit {
   @Input() projectId: any = {};
   @Input() status: any;
   events: any = [];
-  options: any = {};
+  sortableOptions: any = {};
 
   constructor(private eventAPI: EventAPI,
               private notifyService: NotificationService) {
-    this.options = {
+    this.sortableOptions = {
       group: 'normal-group',
-      onUpdate: (event: any) => {
-        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
-      },
-      onAdd: (event: any) => {
-        this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
-      }
+      onUpdate: this.updateEventHandler,
+      onAdd: this.updateEventHandler
     };
+  }
+
+  ngOnInit() {
+    this.getEvents(this.projectId, {status: this.status.key.toLowerCase()});
+  }
+
+  updateEventHandler = (event: any) => {
+    this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
   }
 
   getEvents(projectId, status) {
@@ -49,7 +53,4 @@ export class EventsList implements OnInit {
     this.notifyService.showError(error);
   }
 
-  ngOnInit() {
-    this.getEvents(this.projectId, {status: this.status.key.toLowerCase()});
-  }
 }
