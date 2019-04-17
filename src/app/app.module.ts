@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SortablejsModule } from 'angular-sortablejs';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
-         DeleteConfirm, Event } from './components';
+         DeleteConfirm, Event, EventsBoard, EventsList } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -33,7 +35,9 @@ import { ApiModule } from './api/api.module';
     ProjectsItem,
     ProjectUpdate,
     DeleteConfirm,
-    Event
+    Event,
+    EventsBoard,
+    EventsList
   ],
   imports: [
     BrowserModule,
@@ -49,9 +53,17 @@ import { ApiModule } from './api/api.module';
       signOutPath: 'api/sign_out'
     }),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      preventDuplicates: true,
+      maxOpened: 2,
+      countDuplicates: true,
+      progressBar: true
+    }),
     ModalModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    SortablejsModule.forRoot({ animation: 150 }),
+    ClipboardModule
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],

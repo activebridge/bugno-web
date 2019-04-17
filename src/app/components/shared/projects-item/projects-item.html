@@ -1,3 +1,8 @@
-<a [routerLink]="['/projects', project.id]" class="list-group-item list-group-item-action">
-  {{project.attributes.name}}
-</a>
+<div class="card bg-light m-2">
+  <a [routerLink]="['/projects', project.id]" class="list-group-item-action">
+    <h5 class="card-header">{{project.attributes.name}}</h5>
+  </a>
+  <div class="card-body" [hidden]="isEmpty(project)">
+    <p class="card-text">{{project.attributes.description}}</p>
+  </div>
+</div>

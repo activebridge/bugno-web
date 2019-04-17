@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-sm-4 my-3" *ngFor="let status of statuses | keyvalue: 0">
+    <div class="card">
+      <div class="card-header font-weight-bold">{{status.key}}</div>
+        <app-events-list [projectId]="projectId" [status]="status"></app-events-list>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
 
+import { ClipboardService } from 'ngx-clipboard';
 import { ProjectAPI, EventAPI } from '../../api';
 
 @Component({
@@ -13,6 +14,7 @@ import { ProjectAPI, EventAPI } from '../../api';
 
 export class Project implements OnInit {
   project: any = {};
+  projectId: number;
   events: any = [];
 
   constructor(private projectAPI: ProjectAPI,
@@ -20,11 +22,13 @@ export class Project implements OnInit {
               private modalService: BsModalService,
               private router: ActivatedRoute,
               private redirect: Router,
-              private notifyService: NotificationService) { }
+              private notifyService: NotificationService,
+              private _clipboardService: ClipboardService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
       if (params.id) {
+        this.projectId = params.id;
         this.getProject(params.id);
         this.getEvents(params.id);
       }
@@ -33,6 +37,11 @@ export class Project implements OnInit {
 
   getProject(id) {
     this.projectAPI.get(id).subscribe(this.onGetSuccess, this.onGetError);
+  }
+
+  copyApiKey() {
+    this._clipboardService.copyFromContent(this.project.api_key);
+    this.notifyService.showSuccess('API Key copied to clipboard.');
   }
 
   getEvents(projectId) {

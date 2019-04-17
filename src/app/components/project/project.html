@@ -1,20 +1,11 @@
-<div class="container">
-  <div class="row justify-content-between border-bottom border-top align-items-center mt-3">
-    <div>
-      <h5 class="font-weight-bold">{{project.name}}</h5>
-      <h6>Api-key: {{project.api_key}}</h6>
-    </div>
-    <div>
-      <button [routerLink]="['/projects', project.id, 'edit']" class="btn btn-large btn-warning">Edit</button>
-      <button (click)="confirmDelete();" class="btn btn-large btn-danger ml-2">Delete</button>
-    </div>
+<div class="container-fluid border-bottom mt-2 bg-light">
+  <div class="mb-2">
+    <h5 class="pt-2">{{project.name}} events board</h5>
+    <a (click)= "copyApiKey();" class="badge badge-primary cursor-pointer">Copy API Key</a>
+    <a [routerLink]="['/projects', project.id, 'edit']" class="badge badge-warning ml-2">Edit</a>
+    <a (click)="confirmDelete();" class="badge badge-danger ml-2 cursor-pointer">Delete</a>
   </div>
-  <h5 class="font-weight-bold">Caugth exceptions:</h5>
-  <ul>
-    <li *ngFor="let event of events">
-      <a [routerLink]="['/projects',project.id,'event',event.id]">
-        <span class="font-weight-bold">{{event.attributes.title}}:</span> {{event.attributes.message}}
-      </a>
-    </li>
-  </ul>
+</div>
+<div class="container">
+  <app-events-board [projectId]="projectId"></app-events-board>
 </div>

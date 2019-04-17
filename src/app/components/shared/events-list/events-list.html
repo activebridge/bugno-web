@@ -1,0 +1,7 @@
+<ul class="list-group sortable" [sortablejs]="events" [sortablejsOptions]="sortableOptions">
+  <li *ngFor="let event of events" class="list-group-item font-weight-bold" [attr.data-event-id]="event.attributes.id">
+    <a [routerLink]="['/projects', projectId, 'event', event.attributes.id]" class="list-group-item-action">
+      {{event.attributes.title}}
+    </a>
+  </li>
+</ul>
