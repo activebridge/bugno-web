@@ -58,7 +58,6 @@ import { ApiModule } from './api/api.module';
       preventDuplicates: true,
       maxOpened: 2,
       countDuplicates: true,
-      closeButton: true,
       progressBar: true
     }),
     ModalModule.forRoot(),
