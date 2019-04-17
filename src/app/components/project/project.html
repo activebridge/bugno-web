@@ -1,9 +1,9 @@
 <div class="container-fluid border-bottom mt-2 bg-light">
   <div class="mb-2">
     <h5 class="pt-2">{{project.name}} events board</h5>
-    <a (click)= "copyApiKey();" class="badge badge-primary" [routerLink]="">Copy API Key</a>
+    <a (click)= "copyApiKey();" class="badge badge-primary cursor-pointer">Copy API Key</a>
     <a [routerLink]="['/projects', project.id, 'edit']" class="badge badge-warning ml-2">Edit</a>
-    <a (click)="confirmDelete();" class="badge badge-danger ml-2" [routerLink]="">Delete</a>
+    <a (click)="confirmDelete();" class="badge badge-danger ml-2 cursor-pointer">Delete</a>
   </div>
 </div>
 <div class="container">
