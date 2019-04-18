@@ -37,7 +37,7 @@ import { ApiModule } from './api/api.module';
     DeleteConfirm,
     Event,
     EventsBoard,
-    EventsList
+    EventsList,
   ],
   imports: [
     BrowserModule,
