@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
-         DeleteConfirm, Event, EventsBoard, EventsList } from './components';
+         DeleteConfirm, Event, ProjectEvents, EventsList } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -36,7 +36,7 @@ import { ApiModule } from './api/api.module';
     ProjectUpdate,
     DeleteConfirm,
     Event,
-    EventsBoard,
+    ProjectEvents,
     EventsList,
   ],
   imports: [

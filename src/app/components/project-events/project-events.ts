@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pickBy, isNumber } from 'lodash';
 
-import { EventStatus } from '../../../enums/event_statuses';
+import { EventStatus } from '../../enums/event_statuses';
 
 @Component({
-  selector: 'app-events-board',
-  templateUrl: './events-board.html',
+  selector: 'app-project-events',
+  templateUrl: './project-events.html',
 })
-export class EventsBoard implements OnInit {
+export class ProjectEvents implements OnInit {
   projectId: any = {};
   statuses = pickBy(EventStatus, isNumber);
 
