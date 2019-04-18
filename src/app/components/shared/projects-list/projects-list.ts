@@ -27,7 +27,6 @@ export class ProjectsList implements OnInit {
   }
 
   private onGetError = (error) => {
-    console.log(error)
     this.notifyService.showError(error);
   }
 }
