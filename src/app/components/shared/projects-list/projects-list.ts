@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../../../utility/notification.service';
 
 import { ProjectAPI } from '../../../api';
 
@@ -10,15 +11,23 @@ import { ProjectAPI } from '../../../api';
 export class ProjectsList implements OnInit {
   projects: any = [];
 
-  constructor(private projectAPI: ProjectAPI) { }
+  constructor(private projectAPI: ProjectAPI,
+              private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.getProjects();
   }
 
   getProjects() {
-    this.projectAPI.query().subscribe((response: any) => {
-      this.projects = response.data;
-    });
+    this.projectAPI.query().subscribe(this.onGetSuccess, this.onGetError);
+  }
+  
+  private onGetSuccess = (resp) => {
+    this.projects = resp.data;
+  }
+
+  private onGetError = (error) => {
+    console.log(error)
+    this.notifyService.showError(error);
   }
 }
