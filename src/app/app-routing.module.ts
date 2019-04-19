@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Login, Registration, Dashboard, ProjectCreate, Project, ProjectUpdate,
-         Event, ProjectEvents } from './components';
+         Event, ProjectEvents, ProjectAccess } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -37,7 +37,7 @@ const routes: Routes = [
     children: [
       {path:'',redirectTo: 'events', pathMatch: 'full'},
       {path: 'events', component: ProjectEvents},
-      {path: 'access', component: ProjectEvents},
+      {path: 'access', component: ProjectAccess},
       {path: 'settings', component: ProjectEvents}
     ],
     canActivate: [AuthGuard]

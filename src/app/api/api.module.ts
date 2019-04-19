@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ProjectAPI, EventAPI } from '../api';
+import { ProjectAPI, EventAPI, ProjectUsersAPI } from '../api';
 
 @NgModule({
   providers: [
    ProjectAPI,
-   EventAPI
+   EventAPI,
+   ProjectUsersAPI
   ]
 })
 
