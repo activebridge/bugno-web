@@ -16,6 +16,11 @@ export class Project implements OnInit {
   project: any = {};
   projectId: number;
   events: any = [];
+  tabs: any = [
+    {title: 'Events', url: 'events'},
+    {title: 'Access', url: 'access'},
+    {title: 'Settings', url: 'settings'}
+  ];
 
   constructor(private projectAPI: ProjectAPI,
               private eventAPI: EventAPI,

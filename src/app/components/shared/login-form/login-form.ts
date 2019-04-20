@@ -15,13 +15,14 @@ export class LoginForm implements OnInit {
   loginForm: FormGroup;
   submitDisabled: Boolean = false;
 
+  constructor(private tokenAuthSerivce: AngularTokenService,
+    private fb: FormBuilder,
+    private notifyService: NotificationService) { }
+
   ngOnInit() {
     this.initLoginForm();
   }
 
-  constructor(private tokenAuthSerivce: AngularTokenService,
-              private fb: FormBuilder,
-              private notifyService: NotificationService) { }
 
   onSignInSubmit() {
     this.tokenAuthSerivce.signIn(this.loginForm.value)

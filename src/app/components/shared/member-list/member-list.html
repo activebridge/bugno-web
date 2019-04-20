@@ -1,0 +1,7 @@
+<div class="list-group">
+    <div class="list-group-item d-flex row justify-content-between" *ngFor="let item of projectUsers">
+      <div class="col-sm-4">{{item.attributes.user.data.attributes.email}}</div>
+      <div class="col-sm-4">{{item.attributes.role}}</div>
+      <div class="col-sm-4">X</div>
+    </div>
+</div>
