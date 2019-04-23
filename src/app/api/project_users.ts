@@ -15,7 +15,7 @@ export class ProjectUsersAPI {
     return this.http.post(`${environment.apiEndpoint}/api/v1/projects/${projectId}/project_users`, params);
   }
 
-  delete(projectId, projectUserId) {
-    return this.http.delete(`${environment.apiEndpoint}/api/v1/projects/${projectId}/project_users/${projectUserId}`);
+  delete(projectId, id) {
+    return this.http.delete(`${environment.apiEndpoint}/api/v1/projects/${projectId}/project_users/${id}`);
   }
 }
