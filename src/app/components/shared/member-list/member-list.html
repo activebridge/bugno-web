@@ -5,6 +5,6 @@
         <div class="border-bottom my-1"></div>
         <p class="m-0">{{item.attributes.role}}</p>
       </div>
-      <button (click)="onDeleteProjectUser(item.attributes.id);" class="btn btn-outline-danger">Dismiss</button>
+      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" class="btn btn-outline-danger">Dismiss</button>
     </div>
 </div>

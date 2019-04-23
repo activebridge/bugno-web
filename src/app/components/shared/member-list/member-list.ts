@@ -23,8 +23,8 @@ export class MemberList {
   }
 
   private onDeleteSuccess = (id) => {
-    let index = this.projectUsers.findIndex((projectUser) => projectUser.id != id);
-    this.projectUsers.splice(index, 1);
+    const index = this.projectUsers.findIndex((projectUser) => projectUser.id != id);
+    this.projectUsers.splice(index + 1, 1);
     this.notifyService.showSuccess('User removed');
   }
 

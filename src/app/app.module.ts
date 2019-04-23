@@ -15,10 +15,11 @@ import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
          DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
-         InviteMember } from './components';
+         InviteMember, ConfirmModal } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
+import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { ApiModule } from './api/api.module';
     EventsList,
     ProjectAccess,
     MemberList,
-    InviteMember
+    InviteMember,
+    ConfirmDirective,
+    ConfirmModal
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,6 @@ import { ApiModule } from './api/api.module';
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DeleteConfirm]
+  entryComponents: [DeleteConfirm, ConfirmModal]
 })
 export class AppModule { }
