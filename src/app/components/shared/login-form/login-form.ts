@@ -16,8 +16,8 @@ export class LoginForm implements OnInit {
   submitDisabled: Boolean = false;
 
   constructor(private tokenAuthSerivce: AngularTokenService,
-    private fb: FormBuilder,
-    private notifyService: NotificationService) { }
+              private fb: FormBuilder,
+              private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.initLoginForm();

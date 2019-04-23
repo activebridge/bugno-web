@@ -1,0 +1,9 @@
+<form class="form-inline" (ngSubmit)="onInviteSumbit()" [formGroup]="inviteForm">
+  <input type="email"
+         name="email"
+         formControlName="email"
+         placeholder="Email"
+         class="form-control"
+         required>
+  <button type="submit" class="btn btn-success ml-2">Invite</button>
+</form>

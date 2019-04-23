@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'projects/:id',
     component: Project,
     children: [
-      {path:'',redirectTo: 'events', pathMatch: 'full'},
+      {path: '', redirectTo: 'events', pathMatch: 'full'},
       {path: 'events', component: ProjectEvents},
       {path: 'access', component: ProjectAccess},
       {path: 'settings', component: ProjectEvents}

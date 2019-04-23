@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../../../utility/notification.service';
 
@@ -8,31 +8,27 @@ import { ProjectUsersAPI } from '../../../api';
   selector: 'app-member-list',
   templateUrl: './member-list.html',
 })
-export class MemberList implements OnInit {
-  projectUsers: any = [];
-
+export class MemberList {
+  @Input() projectUsers: any = [];
+  @Input() projectId: string;
   constructor(private projectUsersAPI: ProjectUsersAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService) { }
 
-  ngOnInit() {
-    this.router.parent.params.subscribe(params => {
-      if (params.id) {
-        this.getProjectUsers(params.id);
-      }
-    });
+  onDeleteProjectUser(projectUserId) {
+    this.projectUsersAPI.delete(this.projectId, projectUserId).subscribe(
+      () => {
+        this.onDeleteSuccess(projectUserId);
+      }, this.onDeleteError);
   }
 
-  getProjectUsers(projectId) {
-    this.projectUsersAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
+  private onDeleteSuccess = (id) => {
+    const index = this.projectUsers.findIndex((projectUser) => projectUser.id != id);
+    this.projectUsers.splice(index + 1, 1);
+    this.notifyService.showSuccess('User removed');
   }
 
-  private onGetSuccess = (resp) => {
-    this.projectUsers = resp.data
-  }
-
-  private onGetError = (error) => {
-    console.log(error)
+  private onDeleteError = (error) => {
     this.notifyService.showError(error);
   }
 }
