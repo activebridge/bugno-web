@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
          DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
-        InviteMember } from './components';
+         InviteMember } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
