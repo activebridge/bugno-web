@@ -21,7 +21,7 @@ export class ProjectsList implements OnInit {
   getProjects() {
     this.projectAPI.query().subscribe(this.onGetSuccess, this.onGetError);
   }
-  
+
   private onGetSuccess = (resp) => {
     this.projects = resp.data;
   }

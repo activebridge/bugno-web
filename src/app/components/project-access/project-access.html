@@ -1,15 +1,7 @@
 <div class="container-fluid my-2">
-  <form class="form-inline" (ngSubmit)="onInviteSumbit()" [formGroup]="inviteForm">
-    <input type="email"
-           name="email"
-           formControlName="email"
-           placeholder="Email"
-           class="form-control"
-           required>
-    <button type="submit" class="btn btn-success ml-2">Invite</button>
-  </form>
+  <app-invite-member [projectId]="projectId" (invited)="onInviteSuccess($event);"></app-invite-member>
 </div>
 <div class="border-bottom my-2"></div>
 <div class="container-fluid my-2">
-  <app-member-list></app-member-list>
+  <app-member-list [projectUsers]="projectUsers" [projectId]="projectId"></app-member-list>
 </div>
