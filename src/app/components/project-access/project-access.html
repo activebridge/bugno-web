@@ -1,7 +1,7 @@
-<div class="container-fluid my-2">
-  <app-invite-member [projectId]="projectId" (invited)="onInviteSuccess($event);"></app-invite-member>
-</div>
-<div class="border-bottom my-2"></div>
-<div class="container-fluid my-2">
-  <app-member-list [projectUsers]="projectUsers" [projectId]="projectId"></app-member-list>
+<div class="container row justify-content-center">
+  <div class="col-md-9">
+    <app-invite-member [projectId]="projectId" (invited)="onInviteSuccess($event);" class="border-top border-bottom border-success"></app-invite-member>
+    <div class="my-4 border"></div>
+    <app-member-list [projectUsers]="projectUsers" [projectId]="projectId"></app-member-list>
+  </div>
 </div>

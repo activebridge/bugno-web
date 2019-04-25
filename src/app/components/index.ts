@@ -3,7 +3,7 @@ export * from './login/login';
 export * from './project/project';
 export * from './registration/registration';
 export * from './create-project/create-project';
-export * from './update-project/update-project';
+export * from './project-settings/project-settings';
 export * from './event/event';
 export * from './project-events/project-events';
 export * from './project-access/project-access';
