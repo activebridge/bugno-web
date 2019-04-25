@@ -1,10 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
-import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
 
-import { ClipboardService } from 'ngx-clipboard';
 import { ProjectAPI, EventAPI } from '../../api';
 
 @Component({
@@ -24,11 +21,9 @@ export class Project implements OnInit {
 
   constructor(private projectAPI: ProjectAPI,
               private eventAPI: EventAPI,
-              private modalService: BsModalService,
               private router: ActivatedRoute,
               private redirect: Router,
-              private notifyService: NotificationService,
-              private _clipboardService: ClipboardService) { }
+              private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -44,28 +39,8 @@ export class Project implements OnInit {
     this.projectAPI.get(id).subscribe(this.onGetSuccess, this.onGetError);
   }
 
-  copyApiKey() {
-    this._clipboardService.copyFromContent(this.project.api_key);
-    this.notifyService.showSuccess('API Key copied to clipboard.');
-  }
-
   getEvents(projectId) {
     this.eventAPI.query(projectId).subscribe(this.onGetEventsSuccess, this.onGetEventsError);
-  }
-
-  deleteProject() {
-    this.projectAPI.delete(this.project.id)
-                   .subscribe(this.onDeleteSuccess, this.notifyService.showError);
-  }
-
-  confirmDelete() {
-    const modal = this.modalService.show(DeleteConfirm, {class: 'modal-md', backdrop: true});
-    modal.content.projectName = this.project.name;
-    modal.content.onClose.subscribe((result) => {
-      if (result) {
-        this.deleteProject();
-      }
-    });
   }
 
   private onGetSuccess = (resp) => {
@@ -83,10 +58,5 @@ export class Project implements OnInit {
 
   private onGetEventsError = (error) => {
     this.notifyService.showError(error);
-  }
-
-  private onDeleteSuccess = (resp) => {
-    this.notifyService.showSuccess(`${this.project.name} was destroyed`);
-    this.redirect.navigate(['dashboard']);
   }
 }

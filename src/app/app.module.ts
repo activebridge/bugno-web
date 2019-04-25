@@ -13,7 +13,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
-         ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectUpdate,
+         ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectSettings,
          DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
          InviteMember, ConfirmModal } from './components';
 import { environment } from '../environments/environment';
@@ -36,7 +36,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     Project,
     ProjectsList,
     ProjectsItem,
-    ProjectUpdate,
+    ProjectSettings,
     DeleteConfirm,
     Event,
     ProjectEvents,
