@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,7 @@ import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
+import { AuthInterceptor } from './utility';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
@@ -72,7 +73,12 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     SortablejsModule.forRoot({ animation: 150 }),
     ClipboardModule
   ],
-  providers: [BaseGuard, AuthGuard, PublicGuard],
+  providers: [BaseGuard, AuthGuard, PublicGuard,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
   entryComponents: [DeleteConfirm, ConfirmModal]
 })
