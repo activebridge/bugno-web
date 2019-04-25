@@ -58,7 +58,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
       apiBase: environment.apiEndpoint,
       signInPath: 'api/sign_in',
       registerAccountPath: 'api/',
-      signOutPath: 'api/sign_out'
+      signOutPath: 'api/sign_out',
+      validateTokenPath: 'api/validate_token'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
