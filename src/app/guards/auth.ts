@@ -10,7 +10,6 @@ export class AuthGuard extends BaseGuard {
     if (this.tokenAuthSerivce.userSignedIn()) {
       return true;
     }
-
     this.router.navigate(['login']);
     return false;
   }
