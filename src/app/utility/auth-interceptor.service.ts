@@ -50,7 +50,7 @@ export class AuthInterceptor implements HttpInterceptor {
         this.tokenService.getAuthHeadersFromResponse(res);
         if (res.status == 401) {
           localStorage.clear();
-          this.tokenService.authData = null;
+          this.tokenService['authData'] = null;
           this.router.navigate(['login']);
         }
       }

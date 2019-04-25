@@ -20,8 +20,8 @@ export class MemberList implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.tokenService.validateToken().subscribe( res => {
-      this.currentUser = this.tokenService.currentUserData;
+    this.tokenService.validateToken().subscribe(res => {
+      this.currentUser = res.data;
     });
   }
 
