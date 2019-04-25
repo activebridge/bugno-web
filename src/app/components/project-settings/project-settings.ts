@@ -55,6 +55,11 @@ export class ProjectSettings implements OnInit {
       }
     });
   }
+
+  onProjectUpdate(project) {
+    this.project = project;
+  }
+
   private onGetSuccess = (resp) => {
     this.project = resp.data.attributes;
     this.projectForm.init(this.project);
