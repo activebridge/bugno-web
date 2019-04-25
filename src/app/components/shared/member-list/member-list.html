@@ -1,10 +1,10 @@
 <div class="list-group">
-    <div class="list-group-item d-flex row justify-content-between align-items-center" *ngFor="let item of projectUsers">
+    <div *ngFor="let item of projectUsers" class="list-group-item d-flex row justify-content-between align-items-center">
       <div>
         <p class="m-0">{{item.attributes.user.data.attributes.email}}</p>
         <div class="border-bottom my-1"></div>
         <p class="m-0">{{item.attributes.role}}</p>
       </div>
-      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" class="btn btn-outline-danger">Dismiss</button>
+      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" *ngIf="isCurrentUserOwner" class="btn btn-outline-danger">Dismiss</button>
     </div>
 </div>
