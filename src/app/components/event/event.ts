@@ -9,6 +9,7 @@ import { EventAPI } from '../../api';
 @Component({
   selector: 'app-event',
   templateUrl: './event.html',
+  styleUrls: ['./event.scss']
 })
 export class Event implements OnInit {
   event: any = {};
@@ -33,6 +34,10 @@ export class Event implements OnInit {
 
   updateEventStatus(status) {
     this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status) ).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+  }
+
+  isProjectException(fileName) {
+    return fileName.includes(this.event.server_data.root);
   }
 
   private eventParams(status) {

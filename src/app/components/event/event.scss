@@ -1,0 +1,8 @@
+:host {
+  input[type=checkbox]:checked + div {
+    display: block;
+  }
+  .item-content {
+    display: none;
+  }
+}
