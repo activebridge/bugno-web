@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="row border-bottom mt-2">
+  <div *ngIf="event.backtrace.length" class="row border-bottom mt-2">
     <div class="col-md">
       <h5 class="font-weight-bold">Backtrace:</h5>
       <div class="list-group">
