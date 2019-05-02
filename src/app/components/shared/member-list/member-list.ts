@@ -37,8 +37,8 @@ export class MemberList implements OnInit {
   }
 
   private onDeleteSuccess = (id) => {
-    const index = this.projectUsers.findIndex((projectUser) => projectUser.id != id);
-    this.projectUsers.splice(index + 1, 1);
+    const index = this.projectUsers.findIndex((projectUser) => projectUser.id == id);
+    this.projectUsers.splice(index, 1);
     this.notifyService.showSuccess('User removed');
   }
 
