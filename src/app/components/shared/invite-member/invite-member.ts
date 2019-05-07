@@ -36,8 +36,12 @@ export class InviteMember implements OnInit {
 
     private onGetSuccess = (resp) => {
       this.inviteForm.reset();
-      this.notifyService.showSuccess('User added');
-      this.invited.emit(resp.data);
+      if (resp) {
+        this.notifyService.showSuccess('User added');
+        this.invited.emit(resp.data);
+      } else {
+        this.notifyService.showSuccess('User invited');
+      }
     }
 
     private onGetError = (error) => {
