@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
@@ -17,9 +18,15 @@ export class RegistrationForm implements OnInit {
 
   ngOnInit() {
     this.initRegistrationForm();
+    this.router.queryParams.subscribe(queryParams => {
+      if (queryParams.registration_token) {
+        this.registrationForm.controls.registration_token.setValue(queryParams.registration_token);
+      }
+    });
   }
 
   constructor(private tokenAuthSerivce: AngularTokenService,
+              private router: ActivatedRoute,
               private fb: FormBuilder,
               private notifyService: NotificationService) { }
 
@@ -46,6 +53,7 @@ export class RegistrationForm implements OnInit {
     this.registrationForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
       name: [''],
+      registration_token: [''],
       password,
       passwordConfirmation
     });

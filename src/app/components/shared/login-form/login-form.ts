@@ -25,11 +25,11 @@ export class LoginForm implements OnInit {
 
 
   onSignInSubmit() {
+    this.submitDisabled = true;
     this.tokenAuthSerivce.signIn(this.loginForm.value)
                          .subscribe(this.onSignInSuccess, this.onSignInError);
   }
   private initLoginForm() {
-    this.submitDisabled = true;
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
       password: ['', [ Validators.required, Validators.minLength(8)]]
@@ -39,6 +39,7 @@ export class LoginForm implements OnInit {
   private onSignInSuccess = (data) => {
     this.notifyService.showSuccess('Successfully logged in');
     this.onSubmitSuccess.emit();
+    this.submitDisabled = false;
   }
 
   private onSignInError = (error) => {
