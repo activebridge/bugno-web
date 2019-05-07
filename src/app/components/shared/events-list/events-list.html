@@ -3,5 +3,7 @@
     <a [routerLink]="['/projects', projectId, 'event', event.attributes.id]" class="list-group-item-action">
       {{event.attributes.title}}
     </a>
+      <span tooltip="{{event.attributes.created_at | date:'medium'}}"
+        placement="bottom" class="text-muted">{{event.attributes.created_at | timeAgo}}</span>
   </li>
 </ul>

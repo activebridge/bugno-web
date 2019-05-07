@@ -7,8 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +47,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     MemberList,
     InviteMember,
     ConfirmDirective,
-    ConfirmModal
+    ConfirmModal,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     FormsModule,
     ReactiveFormsModule,
     ApiModule,
+    TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
       signInPath: 'api/sign_in',

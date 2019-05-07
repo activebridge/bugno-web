@@ -1,8 +1,10 @@
 <div class="container mt-3">
-  <div class="row border-bottom">
+  <div class="row border-bottom pb-2">
     <div class="col-md-10">
       <h4 class="font-weight-bold">{{event.title}}</h4>
       <h6>{{event.message}}</h6>
+      <span tooltip="{{event.created_at | date:'medium'}}"
+      placement="bottom">{{event.created_at | timeAgo}}</span>
     </div>
     <div class="col-md-2">
       <div class="btn-group" dropdown>
