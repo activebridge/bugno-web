@@ -1,0 +1,8 @@
+@import '../../../../styles/variables';
+
+:host {
+  nav.navbar {
+    max-height: 4rem;
+    background-color: $shark;
+  }
+}
