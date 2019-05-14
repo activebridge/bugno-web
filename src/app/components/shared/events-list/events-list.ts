@@ -5,7 +5,8 @@ import { EventAPI } from '../../../api';
 
 @Component({
   selector: 'app-events-list',
-  templateUrl: './events-list.html'
+  templateUrl: './events-list.html',
+  styleUrls: ['./events-list.scss']
 })
 export class EventsList implements OnInit {
   @Input() projectId: any = {};
