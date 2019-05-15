@@ -6,7 +6,7 @@ import { CanActivate, Router } from '@angular/router';
 
 export class BaseGuard implements CanActivate {
 
-  constructor(protected tokenAuthSerivce: AngularTokenService,
+  constructor(protected tokenAuthService: AngularTokenService,
               protected router: Router) {
   }
 

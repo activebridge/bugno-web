@@ -15,7 +15,7 @@ export class LoginForm implements OnInit {
   loginForm: FormGroup;
   submitDisabled: Boolean = false;
 
-  constructor(private tokenAuthSerivce: AngularTokenService,
+  constructor(private tokenAuthService: AngularTokenService,
               private fb: FormBuilder,
               private notifyService: NotificationService) { }
 
@@ -26,7 +26,7 @@ export class LoginForm implements OnInit {
 
   onSignInSubmit() {
     this.submitDisabled = true;
-    this.tokenAuthSerivce.signIn(this.loginForm.value)
+    this.tokenAuthService.signIn(this.loginForm.value)
                          .subscribe(this.onSignInSuccess, this.onSignInError);
   }
   private initLoginForm() {

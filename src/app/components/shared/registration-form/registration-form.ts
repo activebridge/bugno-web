@@ -25,14 +25,14 @@ export class RegistrationForm implements OnInit {
     });
   }
 
-  constructor(private tokenAuthSerivce: AngularTokenService,
+  constructor(private tokenAuthService: AngularTokenService,
               private router: ActivatedRoute,
               private fb: FormBuilder,
               private notifyService: NotificationService) { }
 
   onSignUpSubmit() {
     this.submitDisabled = true;
-    this.tokenAuthSerivce.registerAccount(this.registrationForm.value)
+    this.tokenAuthService.registerAccount(this.registrationForm.value)
                          .subscribe(this.onCreateSuccess, this.onCreateError);
   }
 

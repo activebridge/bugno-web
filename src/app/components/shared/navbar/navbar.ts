@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.html'
+  templateUrl: './navbar.html',
+  styleUrls: ['./navbar.scss']
 })
 
-export class Navbar {
+export class Navbar implements OnInit {
   isOpen: boolean;
+  currentUser: any = {};
 
-  constructor(public tokenAuthSerivce: AngularTokenService,
+  constructor(public tokenAuthService: AngularTokenService,
               private router: Router) { }
 
+  ngOnInit() {
+    this.tokenAuthService.validateToken().subscribe(res => {
+      this.currentUser = res.data;
+    });
+  }
+
   signOut() {
-    this.tokenAuthSerivce.signOut().subscribe(() => {
+    this.tokenAuthService.signOut().subscribe(() => {
       this.router.navigate(['login']);
     });
   }

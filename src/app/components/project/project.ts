@@ -7,6 +7,7 @@ import { ProjectAPI, EventAPI } from '../../api';
 @Component({
   selector: 'app-project',
   templateUrl: './project.html',
+  styleUrls: ['./project.scss']
 })
 
 export class Project implements OnInit {

@@ -1,18 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark text bg-dark">
-  <a class="navbar-brand" [routerLink]='["/"]'>Radar</a>
+<nav class="navbar navbar-expand-lg navbar-dark p-3">
+  <a class="navbar-brand py-0 m-0" [routerLink]='["/"]'>Radar</a>
   <button (click)="isOpen = !isOpen" class="navbar-toggler" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isOpen">
-    <ul class="navbar-nav ml-auto">
-      <li *ngIf="!tokenAuthSerivce.userSignedIn();" class="nav-item">
+    <ul class="navbar-nav ml-auto align-items-center">
+      <li *ngIf="!tokenAuthService.userSignedIn();" class="nav-item">
         <a class="nav-link" [routerLink]='["/register"]'>Register</a>
       </li>
-      <li *ngIf="!tokenAuthSerivce.userSignedIn();" class="nav-item">
+      <li *ngIf="!tokenAuthService.userSignedIn();" class="nav-item">
         <a class="nav-link" [routerLink]='["/login"]'>Log In</a>
       </li>
-      <li *ngIf="tokenAuthSerivce.userSignedIn();" class="nav-item" (click)="signOut();">
+      <li *ngIf="tokenAuthService.userSignedIn();" class="nav-item" (click)="signOut();">
         <a (click)="false" class="nav-link cursor-pointer">Log Out</a>
+      </li>
+      <li dropdown *ngIf="tokenAuthService.userSignedIn();" class="nav-item">
+        <img ngxGravatar [email]="currentUser.email || ''">
       </li>
     </ul>
   </div>
