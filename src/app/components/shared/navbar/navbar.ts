@@ -16,9 +16,11 @@ export class Navbar implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.tokenAuthService.validateToken().subscribe(res => {
-      this.currentUser = res.data;
-    });
+    if (this.tokenAuthService.userSignedIn()) {
+      this.tokenAuthService.validateToken().subscribe(res => {
+        this.currentUser = res.data;
+      });
+    }
   }
 
   signOut() {
