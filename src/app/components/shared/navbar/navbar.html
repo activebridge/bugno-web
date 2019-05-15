@@ -15,7 +15,7 @@
         <a (click)="false" class="nav-link cursor-pointer">Log Out</a>
       </li>
       <li dropdown *ngIf="tokenAuthService.userSignedIn();" class="nav-item">
-        <img ngxGravatar [email]="currentUser.email">
+        <img ngxGravatar [email]="currentUser.email || ''">
       </li>
     </ul>
   </div>

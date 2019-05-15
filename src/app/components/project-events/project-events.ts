@@ -7,6 +7,7 @@ import { EventStatus } from '../../enums/event_statuses';
 @Component({
   selector: 'app-project-events',
   templateUrl: './project-events.html',
+  styleUrls: ['./project-events.scss']
 })
 export class ProjectEvents implements OnInit {
   projectId: any = {};
