@@ -1,9 +1,8 @@
 <div class="public-page">
-  <div class="login-page">
-    <div class="form">
-      <h2>Register to</h2>
-      <h1 class="mb-5">Radar</h1>
-      <app-registration-form (onSubmitSuccess)="onSignUpSubmit();"></app-registration-form>
-    </div>
+  <div class="public-page__header">
+    <h1>Register to Radar</h1>
+  </div>
+  <div class="public-page__form">
+    <app-registration-form (onSubmitSuccess)="onSignUpSubmit();"></app-registration-form>
   </div>
 </div>
