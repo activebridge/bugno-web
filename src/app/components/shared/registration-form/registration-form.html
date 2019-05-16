@@ -1,32 +1,33 @@
-<form class="login-form" (ngSubmit)="onSignUpSubmit()" [formGroup]="registrationForm">
+<form class="form-group" (ngSubmit)="onSignUpSubmit()" [formGroup]="registrationForm">
+  <label for="email">Email address</label>
   <input  type="email"
           name="login"
-          formControlName="login"
-          placeholder="Email"
-          class="validate"
           id="email"
+          formControlName="login"
+          class="form-control"
           required>
+  <label for="name">Name</label>
   <input  type="name"
           name="name"
+          id="name"
           formControlName="name"
-          placeholder="Name"
-          id="name">
+          class="form-control">
+  <label for="password">Password</label>
   <input  type="password"
           name="password"
-          formControlName="password"
-          placeholder="Password"
-          class="validate"
           id="password"
+          formControlName="password"
+          class="form-control"
           required>
+  <label for="passwordConfirmation">Password confirmation</label>
   <input  type="password"
           name="passwordConfirmation"
-          formControlName="passwordConfirmation"
-          placeholder="Password confirmation"
-          class="validate"
           id="passwordConfirmation"
+          formControlName="passwordConfirmation"
+          class="form-control"
           required>
   <button type="submit"
-          class="btn btn-outline-success"
+          class="btn btn-success"
           [disabled]="registrationForm.invalid || submitDisabled">register</button>
   <div class="alert alert-danger" [hidden]="registrationForm.valid || registrationForm.untouched">
     <div *ngIf="registrationForm.controls.login.errors?.email">

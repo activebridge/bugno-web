@@ -3,9 +3,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 body {
-  font-family: sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: $alabaster;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 ul {
@@ -23,10 +22,4 @@ ul {
 .bd-highlight {
   background-color: rgba(92, 109, 103, 0.15);
   border: 1px solid rgba(86,61,124,.15);
-}
-
-.sortable {
-  background: $gallery;
-  border-radius: 0.25rem;
-  min-height: 40px;
 }

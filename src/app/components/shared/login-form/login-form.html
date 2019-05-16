@@ -1,20 +1,20 @@
-<form class="login-form" (ngSubmit)="onSignInSubmit()" [formGroup]="loginForm">
+<form class="form-group" (ngSubmit)="onSignInSubmit()" [formGroup]="loginForm">
+  <label for="email">Email address</label>
   <input  type="email"
           name="login"
-          formControlName="login"
-          placeholder="Email"
-          class="validate"
           id="email"
+          formControlName="login"
+          class="form-control"
           required>
+  <label for="password">Password</label>
   <input  type="password"
           name="password"
-          formControlName="password"
-          placeholder="Password"
-          class="validate"
           id="password"
+          formControlName="password"
+          class="form-control"
           required>
   <button type="submit"
-          class="btn btn-outline-success"
+          class="btn btn-success"
           [disabled]="loginForm.invalid || submitDisabled">login</button>
   <div class="alert alert-danger" [hidden]="loginForm.valid || loginForm.untouched">
     <div *ngIf="loginForm.controls.login.errors?.email">
