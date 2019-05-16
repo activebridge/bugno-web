@@ -3,6 +3,13 @@
 :host {
   .row {
     height: calc(100% - 5.125rem);
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .col {
+    flex: 0 0 1;
+    max-width: 32%;
   }
 
   .events-column {

@@ -19,6 +19,13 @@
       span {
         float: right;
       }
+      small {
+        display: inline-block;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
     .events-list__item:hover {
       box-shadow: 0 0 1px 2px rgba(27,31,35,.1)
