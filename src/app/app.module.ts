@@ -67,11 +67,6 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      registerAccountPath: 'api/',
-      updatePasswordPath: 'api/',
-      signInPath: 'api/sign_in',
-      signOutPath: 'api/sign_out',
-      validateTokenPath: 'api/validate_token'
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({

@@ -8,6 +8,6 @@ export class UserAPI {
   constructor(public http: HttpClient) {}
 
   update(params) {
-    return this.http.put(`${environment.apiEndpoint}/api/`, params);
+    return this.http.put(`${environment.apiEndpoint}/auth`, params);
   }
 }
