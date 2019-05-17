@@ -18,7 +18,8 @@ import { AppComponent } from './app.component';
 import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectSettings,
          DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
-         InviteMember, ConfirmModal } from './components';
+         InviteMember, ConfirmModal, Settings, SettingsProfile, SettingsSecurity, ProfileForm,
+         SecurityForm} from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -49,7 +50,12 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     InviteMember,
     ConfirmDirective,
     ConfirmModal,
-    TimeAgoPipe
+    TimeAgoPipe,
+    Settings,
+    SettingsProfile,
+    SettingsSecurity,
+    ProfileForm,
+    SecurityForm
   ],
   imports: [
     BrowserModule,
@@ -61,8 +67,9 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      signInPath: 'api/sign_in',
       registerAccountPath: 'api/',
+      updatePasswordPath: 'api/',
+      signInPath: 'api/sign_in',
       signOutPath: 'api/sign_out',
       validateTokenPath: 'api/validate_token'
     }),

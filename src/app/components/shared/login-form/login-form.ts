@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms
 import { CustomValidators } from 'ng2-validation';
 import { AngularTokenService } from 'angular-token';
 
-import { NotificationService } from '../../../utility/notification.service';
+import { NotificationService, LocalStorageService } from '../../../utility';
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +16,7 @@ export class LoginForm implements OnInit {
   submitDisabled: Boolean = false;
 
   constructor(private tokenAuthService: AngularTokenService,
+              private localStorageService: LocalStorageService,
               private fb: FormBuilder,
               private notifyService: NotificationService) { }
 
@@ -36,7 +37,8 @@ export class LoginForm implements OnInit {
     });
   }
 
-  private onSignInSuccess = (data) => {
+  private onSignInSuccess = (resp) => {
+    this.localStorageService.currentUser = resp.body.data;
     this.notifyService.showSuccess('Successfully logged in');
     this.onSubmitSuccess.emit();
     this.submitDisabled = false;

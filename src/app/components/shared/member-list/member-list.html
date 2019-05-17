@@ -6,6 +6,6 @@
         <div class="border-bottom my-1"></div>
         <p class="m-0">{{item.attributes.role}}</p>
       </div>
-      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" *ngIf="isCurrentUserOwner" class="btn btn-outline-danger">Dismiss</button>
+      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" *ngIf="isCurrentUserOwner" [hidden]="item.attributes.id == currentUser.id" class="btn btn-outline-danger">Dismiss</button>
     </div>
 </div>

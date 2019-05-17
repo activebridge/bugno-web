@@ -5,7 +5,7 @@
     margin: 0 auto;
   }
 
-  .public-page__header {
+  .header {
     padding: 3rem;
     text-align: center;
 
@@ -15,8 +15,8 @@
     }
   }
 
-  .public-page__form {
-    width: 21.25rem;
+  .form {
+    width: 19.25rem;
     padding: 1.25rem;
     background-color: white;
     border: 1px solid $geyser;
@@ -35,7 +35,7 @@
         margin: .25rem 0 1rem;
       }
 
-      button.btn-success {
+      .btn-success {
         text-transform: capitalize;
         width: 100%;
         margin-bottom: .5rem;
