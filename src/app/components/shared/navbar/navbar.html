@@ -6,16 +6,18 @@
   <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isOpen">
     <ul class="navbar-nav ml-auto align-items-center">
       <li *ngIf="!tokenAuthService.userSignedIn();" class="nav-item">
-        <a class="nav-link" [routerLink]='["/register"]'>Register</a>
+        <a class="nav-link text-white" [routerLink]='["/register"]'>Register</a>
       </li>
       <li *ngIf="!tokenAuthService.userSignedIn();" class="nav-item">
-        <a class="nav-link" [routerLink]='["/login"]'>Log In</a>
+        <a class="nav-link text-white border border-white rounded" [routerLink]='["/login"]'>Log In</a>
       </li>
       <li *ngIf="tokenAuthService.userSignedIn();" class="nav-item" (click)="signOut();">
-        <a (click)="false" class="nav-link cursor-pointer">Log Out</a>
+        <a (click)="false" class="nav-link cursor-pointer text-white">Log Out</a>
       </li>
       <li dropdown *ngIf="tokenAuthService.userSignedIn();" class="nav-item">
-        <img ngxGravatar [email]="currentUser.email || ''">
+        <a [routerLink]='["/settings"]'>
+          <img ngxGravatar [email]="currentUser.email || ''">
+        </a>
       </li>
     </ul>
   </div>

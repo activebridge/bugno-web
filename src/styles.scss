@@ -1,25 +1,21 @@
 @import './styles/variables';
-@import './styles/public_pages';
 @import '../node_modules/bootstrap/scss/bootstrap';
+@import './styles/public_pages';
+@import './styles/custom';
 
 body {
   background-color: $alabaster;
-  font-family: Helvetica, Arial, sans-serif;
 }
-
 ul {
   list-style-type: none;
 }
-
-.cursor-pointer {
-  cursor: pointer;
+label {
+  margin-bottom: .5rem;
 }
-
-.cursor-move {
-  cursor: move;
+input, textarea {
+  margin: .25rem 0 1rem;
 }
-
-.bd-highlight {
-  background-color: rgba(92, 109, 103, 0.15);
-  border: 1px solid rgba(86,61,124,.15);
+button {
+  margin-bottom: .5rem;
+  text-transform: capitalize;
 }

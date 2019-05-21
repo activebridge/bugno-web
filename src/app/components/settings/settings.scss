@@ -1,0 +1,51 @@
+@import '../../../styles/variables';
+
+:host {
+  .user-settings {
+    width: 980px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .col-3 {
+      padding-right: 24px;
+    }
+    .nav-header {
+      background-color: $athens_gray;
+      color: $shuttle_gray;
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-bottom: 0;
+      margin-top: 0;
+      padding: 8px 10px;
+    }
+    li {
+      padding: 0;
+      width: 100%;
+    }
+    a {
+      display: block;
+      padding: 10px 8px;
+      font-size: 14px;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    .selected {
+      a {
+        color: black;
+        cursor: default;
+        font-weight: 600;
+      }
+      a:before {
+        background-color: $christine;
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 2px;
+      }
+    }
+  }
+}

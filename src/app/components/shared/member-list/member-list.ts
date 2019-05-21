@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 import { find } from 'lodash';
 import { NotificationService } from '../../../utility/notification.service';
 
+import { LocalStorageService } from '../../../utility';
 import { ProjectUsersAPI } from '../../../api';
 
 @Component({
@@ -16,13 +16,11 @@ export class MemberList implements OnInit {
   @Input() projectId: string;
   constructor(private projectUsersAPI: ProjectUsersAPI,
               private tokenService: AngularTokenService,
-              private router: ActivatedRoute,
+              private localStorageService: LocalStorageService,
               private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.tokenService.validateToken().subscribe(res => {
-      this.currentUser = res.data;
-    });
+    this.currentUser = this.localStorageService.currentUser;
   }
 
   get isCurrentUserOwner() {

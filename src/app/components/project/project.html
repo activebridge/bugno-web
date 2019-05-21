@@ -2,7 +2,7 @@
   <div class="project-navigation">
     <h5 class="pt-2">{{project.name}} events board</h5>
     <ul class="nav nav-tabs">
-      <li *ngFor="let tab of tabs" class="nav-item">
+      <li class="nav-item" *ngFor="let tab of tabs">
         <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
       </li>
     </ul>

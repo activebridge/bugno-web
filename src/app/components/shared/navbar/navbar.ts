@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 
+import { LocalStorageService } from '../../../utility';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.html',
@@ -13,13 +15,12 @@ export class Navbar implements OnInit {
   currentUser: any = {};
 
   constructor(public tokenAuthService: AngularTokenService,
+              private localStorageService: LocalStorageService,
               private router: Router) { }
 
   ngOnInit() {
     if (this.tokenAuthService.userSignedIn()) {
-      this.tokenAuthService.validateToken().subscribe(res => {
-        this.currentUser = res.data;
-      });
+      this.currentUser = this.localStorageService.currentUser;
     }
   }
 

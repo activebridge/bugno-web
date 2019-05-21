@@ -1,0 +1,13 @@
+<div class="row user-settings">
+  <div class="col-3">
+    <ul class="list-group">
+      <li class="nav-header border">Personal settings</li>
+      <li class="list-group-item list-group-item-action item" *ngFor="let tab of tabs" routerLinkActive="selected">
+        <a class="link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

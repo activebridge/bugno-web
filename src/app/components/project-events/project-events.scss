@@ -6,12 +6,10 @@
     flex-wrap: nowrap;
     justify-content: center;
   }
-
   .col {
     flex: 0 0 1;
     max-width: 32%;
   }
-
   .events-column {
     background-color: $athens_gray;
     padding: .5rem;

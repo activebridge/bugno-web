@@ -1,0 +1,18 @@
+<form class="form-group" (ngSubmit)="onUpdateProfileSubmit()" [formGroup]="profileForm">
+  <label for="email">Email address</label>
+  <input  type="email"
+          name="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          required>
+  <label for="name">Name</label>
+  <input  type="name"
+          name="name"
+          id="name"
+          formControlName="name"
+          class="form-control"
+          required>
+  <button type="submit"
+          class="btn btn-success">update</button>
+</form>
