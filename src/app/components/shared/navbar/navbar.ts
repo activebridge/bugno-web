@@ -14,7 +14,7 @@ export class Navbar implements OnInit {
   isOpen: boolean;
   currentUser: any = {};
 
-  constructor(public tokenAuthService: AngularTokenService,
+  constructor(private tokenAuthService: AngularTokenService,
               private localStorageService: LocalStorageService,
               private router: Router) { }
 

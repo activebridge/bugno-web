@@ -24,7 +24,7 @@ export class EventsList implements OnInit {
   }
 
   ngOnInit() {
-    this.getEvents(this.projectId, {status: this.status.key.toLowerCase()});
+    this.getEvents(this.projectId, { status: this.status.key.toLowerCase() });
   }
 
   updateEventHandler = (event: any) => {
