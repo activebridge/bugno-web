@@ -27,7 +27,6 @@ export class ProfileForm implements OnInit {
     this.initProfileForm();
   }
 
-
   onUpdateProfileSubmit() {
     this.submitDisabled = true;
     this.userAPI.update(pickBy(this.profileForm.value))
@@ -43,7 +42,6 @@ export class ProfileForm implements OnInit {
   private onProfileUpdateSuccess = (resp) => {
     this.notifyService.showSuccess('Successfully updated');
     this.localStorageService.currentUser = resp.data;
-    console.log('THIS.LOCALSTORAGESERVICE.CURRENTUSER', this.localStorageService.currentUser);
     this.submitDisabled = false;
   }
 
