@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class ProjectUsersAPI {
+export class ProjectUserAPI {
 
   constructor(public http: HttpClient) {}
 

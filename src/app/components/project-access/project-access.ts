@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 
-import { ProjectUsersAPI } from '../../api';
+import { ProjectUserAPI } from '../../api';
 
 @Component({
   selector: 'app-project-access',
@@ -13,7 +13,7 @@ export class ProjectAccess implements OnInit {
   projectUsers: any = [];
   projectId: string;
 
-  constructor(private projectUsersAPI: ProjectUsersAPI,
+  constructor(private ProjectUserAPI: ProjectUserAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService) { }
 
@@ -31,7 +31,7 @@ export class ProjectAccess implements OnInit {
   }
 
   getProjectUsers(projectId) {
-    this.projectUsersAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
+    this.ProjectUserAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
   private onGetSuccess = (resp) => {

@@ -48,14 +48,14 @@ export class RegistrationForm implements OnInit {
 
   private initRegistrationForm() {
     const password = new FormControl('', [ Validators.required, Validators.minLength(8)]);
-    const passwordConfirmation = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
+    const password_confirmation = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
 
     this.registrationForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],
       name: [''],
       registration_token: [''],
       password,
-      passwordConfirmation
+      password_confirmation
     });
   }
 

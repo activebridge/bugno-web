@@ -19,7 +19,7 @@ import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
          ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectSettings,
          DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
          InviteMember, ConfirmModal, Settings, SettingsProfile, SettingsSecurity, ProfileForm,
-         SecurityForm} from './components';
+         SecurityForm, ResetPassword, ResetPasswordForm, NewPasswordForm } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -55,7 +55,10 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     SettingsProfile,
     SettingsSecurity,
     ProfileForm,
-    SecurityForm
+    SecurityForm,
+    ResetPassword,
+    ResetPasswordForm,
+    NewPasswordForm
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
+      resetPasswordCallback: `${window.location.origin}/reset-password`
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({

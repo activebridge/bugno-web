@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 
@@ -10,23 +10,18 @@ import { LocalStorageService } from '../../../utility';
   styleUrls: ['./navbar.scss']
 })
 
-export class Navbar implements OnInit {
+export class Navbar {
   isOpen: boolean;
   currentUser: any = {};
 
-  constructor(public tokenAuthService: AngularTokenService,
-              private localStorageService: LocalStorageService,
+  constructor(private tokenAuthService: AngularTokenService,
+              public localStorageService: LocalStorageService,
               private router: Router) { }
-
-  ngOnInit() {
-    if (this.tokenAuthService.userSignedIn()) {
-      this.currentUser = this.localStorageService.currentUser;
-    }
-  }
 
   signOut() {
     this.tokenAuthService.signOut().subscribe(() => {
       this.router.navigate(['login']);
-    });
+      localStorage.clear();
+    }, () => { localStorage.clear(); });
   }
 }

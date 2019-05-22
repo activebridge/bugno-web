@@ -1,23 +1,20 @@
 <form class="form-group" (ngSubmit)="onUpdateProfileSubmit()" [formGroup]="securityForm">
-  <label for="passwordCurrent">Current password</label>
+  <label for="current-password">Current password</label>
   <input  type="password"
-          name="passwordCurrent"
-          id="passwordCurrent"
-          formControlName="passwordCurrent"
+          id="current-password"
+          formControlName="current_password"
           class="form-control"
           required>
   <label for="password">Password</label>
   <input  type="password"
-          name="password"
           id="password"
           formControlName="password"
           class="form-control"
           required>
-  <label for="passwordConfirmation">Password confirmation</label>
+  <label for="password-confirmation">Password confirmation</label>
   <input  type="password"
-          name="passwordConfirmation"
-          id="passwordConfirmation"
-          formControlName="passwordConfirmation"
+          id="password-confirmation"
+          formControlName="password_confirmation"
           class="form-control"
           required>
   <button type="submit"

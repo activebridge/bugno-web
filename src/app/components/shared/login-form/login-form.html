@@ -1,14 +1,13 @@
 <form class="form-group" (ngSubmit)="onSignInSubmit()" [formGroup]="loginForm">
   <label for="email">Email address</label>
   <input  type="email"
-          name="login"
           id="email"
           formControlName="login"
           class="form-control"
           required>
   <label for="password">Password</label>
+  <a [routerLink]="['/reset-password']" class="float-right">Forgot password?</a>
   <input  type="password"
-          name="password"
           id="password"
           formControlName="password"
           class="form-control"

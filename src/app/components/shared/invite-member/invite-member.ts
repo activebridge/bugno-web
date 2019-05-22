@@ -4,7 +4,7 @@ import { NotificationService } from '../../../utility/notification.service';
 import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 
-import { ProjectUsersAPI } from '../../../api';
+import { ProjectUserAPI } from '../../../api';
 
 @Component({
   selector: 'app-invite-member',
@@ -16,7 +16,7 @@ export class InviteMember implements OnInit {
   @Input() projectId: string;
   inviteForm: FormGroup;
 
-  constructor(private projectUsersAPI: ProjectUsersAPI,
+  constructor(private ProjectUserAPI: ProjectUserAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService,
               private fb: FormBuilder) { }
@@ -25,7 +25,7 @@ export class InviteMember implements OnInit {
     }
 
     onInviteSumbit() {
-      this.projectUsersAPI.create(this.projectId, this.inviteForm.value).subscribe(this.onGetSuccess, this.onGetError);
+      this.ProjectUserAPI.create(this.projectId, this.inviteForm.value).subscribe(this.onGetSuccess, this.onGetError);
     }
 
     private initForm() {
