@@ -14,7 +14,7 @@ export class Navbar {
   isOpen: boolean;
   currentUser: any = {};
 
-  constructor(private tokenAuthService: AngularTokenService,
+  constructor(public tokenAuthService: AngularTokenService,
               public localStorageService: LocalStorageService,
               private router: Router) { }
 

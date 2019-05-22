@@ -70,7 +70,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      resetPasswordCallback: `${window.location.origin}/reset-password`
+      resetPasswordCallback: `${environment.host}/reset-password`
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
