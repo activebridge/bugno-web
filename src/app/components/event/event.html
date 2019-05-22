@@ -33,7 +33,6 @@
                [class.text-muted]="!isProjectException(line.filename)">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
           </div>
           <input type="checkbox"
-                 name="backtrace"
                  [id]="'backtrace-line-' + i"
                  hidden
                  [checked]="isProjectException(line.filename)">

@@ -4,7 +4,7 @@ import { find } from 'lodash';
 import { NotificationService } from '../../../utility/notification.service';
 
 import { LocalStorageService } from '../../../utility';
-import { ProjectUsersAPI } from '../../../api';
+import { ProjectUserAPI } from '../../../api';
 
 @Component({
   selector: 'app-member-list',
@@ -14,7 +14,7 @@ export class MemberList implements OnInit {
   currentUser: any = {};
   @Input() projectUsers: any = [];
   @Input() projectId: string;
-  constructor(private projectUsersAPI: ProjectUsersAPI,
+  constructor(private ProjectUserAPI: ProjectUserAPI,
               private tokenService: AngularTokenService,
               private localStorageService: LocalStorageService,
               private notifyService: NotificationService) { }
@@ -28,7 +28,7 @@ export class MemberList implements OnInit {
   }
 
   onDeleteProjectUser(projectUserId) {
-    this.projectUsersAPI.delete(this.projectId, projectUserId).subscribe(
+    this.ProjectUserAPI.delete(this.projectId, projectUserId).subscribe(
       () => {
         this.onDeleteSuccess(projectUserId);
       }, this.onDeleteError);

@@ -1,18 +1,15 @@
 <form class="form-group" (ngSubmit)="submit();" [formGroup]="projectForm">
   <label for="name">Project name</label>
   <input  type="text"
-          name="name"
           id="name"
           formControlName="name"
           class="form-control"
           required>
   <label for="description">Description</label>
   <textarea  type="text"
-             name="description"
              id="description"
              formControlName="description"
-             class="form-control"
-             ></textarea>
+             class="form-control"></textarea>
   <button type="submit"
           class="btn btn-success"
           [disabled]="projectForm.invalid || submitDisabled">{{action}}</button>

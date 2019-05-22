@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class PasswordsAPI {
+export class PasswordAPI {
 
   constructor(public http: HttpClient) {}
 

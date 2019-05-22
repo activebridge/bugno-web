@@ -29,14 +29,14 @@ export class SecurityForm implements OnInit {
                           .subscribe(this.onSecurityUpdateSuccess, this.onSecurityUpdateError);
   }
   private initSecurityForm() {
-    const passwordCurrent = new FormControl('', [ Validators.required, Validators.minLength(8)]);
+    const current_password = new FormControl('', [ Validators.required, Validators.minLength(8)]);
     const password = new FormControl('', [ Validators.required, Validators.minLength(8)]);
-    const passwordConfirmation = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
+    const password_confirmation = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
 
     this.securityForm = this.fb.group({
       password,
-      passwordConfirmation,
-      passwordCurrent
+      password_confirmation,
+      current_password
     });
   }
 

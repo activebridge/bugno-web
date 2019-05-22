@@ -4,7 +4,7 @@ import { AngularTokenService } from 'angular-token';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 import { HttpHeaders } from '@angular/common/http';
-import { PasswordsAPI } from '../../../api';
+import { PasswordAPI } from '../../../api';
 
 import { NotificationService } from '../../../utility/notification.service';
 
@@ -21,7 +21,7 @@ export class NewPasswordForm implements OnInit {
   constructor(private tokenAuthService: AngularTokenService,
               private fb: FormBuilder,
               private redirect: Router,
-              private passwordsAPI: PasswordsAPI,
+              private PasswordAPI: PasswordAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService) { }
 
@@ -36,7 +36,7 @@ export class NewPasswordForm implements OnInit {
 
   onNewPasswordSubmit() {
     this.submitDisabled = true;
-    this.passwordsAPI.update(this.newPasswordForm.value, this.httpOptions)
+    this.PasswordAPI.update(this.newPasswordForm.value, this.httpOptions)
                      .subscribe(this.onNewPasswordSuccess, this.onNewPasswordError);
   }
 

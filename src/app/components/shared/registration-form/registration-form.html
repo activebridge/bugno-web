@@ -1,31 +1,27 @@
 <form class="form-group" (ngSubmit)="onSignUpSubmit()" [formGroup]="registrationForm">
   <label for="email">Email address</label>
-  <input  type="email"
-          name="login"
-          id="email"
-          formControlName="login"
-          class="form-control"
-          required>
+  <input type="email"
+         id="email"
+         formControlName="login"
+         class="form-control"
+         required>
   <label for="name">Name</label>
-  <input  type="name"
-          name="name"
-          id="name"
-          formControlName="name"
-          class="form-control">
+  <input type="name"
+         id="name"
+         formControlName="name"
+         class="form-control">
   <label for="password">Password</label>
-  <input  type="password"
-          name="password"
-          id="password"
-          formControlName="password"
-          class="form-control"
-          required>
-  <label for="passwordConfirmation">Password confirmation</label>
-  <input  type="password"
-          name="passwordConfirmation"
-          id="passwordConfirmation"
-          formControlName="passwordConfirmation"
-          class="form-control"
-          required>
+  <input type="password"
+         id="password"
+         formControlName="password"
+         class="form-control"
+         required>
+  <label for="password-confirmation">Password confirmation</label>
+  <input type="password"
+         id="password-confirmation"
+         formControlName="password_confirmation"
+         class="form-control"
+         required>
   <button type="submit"
           class="btn btn-success"
           [disabled]="registrationForm.invalid || submitDisabled">register</button>
@@ -42,7 +38,7 @@
     <div *ngIf="registrationForm.controls.password.errors?.minlength">
       Password must be longer than 8
     </div>
-    <div *ngIf="registrationForm.controls.passwordConfirmation.errors?.equalTo">
+    <div *ngIf="registrationForm.controls.password_confirmation.errors?.equalTo">
       Passwords don't match
     </div>
   </div>

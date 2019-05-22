@@ -16,7 +16,7 @@
       </li>
       <li dropdown *ngIf="tokenAuthService.userSignedIn();" class="nav-item">
         <a [routerLink]='["/settings"]'>
-          <img ngxGravatar [email]="currentUser.email || ''">
+          <img ngxGravatar [email]="localStorageService.currentUser.email || ''">
         </a>
       </li>
     </ul>
