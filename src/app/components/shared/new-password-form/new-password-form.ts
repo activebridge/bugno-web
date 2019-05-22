@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularTokenService } from 'angular-token';
-import { ActivatedRoute , Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
+import { PasswordsAPI } from '../../../api';
 
 import { NotificationService } from '../../../utility/notification.service';
 
@@ -21,7 +21,7 @@ export class NewPasswordForm implements OnInit {
   constructor(private tokenAuthService: AngularTokenService,
               private fb: FormBuilder,
               private redirect: Router,
-              private http: HttpClient,
+              private passwordsAPI: PasswordsAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService) { }
 
@@ -29,14 +29,15 @@ export class NewPasswordForm implements OnInit {
     this.router.queryParams.subscribe(queryParams => {
       this.httpOptions.headers = new HttpHeaders(queryParams);
     });
+    // tslint:disable-next-line
     this.tokenAuthService['authData'] = null;
     this.initNewPasswordForm();
   }
 
   onNewPasswordSubmit() {
     this.submitDisabled = true;
-    this.http.put(`${environment.apiEndpoint}/auth/password`, this.newPasswordForm.value, this.httpOptions)
-             .subscribe(this.onNewPasswordSuccess, this.onNewPasswordError);
+    this.passwordsAPI.update(this.newPasswordForm.value, this.httpOptions)
+                     .subscribe(this.onNewPasswordSuccess, this.onNewPasswordError);
   }
 
   private initNewPasswordForm() {
@@ -51,6 +52,7 @@ export class NewPasswordForm implements OnInit {
 
   private onNewPasswordSuccess = (data) => {
     this.notifyService.showSuccess('Success');
+    // tslint:disable-next-line
     this.tokenAuthService['authData'] = null;
     this.redirect.navigate(['login']);
     this.submitDisabled = false;
@@ -58,6 +60,7 @@ export class NewPasswordForm implements OnInit {
 
   private onNewPasswordError = (error) => {
     this.notifyService.showError(error);
+    // tslint:disable-next-line
     this.tokenAuthService['authData'] = null;
     this.submitDisabled = false;
   }
