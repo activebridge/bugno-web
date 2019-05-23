@@ -9,11 +9,12 @@
     width: 180px;
     margin: .25rem;
     padding: .5rem 0;
-    text-overflow: ellipsis;
   }
   .dropdown-item {
     padding: .5rem 1rem;
-    white-space: normal;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .dropdown-item:hover{
     background-color: white;
