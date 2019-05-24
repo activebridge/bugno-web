@@ -13,7 +13,6 @@ import { NotificationService } from '../../../utility/notification.service';
 })
 
 export class ProfileForm implements OnInit {
-  currentUser: any = {};
   profileForm: FormGroup;
   submitDisabled: Boolean = false;
 
@@ -23,7 +22,6 @@ export class ProfileForm implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.currentUser = this.localStorageService.currentUser;
     this.initProfileForm();
   }
 
@@ -34,8 +32,8 @@ export class ProfileForm implements OnInit {
   }
   private initProfileForm() {
     this.profileForm = this.fb.group({
-      email: [this.currentUser.email || '', [Validators.required, CustomValidators.email]],
-      name: [this.currentUser.name || '', ]
+      email: [this.localStorageService.currentUser.email || '', [Validators.required, CustomValidators.email]],
+      name: [this.localStorageService.currentUser.name || '', ]
     });
   }
 

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Login, Registration, Dashboard, ProjectCreate, Project, ProjectSettings,
          Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile, SettingsSecurity,
-         ResetPassword } from './components';
+         ResetPassword, OAuthCallback } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -58,6 +58,7 @@ const routes: Routes = [
     component: ResetPassword,
     canActivate: [PublicGuard]
   },
+  { path: 'oauth_callback', component: OAuthCallback },
   { path: '**', redirectTo: 'login' }
 ];
 

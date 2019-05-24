@@ -11,6 +11,7 @@ export * from './settings/settings';
 export * from './settings-profile/settings-profile';
 export * from './settings-security/settings-security';
 export * from './reset-password/reset-password';
+export * from './oauth-callback/oauth-callback';
 export * from './shared/navbar/navbar';
 export * from './shared/login-form/login-form';
 export * from './shared/registration-form/registration-form';

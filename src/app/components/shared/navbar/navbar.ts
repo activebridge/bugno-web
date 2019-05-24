@@ -12,7 +12,6 @@ import { LocalStorageService } from '../../../utility';
 
 export class Navbar {
   isOpen: boolean;
-  currentUser: any = {};
 
   constructor(public tokenAuthService: AngularTokenService,
               public localStorageService: LocalStorageService,
