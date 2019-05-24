@@ -2,36 +2,36 @@
 
 :host {
   nav.navbar {
-    height: 4rem;
     background-color: $shark;
+    height: 4rem;
   }
   .dropdown-menu {
-    width: 240px;
+    font-size: 14px;
     margin: .25rem;
     margin-top: -5px;
     padding: .5rem 0;
-    font-size: 14px;
-  }
-  .dropdown-item {
-    padding: .5rem 1rem;
-    white-space: pre-wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  a.dropdown-item:hover{
-    background-color: $science_blue;
-    color: white;
+    width: 240px;
   }
   .dropdown-menu:after {
+    border: 7px solid transparent;
+    border-bottom-color: $white;
     left: auto;
     right: 13px;
     top: -14px;
-    border: 7px solid transparent;
-    border-bottom-color: #fff;
   }
   .dropdown-menu:after, .dropdown-menu:before {
     content: "";
     display: inline-block;
     position: absolute;
+  }
+  .dropdown-item, .btn-clear {
+    overflow: hidden;
+    padding: .5rem 1rem;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+  }
+  .dropdown-item:hover{
+    background-color: $science_blue;
+    color: white;
   }
 }
