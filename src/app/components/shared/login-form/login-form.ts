@@ -30,6 +30,11 @@ export class LoginForm implements OnInit {
     this.tokenAuthService.signIn(this.loginForm.value)
                          .subscribe(this.onSignInSuccess, this.onSignInError);
   }
+
+  onSignInWithGithub() {
+    this.tokenAuthService.signInOAuth('github');
+  }
+
   private initLoginForm() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required, CustomValidators.email]],

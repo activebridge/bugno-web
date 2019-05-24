@@ -14,7 +14,8 @@
           required>
   <button type="submit"
           class="btn btn-success"
-          [disabled]="loginForm.invalid || submitDisabled">login</button>
+          [disabled]="loginForm.invalid || submitDisabled">Sign in</button>
+  <button type="button" class="btn btn-dark btn-block" (click)="onSignInWithGithub();">Sign in with Github</button>
   <div class="alert alert-danger" [hidden]="loginForm.valid || loginForm.untouched">
     <div *ngIf="loginForm.controls.login.errors?.email">
       Email has invalid format
