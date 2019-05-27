@@ -2,7 +2,35 @@
 
 :host {
   nav.navbar {
-    height: 4rem;
     background-color: $shark;
+  }
+  .dropdown-menu {
+    font-size: 14px;
+    margin: .25rem;
+    margin-top: -5px;
+    padding: .5rem 0;
+    width: 240px;
+  }
+  .dropdown-menu:after {
+    border: 7px solid transparent;
+    border-bottom-color: $white;
+    left: auto;
+    right: 13px;
+    top: -14px;
+  }
+  .dropdown-menu:after, .dropdown-menu:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+  }
+  .dropdown-item, .btn-clear {
+    overflow: hidden;
+    padding: .5rem 1rem;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+  }
+  .dropdown-item:hover{
+    background-color: $science_blue;
+    color: white;
   }
 }
