@@ -11,27 +11,30 @@
   <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isOpen">
     <ul class="navbar-nav ml-auto">
       <li *ngIf="!localStorageService.currentUser">
-        <a class="heder-link nav-link" [routerLink]='["/register"]'>Register</a>
+        <a class="nav-link" [routerLink]='["/register"]'>Register</a>
+      </li>
+      <li class="border-top border-secondary"
+          *ngIf="!localStorageService.currentUser">
       </li>
       <li *ngIf="!localStorageService.currentUser">
-        <a class="border-top heder-link nav-link" [routerLink]='["/login"]'>Log In</a>
+        <a class=" nav-link" [routerLink]='["/login"]'>Log In</a>
       </li>
       <li class="d-block d-lg-none"
           *ngIf="localStorageService.currentUser">
-        <a class="heder-link nav-link text-white">
+        <a class="nav-link text-white">
           <img ngxGravatar
                [email]="localStorageService.currentUser.email || ''" > {{localStorageService.currentUser.email}}</a>
       </li>
-      <li class="border-top d-block d-lg-none"
+      <li class="border-top border-secondary d-block d-lg-none"
           *ngIf="localStorageService.currentUser">
-        <a class="heder-link nav-link cursor-pointer"
+        <a class="nav-link cursor-pointer"
            [routerLink]='["/settings"]'>Settings</a>
       </li>
-      <li class="border-top d-block d-lg-none"
+      <li class="border-top border-secondary d-block d-lg-none"
           *ngIf="localStorageService.currentUser"
           (click)="signOut();">
         <a (click)="false"
-           class="heder-link nav-link cursor-pointer">Log Out</a>
+           class="nav-link cursor-pointer">Log Out</a>
       </li>
       <li dropdown
           *ngIf="localStorageService.currentUser">
