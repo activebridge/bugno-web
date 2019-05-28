@@ -3,24 +3,39 @@
   <button (click)="isOpen = !isOpen"
            class="navbar-toggler"
            type="button"
-           aria-controls="navbarToggleExternalContent"
+           aria-controls="navbarNav"
            aria-expanded="false"
-           aria-label="Toggle navigation"
-           data-toggle="collapse"
-           data-target="#myNavbar">
+           aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isOpen">
-    <ul class="navbar-nav ml-auto align-items-center">
-      <li *ngIf="!localStorageService.currentUser" class="nav-item">
-        <a class="nav-link text-white" [routerLink]='["/register"]'>Register</a>
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="!localStorageService.currentUser">
+        <a class="heder-link nav-link" [routerLink]='["/register"]'>Register</a>
       </li>
-      <li *ngIf="!localStorageService.currentUser" class="nav-item">
-        <a class="nav-link text-white border border-white rounded" [routerLink]='["/login"]'>Log In</a>
+      <li *ngIf="!localStorageService.currentUser">
+        <a class="border-top heder-link nav-link" [routerLink]='["/login"]'>Log In</a>
+      </li>
+      <li class="d-block d-lg-none"
+          *ngIf="localStorageService.currentUser">
+        <a class="heder-link nav-link text-white">
+          <img ngxGravatar
+               [email]="localStorageService.currentUser.email || ''" > {{localStorageService.currentUser.email}}</a>
+      </li>
+      <li class="border-top d-block d-lg-none"
+          *ngIf="localStorageService.currentUser">
+        <a class="heder-link nav-link cursor-pointer"
+           [routerLink]='["/settings"]'>Settings</a>
+      </li>
+      <li class="border-top d-block d-lg-none"
+          *ngIf="localStorageService.currentUser"
+          (click)="signOut();">
+        <a (click)="false"
+           class="heder-link nav-link cursor-pointer">Log Out</a>
       </li>
       <li dropdown
           *ngIf="localStorageService.currentUser">
-        <img class="cursor-pointer"
+        <img class="cursor-pointer d-none d-lg-block"
              dropdownToggle
              aria-controls="basic-link-dropdown"
              ngxGravatar
@@ -29,9 +44,7 @@
              class="dropdown-menu dropdown-menu-right"
              role="menu"
              aria-labelledby="basic-link">
-          <li class="btn-clear">
-            <span>Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.email}}</span>
-            </span>
+          <li class="btn-clear">Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.email}}</span>
           </li>
           <li class="divider dropdown-divider"></li>
           <li role="menuitem">

@@ -29,8 +29,18 @@
     text-overflow: ellipsis;
     white-space: pre-wrap;
   }
-  .dropdown-item:hover{
+  .dropdown-item:hover {
     background-color: $science_blue;
-    color: white;
+    color: $white;
+  }
+  .heder-link {
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .border-top {
+    border-top: 1px;
+    border-color: hsla(0,0%,100%,.15)!important;
   }
 }
