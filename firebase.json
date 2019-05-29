@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/radar-web",
+    "public": "dist/bughub",
     "ignore": [
       "firebase.json",
       "**/.*",

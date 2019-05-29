@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'https://api-radar.herokuapp.com',
-  host: 'https://radar-webapp.firebaseapp.com'
+  apiEndpoint: 'https://bughub-api.herokuapp.com',
+  host: 'https://bughub-tracker.firebaseapp.com'
 };
