@@ -13,6 +13,5 @@ export class Settings {
 
   tabs: any = [
     {title: 'Profile', url: 'profile'},
-    {title: 'Security', url: 'security'},
   ];
 }

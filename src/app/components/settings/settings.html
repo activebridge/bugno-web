@@ -4,7 +4,6 @@
       <li class="nav-header border">Personal settings</li>
       <li class="list-group-item list-group-item-action item"
           *ngFor="let tab of tabs"
-          [hidden]="tab.url == 'security' && localStorageService.currentUser.provider != 'email'"
           routerLinkActive="selected">
         <a class="link" [routerLink]="[tab.url]">{{tab.title}}</a>
       </li>

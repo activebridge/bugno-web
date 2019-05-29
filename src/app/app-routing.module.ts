@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Login, Registration, Dashboard, ProjectCreate, Project, ProjectSettings,
-         Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile, SettingsSecurity,
-         ResetPassword, OAuthCallback } from './components';
+import { Login, Dashboard, ProjectCreate, Project, ProjectSettings,
+         Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile,
+         OAuthCallback } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -16,11 +16,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: Dashboard,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'register',
-    component: Registration,
-    canActivate: [PublicGuard]
   },
   {
     path: 'projects/new',
@@ -49,14 +44,8 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'profile', pathMatch: 'full'},
       {path: 'profile', component: SettingsProfile},
-      {path: 'security', component: SettingsSecurity},
     ],
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'reset-password',
-    component: ResetPassword,
-    canActivate: [PublicGuard]
   },
   { path: 'oauth_callback', component: OAuthCallback },
   { path: '**', redirectTo: 'login' }

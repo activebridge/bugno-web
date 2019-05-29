@@ -1,11 +1,18 @@
 <div class="list-group">
   <h4 class="mb-4">Member list:</h4>
-    <div *ngFor="let item of projectUsers" class="list-group-item d-flex row justify-content-between align-items-center">
+    <div *ngFor="let item of projectUsers"
+          class="list-group-item d-flex row justify-content-between align-items-center">
       <div>
-        <p class="m-0">{{item.attributes.user.data.attributes.email}}</p>
+        <p class="m-0">
+          {{item.attributes.user.data.attributes.email || item.attributes.user.data.attributes.nickname}}
+          <span class="text-itallic" *ngIf="!item.attributes.user.data.attributes.email">(github)</span>
+        </p>
         <div class="border-bottom my-1"></div>
         <p class="m-0">{{item.attributes.role}}</p>
       </div>
-      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);" *ngIf="isCurrentUserOwner" [hidden]="item.attributes.id == currentUser.id" class="btn btn-outline-danger">Dismiss</button>
+      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);"
+              *ngIf="isCurrentUserOwner"
+              [hidden]="item.attributes.user_id == currentUser.id"
+              class="btn btn-danger">Remove</button>
     </div>
 </div>
