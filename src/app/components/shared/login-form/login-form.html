@@ -1,33 +1,3 @@
-<form class="form-group" (ngSubmit)="onSignInSubmit()" [formGroup]="loginForm">
-  <label for="email">Email address</label>
-  <input  type="email"
-          id="email"
-          formControlName="login"
-          class="form-control"
-          required>
-  <label for="password">Password</label>
-  <a [routerLink]="['/reset-password']" class="float-right">Forgot password?</a>
-  <input  type="password"
-          id="password"
-          formControlName="password"
-          class="form-control"
-          required>
-  <button type="submit"
-          class="btn btn-success"
-          [disabled]="loginForm.invalid || submitDisabled">Sign in</button>
+<form class="form-group">
   <button type="button" class="btn btn-dark btn-block" (click)="onSignInWithGithub();">Sign in with Github</button>
-  <div class="alert alert-danger" [hidden]="loginForm.valid || loginForm.untouched">
-    <div *ngIf="loginForm.controls.login.errors?.email">
-      Email has invalid format
-    </div>
-    <div *ngIf="loginForm.controls.login.errors?.required">
-      Email is required
-    </div>
-    <div *ngIf="loginForm.controls.password.errors?.required">
-      Password is required
-    </div>
-    <div *ngIf="loginForm.controls.password.errors?.minlength">
-      Password must be longer than 8
-    </div>
-  </div>
 </form>

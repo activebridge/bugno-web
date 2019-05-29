@@ -15,11 +15,10 @@ import { GravatarModule } from  'ngx-gravatar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login, Registration, Dashboard, Navbar, LoginForm, RegistrationForm,
-         ProjectCreate, ProjectForm, Project, ProjectsList, ProjectsItem, ProjectSettings,
-         DeleteConfirm, Event, ProjectEvents, EventsList, ProjectAccess, MemberList,
-         InviteMember, ConfirmModal, Settings, SettingsProfile, SettingsSecurity, ProfileForm,
-         SecurityForm, ResetPassword, ResetPasswordForm, NewPasswordForm, OAuthCallback } from './components';
+import { Login, Dashboard, Navbar, LoginForm, ProjectCreate, ProjectForm, Project,
+         ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
+         EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, Settings,
+         SettingsProfile, ProfileForm, OAuthCallback } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -31,10 +30,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     AppComponent,
     Login,
     Dashboard,
-    Registration,
     Navbar,
     LoginForm,
-    RegistrationForm,
     ProjectCreate,
     ProjectForm,
     Project,
@@ -53,12 +50,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TimeAgoPipe,
     Settings,
     SettingsProfile,
-    SettingsSecurity,
     ProfileForm,
-    SecurityForm,
-    ResetPassword,
-    ResetPasswordForm,
-    NewPasswordForm,
     OAuthCallback
   ],
   imports: [
@@ -98,10 +90,10 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
   entryComponents: [DeleteConfirm, ConfirmModal]
 })

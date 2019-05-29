@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark p-3">
   <a class="navbar-brand py-0 m-0" [routerLink]='["/"]'>Radar</a>
   <button (click)="isOpen = !isOpen"
-           class="navbar-toggler"
+           class="navbar-toggler m-0"
            type="button"
            aria-controls="navbarNav"
            aria-expanded="false"
@@ -10,12 +10,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav" [class.show]="isOpen">
     <ul class="navbar-nav ml-auto">
-      <li *ngIf="!localStorageService.currentUser">
-        <a class="nav-link" [routerLink]='["/register"]'>Register</a>
-      </li>
-      <li class="border-top border-secondary"
-          *ngIf="!localStorageService.currentUser">
-      </li>
+      <div class="border-top border-secondary"></div>
       <li *ngIf="!localStorageService.currentUser">
         <a class=" nav-link" [routerLink]='["/login"]'>Log In</a>
       </li>
@@ -23,7 +18,9 @@
           *ngIf="localStorageService.currentUser">
         <a class="nav-link text-white">
           <img ngxGravatar
-               [email]="localStorageService.currentUser.email || ''" > {{localStorageService.currentUser.email}}</a>
+               [email]="localStorageService.currentUser.email || ''" >
+          {{localStorageService.currentUser.email}}
+        </a>
       </li>
       <li class="border-top border-secondary d-block d-lg-none"
           *ngIf="localStorageService.currentUser">
@@ -47,7 +44,8 @@
              class="dropdown-menu dropdown-menu-right"
              role="menu"
              aria-labelledby="basic-link">
-          <li class="btn-clear">Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.email}}</span>
+          <li class="btn-clear">
+            Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.email || localStorageService.currentUser.nickname}}</span>
           </li>
           <li class="divider dropdown-divider"></li>
           <li role="menuitem">
