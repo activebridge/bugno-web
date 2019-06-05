@@ -11,6 +11,10 @@ export class EventAPI {
     return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events`, { params });
   }
 
+  queryOccurrences(projectId, parentId) {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events/occurrences/${parentId}`);
+  }
+
   update(projectId, id, params) {
     return this.http.patch(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events/${id}`, params);
   }
