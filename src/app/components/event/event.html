@@ -1,12 +1,12 @@
-<div class="container mt-3">
-  <div class="row border-bottom pb-2">
-    <div class="col-md-10">
-      <h4 class="font-weight-bold">{{event.title}}</h4>
-      <h6>{{event.message}}</h6>
-      <span tooltip="{{event.created_at | date:'medium'}}"
-      placement="bottom">{{event.created_at | timeAgo}}</span>
+<div class="container">
+  <div class="row border-bottom py-3">
+    <div class="col p-0">
+      <h5 class="font-weight-normal">
+      {{event.title}}
+      </h5>
+      <p class='m-0'>{{event.message}}</p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 float-right">
       <div class="btn-group" dropdown>
         <button class="btn btn-sm btn-success mb-2 dropdown-toggle" aria-controls="dropdown-basic" dropdownToggle>
           <span class="text-capitalize">
@@ -21,28 +21,44 @@
       </div>
     </div>
   </div>
-  <div *ngIf="event.backtrace?.length" class="row border-bottom mt-2">
-    <div class="col-md">
-      <h5 class="font-weight-bold">Backtrace:</h5>
-      <div class="list-group">
-        <label [attr.for]="'backtrace-line-' + i"
-               *ngFor="let line of event.backtrace; let i = index"
-               [class.border-danger]="isProjectException(line.filename)"
-               class="list-group-item list-group-item-action flex-column align-items-start rounded cursor-pointer my-1">
-          <div class="font-weight-bold text-size"
-               [class.text-muted]="!isProjectException(line.filename)">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
-          </div>
-          <input type="checkbox"
-                 [id]="'backtrace-line-' + i"
-                 hidden
-                 [checked]="isProjectException(line.filename)">
-          <div class="item-content p-2">
-            <pre *ngFor="let line of line.context.pre" class="m-0">{{line}}</pre>
-            <pre class="rounded bg-danger text-white m-0">{{line.code}}</pre>
-            <pre *ngFor="let line of line.context.post" class="m-0">{{line}}</pre>
-          </div>
-        </label>
-      </div>
+ <div class="row">
+  <tabset class="py-2 m-0" type="pills" #staticTabs>
+    <tab heading="Backtrace">
+    <div *ngIf="event.backtrace?.length">
+        <div class="list-group my-2">
+          <label [attr.for]="'backtrace-line-' + i"
+                 *ngFor="let line of event.backtrace; let i = index"
+                 [class.border-danger]="isProjectException(line.filename)"
+                 class="list-group-item flex-column align-items-start rounded cursor-pointer my-1">
+            <div class="font-weight-bold text-size"
+                 [class.text-muted]="!isProjectException(line.filename)">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
+            </div>
+            <input type="checkbox"
+                   [id]="'backtrace-line-' + i"
+                   hidden
+                   [checked]="isProjectException(line.filename)">
+            <div class="item-content p-2">
+              <pre *ngFor="let line of line.context.pre" class="m-0">{{line}}</pre>
+              <pre class="rounded bg-danger text-white m-0">{{line.code}}</pre>
+              <pre *ngFor="let line of line.context.post" class="m-0">{{line}}</pre>
+            </div>
+          </label>
+        </div>
     </div>
-  </div>
+  </tab>
+  <tab heading="Request Data"></tab>
+  <tab heading="Occurrences" (selectTab)="getOccurrences();">
+    <table class="table table-hover my-2">
+      <tr *ngFor="let occurrence of occurrences; let i = index">
+        <div class="cursor-pointer" (click)="selectTab(0)" [routerLink]="['/projects', projectId, 'event', occurrence.attributes.id]">
+          <td># {{i}}</td>
+          <td>{{occurrence.attributes.created_at | timeAgo}}</td>
+          <td>{{occurrence.attributes.title}}</td>
+          <td>{{occurrence.attributes.message}}</td>
+        </div>
+     </tr>
+    </table>
+  </tab>
+  </tabset>
+ </div>
 </div>
