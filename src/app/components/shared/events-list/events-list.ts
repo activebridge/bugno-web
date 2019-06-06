@@ -11,6 +11,7 @@ import { EventAPI } from '../../../api';
 export class EventsList implements OnInit {
   @Input() projectId: any = {};
   @Input() status: any;
+  page = 1;
   events: any = [];
   sortableOptions: any = {};
 
@@ -23,16 +24,25 @@ export class EventsList implements OnInit {
     };
   }
 
+  onScrollDown() {
+    this.page += 1;
+    this.getEvents(this.projectId);
+  }
+
+  get eventParams() {
+    return { status: this.status.key.toLowerCase(), page: this.page };
+  }
+
   ngOnInit() {
-    this.getEvents(this.projectId, { status: this.status.key.toLowerCase() });
+    this.getEvents(this.projectId);
   }
 
   updateEventHandler = (event: any) => {
     this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
   }
 
-  getEvents(projectId, status) {
-    this.eventAPI.query(projectId, status).subscribe(this.onGetEventsSuccess, this.onGetEventsError);
+  getEvents(projectId) {
+    this.eventAPI.query(projectId, this.eventParams).subscribe(this.onGetEventsSuccess, this.onGetEventsError);
   }
 
   updateEvent(id, params) {
@@ -40,7 +50,7 @@ export class EventsList implements OnInit {
   }
 
   private onGetEventsSuccess = (resp) => {
-    this.events = resp.data;
+    this.events = this.events.concat(resp.data);
   }
 
   private onGetEventsError = (error) => {
