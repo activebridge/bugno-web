@@ -13,7 +13,6 @@ import { ProjectAPI, EventAPI } from '../../api';
 export class Project implements OnInit {
   project: any = {};
   projectId: number;
-  events: any = [];
   tabs: any = [
     {title: 'Events', url: 'events'},
     {title: 'Access', url: 'access'},
@@ -31,17 +30,12 @@ export class Project implements OnInit {
       if (params.id) {
         this.projectId = params.id;
         this.getProject(params.id);
-        this.getEvents(params.id);
       }
     });
   }
 
   getProject(id) {
     this.projectAPI.get(id).subscribe(this.onGetSuccess, this.onGetError);
-  }
-
-  getEvents(projectId) {
-    this.eventAPI.query(projectId).subscribe(this.onGetEventsSuccess, this.onGetEventsError);
   }
 
   private onGetSuccess = (resp) => {
@@ -51,13 +45,5 @@ export class Project implements OnInit {
   private onGetError = (error) => {
     this.notifyService.showError(error);
     this.redirect.navigate(['dashboard']);
-  }
-
-  private onGetEventsSuccess = (resp) => {
-    this.events = resp.data;
-  }
-
-  private onGetEventsError = (error) => {
-    this.notifyService.showError(error);
   }
 }

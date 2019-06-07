@@ -13,6 +13,7 @@ import { SortablejsModule } from 'angular-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { GravatarModule } from  'ngx-gravatar';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -88,7 +89,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
       size: 25,
       round: false,
       cornerRadius: 3
-    })
+    }),
+    InfiniteScrollModule
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard,
     {
