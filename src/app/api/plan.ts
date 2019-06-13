@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class PasswordAPI {
+export class PlanAPI {
 
   constructor(public http: HttpClient) {}
 
-  update(params, headers) {
-    return this.http.put(`${environment.apiEndpoint}/auth/password`, params, headers);
+  query() {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/plans`);
   }
 }

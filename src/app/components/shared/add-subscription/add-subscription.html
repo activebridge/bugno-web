@@ -1,0 +1,32 @@
+<div class="m-3">
+  <h5>Add subscription</h5>
+  <p>Choose plan:</p>
+  <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
+    <div class="btn-group my-2" role="group">
+      <div class="form-group d-flex">
+        <div *ngFor="let plan of plans.data; let i = index">
+          <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
+          <label [attr.for]="'plan-' + i">
+            <div class="card mr-3">
+              <div class="card-body">
+                <div class="card-title">
+                  <p class="font-weight-bold">{{plan.attributes.name}}</p>
+                </div>
+                <div class="card-text">
+                  <p>{{plan.attributes.description}}</p>
+                  <p>{{plan.attributes.price}}$</p>
+                  <p>{{plan.attributes.event_limit}} events</p>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <p>Enter you credentials:</p>
+    <div id="card-element" class="form-group border rounded p-3"></div>
+    <button [disabled]="credentialsForm.invalid || submitDisabled" type="submit" class="btn btn-success">
+      Subscribe
+    </button>
+  </form>
+</div>
