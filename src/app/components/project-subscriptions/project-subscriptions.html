@@ -1,2 +1,2 @@
 <app-subscription *ngIf="subscription" [projectId]="projectId" [subscription]="subscription"></app-subscription>
-<app-add-subscription *ngIf="!loading && !subscription" [projectId]="projectId"></app-add-subscription>
+<app-add-subscription *ngIf="!loading && !subscription" [projectId]="projectId" (subscribed)="onSubscribeSuccess($event);"></app-add-subscription>

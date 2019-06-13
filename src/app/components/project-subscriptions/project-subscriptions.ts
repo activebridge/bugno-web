@@ -26,6 +26,10 @@ export class ProjectSubscriptions implements OnInit {
     });
   }
 
+  private onSubscribeSuccess(subscription) {
+    this.subscription = subscription;
+  }
+
   private getSubscription() {
     this.loading = true;
     this.subscriptionAPI.query(this.projectId).subscribe((resp) => {

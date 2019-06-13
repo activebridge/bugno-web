@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
@@ -13,6 +13,7 @@ import { NotificationService } from '../../../utility';
 })
 
 export class AddSubscription implements OnInit {
+  @Output() subscribed: EventEmitter<any> = new EventEmitter();
   @Input() projectId: number;
   plans: any = [];
   credentialsForm: FormGroup;
@@ -73,7 +74,7 @@ export class AddSubscription implements OnInit {
   private createSubscription(params) {
     this.subscriptionAPI.create(this.projectId, params).subscribe((resp) => {
       this.notificationService.showSuccess('Successfully subscribed!');
-      location.reload();
+      this.subscribed.emit(resp);
     }, (resp) => {
       this.notificationService.showError(resp);
       this.submitDisabled = false;
