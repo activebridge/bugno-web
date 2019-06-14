@@ -15,12 +15,12 @@ import { NotificationService } from '../../../utility';
 export class AddSubscription implements OnInit {
   @Output() subscribed: EventEmitter<any> = new EventEmitter();
   @Input() projectId: number;
-  stripePublishableKey: string;
+  stripePublicKey: string;
   plans: any = [];
   credentialsForm: FormGroup;
   elements: Elements;
   elementsOptions: ElementsOptions = {
-   locale: 'en'
+    locale: 'en'
   };
   card: StripeElement;
   submitDisabled = false;
@@ -40,15 +40,14 @@ export class AddSubscription implements OnInit {
 
   onCreateToken() {
     this.submitDisabled = true;
-    this.stripeService.createToken(this.card, {})
-      .subscribe(resp => {
-        if (resp.token) {
-          this.createSubscription({
-            stripe_token: resp.token.id,
-            plan_id: this.credentialsForm.controls.plan_id.value
-          });
-        }
-      });
+    this.stripeService.createToken(this.card, {}).subscribe(resp => {
+      if (resp.token) {
+        this.createSubscription({
+          stripe_token: resp.token.id,
+          plan_id: this.credentialsForm.value.plan_id
+        });
+      }
+    });
   }
 
   private onCreateTokenError = (error) => {
@@ -57,13 +56,13 @@ export class AddSubscription implements OnInit {
 
   private getStripeApiKey() {
       this.projectAPI.get(this.projectId).subscribe((resp: any) => {
-        this.stripePublishableKey = resp.data.attributes.stripe_publishable_key;
+        this.stripePublicKey = resp.data.attributes.stripe_public_key;
         this.initStripe();
       });
     }
 
   private initStripe() {
-    this.stripeService.setKey(this.stripePublishableKey);
+    this.stripeService.setKey(this.stripePublicKey);
     this.getPlans();
     this.initStripeElements();
   }
@@ -75,14 +74,13 @@ export class AddSubscription implements OnInit {
   }
 
   private initStripeElements() {
-    this.stripeService.elements(this.elementsOptions)
-      .subscribe(elements => {
-        this.elements = elements;
-        if (!this.card) {
-          this.card = this.elements.create('card', {});
-          this.card.mount('#card-element');
-        }
-      });
+    this.stripeService.elements(this.elementsOptions).subscribe(elements => {
+      this.elements = elements;
+      if (!this.card) {
+        this.card = this.elements.create('card', {});
+        this.card.mount('#card-element');
+      }
+    });
   }
 
   private createSubscription(params) {

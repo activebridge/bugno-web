@@ -10,7 +10,6 @@ import { NotificationService } from '../../utility';
 })
 
 export class ProjectSubscriptions implements OnInit {
-  stripePublishableKey: string;
   projectId: number;
   subscription: any;
   loading: boolean;
