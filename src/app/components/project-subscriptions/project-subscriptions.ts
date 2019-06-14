@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { SubscriptionAPI } from '../../api';
+import { ProjectAPI, SubscriptionAPI } from '../../api';
 import { NotificationService } from '../../utility';
 
 @Component({
@@ -10,11 +10,13 @@ import { NotificationService } from '../../utility';
 })
 
 export class ProjectSubscriptions implements OnInit {
+  stripePublishableKey: string;
   projectId: number;
   subscription: any;
   loading: boolean;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
+              private projectAPI: ProjectAPI,
               private router: ActivatedRoute) { }
 
   ngOnInit() {

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
 
-import { SubscriptionAPI, PlanAPI } from '../../../api';
+import { SubscriptionAPI, PlanAPI, ProjectAPI } from '../../../api';
 import { NotificationService } from '../../../utility';
 
 @Component({
@@ -15,6 +15,7 @@ import { NotificationService } from '../../../utility';
 export class AddSubscription implements OnInit {
   @Output() subscribed: EventEmitter<any> = new EventEmitter();
   @Input() projectId: number;
+  stripePublishableKey: string;
   plans: any = [];
   credentialsForm: FormGroup;
   elements: Elements;
@@ -26,15 +27,15 @@ export class AddSubscription implements OnInit {
 
   constructor(private planAPI: PlanAPI,
               private subscriptionAPI: SubscriptionAPI,
+              private projectAPI: ProjectAPI,
               private fb: FormBuilder,
               private router: ActivatedRoute,
               private notificationService: NotificationService,
               private stripeService: StripeService) { }
 
   ngOnInit() {
+    this.getStripeApiKey();
     this.initCredentialsForm();
-    this.getPlans();
-    this.initStripeElements();
   }
 
   onCreateToken() {
@@ -52,6 +53,19 @@ export class AddSubscription implements OnInit {
 
   private onCreateTokenError = (error) => {
     this.notificationService.showError(error);
+  }
+
+  private getStripeApiKey() {
+      this.projectAPI.get(this.projectId).subscribe((resp: any) => {
+        this.stripePublishableKey = resp.data.attributes.stripe_publishable_key;
+        this.initStripe();
+      });
+    }
+
+  private initStripe() {
+    this.stripeService.setKey(this.stripePublishableKey);
+    this.getPlans();
+    this.initStripeElements();
   }
 
   private initCredentialsForm() {
@@ -75,8 +89,8 @@ export class AddSubscription implements OnInit {
     this.subscriptionAPI.create(this.projectId, params).subscribe((resp) => {
       this.notificationService.showSuccess('Successfully subscribed!');
       this.subscribed.emit(resp);
-    }, (resp) => {
-      this.notificationService.showError(resp);
+    }, (error) => {
+      this.notificationService.showError(error);
       this.submitDisabled = false;
     });
   }

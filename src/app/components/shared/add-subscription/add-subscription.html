@@ -25,7 +25,7 @@
     </div>
     <p>Enter you credentials:</p>
     <div id="card-element" class="form-group border rounded p-3"></div>
-    <button [disabled]="credentialsForm.invalid || submitDisabled" type="submit" class="btn btn-success">
+    <button [disabled]="credentialsForm.invalid || !card['_complete'] || submitDisabled" type="submit" class="btn btn-success">
       Subscribe
     </button>
   </form>

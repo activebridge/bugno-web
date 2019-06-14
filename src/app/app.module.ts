@@ -96,7 +96,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
       cornerRadius: 3
     }),
     InfiniteScrollModule,
-    NgxStripeModule.forRoot('pk_test_yoZnxMLeX88c2LwoY7gKRX3o00DZCvX15X')
+    NgxStripeModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard,
     {
