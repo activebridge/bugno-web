@@ -12,7 +12,7 @@ export class ProjectsItem {
   @Input() project: any = {};
 
   isEmpty(project) {
-    return isEmpty(project.attributes.description);
+    return isEmpty(project.description);
   }
 
 }

@@ -50,11 +50,11 @@
   <tab heading="Occurrences" (selectTab)="getOccurrences();">
     <table class="table table-hover my-2">
       <tr *ngFor="let occurrence of occurrences; let i = index">
-        <div class="cursor-pointer" (click)="selectTab(0)" [routerLink]="['/projects', projectId, 'event', occurrence.attributes.id]">
+        <div class="cursor-pointer" (click)="selectTab(0)" [routerLink]="['/projects', projectId, 'event', occurrence.id]">
           <td># {{i}}</td>
-          <td>{{occurrence.attributes.created_at | timeAgo}}</td>
-          <td>{{occurrence.attributes.title}}</td>
-          <td>{{occurrence.attributes.message}}</td>
+          <td>{{occurrence.created_at | timeAgo}}</td>
+          <td>{{occurrence.title}}</td>
+          <td>{{occurrence.message}}</td>
         </div>
      </tr>
     </table>

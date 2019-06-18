@@ -4,18 +4,18 @@
   <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
     <div class="btn-group my-2" role="group">
       <div class="form-group d-flex">
-        <div *ngFor="let plan of plans.data; let i = index">
+        <div *ngFor="let plan of plans; let i = index">
           <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
           <label [attr.for]="'plan-' + i">
             <div class="card mr-3">
               <div class="card-body">
                 <div class="card-title">
-                  <p class="font-weight-bold">{{plan.attributes.name}}</p>
+                  <p class="font-weight-bold">{{plan.name}}</p>
                 </div>
                 <div class="card-text">
-                  <p>{{plan.attributes.description}}</p>
-                  <p>{{plan.attributes.price}}$</p>
-                  <p>{{plan.attributes.event_limit}} events</p>
+                  <p>{{plan.description}}</p>
+                  <p>{{plan.price}}$</p>
+                  <p>{{plan.event_limit}} events</p>
                 </div>
               </div>
             </div>

@@ -24,7 +24,7 @@ export class MemberList implements OnInit {
   }
 
   get isCurrentUserOwner() {
-    return find(this.projectUsers, {attributes: { user_id: this.currentUser.id, role: 'owner'}});
+    return find(this.projectUsers, { user_id: this.currentUser.id, role: 'owner'});
   }
 
   onDeleteProjectUser(projectUserId) {

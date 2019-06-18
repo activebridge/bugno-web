@@ -39,7 +39,7 @@ export class ProfileForm implements OnInit {
 
   private onProfileUpdateSuccess = (resp) => {
     this.notifyService.showSuccess('Successfully updated');
-    this.localStorageService.currentUser = resp.data;
+    this.localStorageService.currentUser = resp;
     this.submitDisabled = false;
   }
 

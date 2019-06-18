@@ -56,7 +56,7 @@ export class AddSubscription implements OnInit {
 
   private getStripeApiKey() {
       this.projectAPI.get(this.projectId).subscribe((resp: any) => {
-        this.stripePublicKey = resp.data.attributes.stripe_public_key;
+        this.stripePublicKey = resp.stripe_public_key;
         this.initStripe();
       });
     }

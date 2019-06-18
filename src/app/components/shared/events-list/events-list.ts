@@ -50,7 +50,7 @@ export class EventsList implements OnInit {
   }
 
   private onGetEventsSuccess = (resp) => {
-    this.events = this.events.concat(resp.data);
+    this.events = this.events.concat(resp);
   }
 
   private onGetEventsError = (error) => {
@@ -58,7 +58,7 @@ export class EventsList implements OnInit {
   }
 
   private onUpdateStatusSuccess = (resp) => {
-    this.notifyService.showSuccess(`Moved to ${resp.data.attributes.status}`, resp.data.attributes.title);
+    this.notifyService.showSuccess(`Moved to ${resp.status}`, resp.title);
   }
   private onUpdateStatusError = (error) => {
     this.notifyService.showError(error);
