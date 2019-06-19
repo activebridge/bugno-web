@@ -40,7 +40,7 @@ export class Project implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.project = resp.data.attributes;
+    this.project = resp;
   }
 
   private onGetError = (error) => {

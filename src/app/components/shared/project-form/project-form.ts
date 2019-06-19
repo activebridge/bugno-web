@@ -48,7 +48,7 @@ export class ProjectForm implements OnInit {
 
   private onCreateSuccess = (resp) => {
     this.notifyService.showSuccess(`${this.projectForm.value.name} was ${this.action}d`);
-    this.onSubmitSuccess.emit(resp.data.attributes);
+    this.onSubmitSuccess.emit(resp);
     this.submitDisabled = false;
   }
 

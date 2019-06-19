@@ -1,8 +1,8 @@
 <div class="m-3">
   <h5>Active subscription:</h5>
   <table class="table table-hover my-2">
-    <td>{{subscription.data.attributes.plan.data.attributes.name}} plan</td>
-    <td>Expires at: {{subscription.data.attributes.expires_at | date:'MMM d, y'}}</td>
-    <td>Available events space: {{subscription.data.attributes.events}}</td>
+    <td>{{subscription.plan.name}} plan</td>
+    <td>Expires at: {{subscription.expires_at | date:'MMM d, y'}}</td>
+    <td>Available events space: {{subscription.events}}</td>
   </table>
 </div>

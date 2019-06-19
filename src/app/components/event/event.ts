@@ -62,7 +62,7 @@ export class Event implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.event = resp.data.attributes;
+    this.event = resp;
     this.setParentId();
   }
 
@@ -72,7 +72,7 @@ export class Event implements OnInit {
   }
 
   private onGetOccurrencesSuccess = (resp) => {
-    this.occurrences = resp.data;
+    this.occurrences = resp;
   }
 
   private onGetOccurrencesError = (error) => {
@@ -82,7 +82,7 @@ export class Event implements OnInit {
 
   private onUpdateStatusSuccess = (resp) => {
     this.notifyService.showSuccess('Status has been updated');
-    this.event.status = resp.data.attributes.status;
+    this.event.status = resp.status;
   }
 
   private onUpdateStatusError = (error) => {

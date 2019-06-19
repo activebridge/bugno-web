@@ -23,7 +23,7 @@ export class ProjectsList implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.projects = resp.data;
+    this.projects = resp;
   }
 
   private onGetError = (error) => {
