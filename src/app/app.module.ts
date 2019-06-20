@@ -18,7 +18,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login, Dashboard, Navbar, LoginForm, ProjectCreate, ProjectForm, Project,
+import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, Settings,
          SettingsProfile, ProfileForm, OAuthCallback, ProjectSubscriptions, AddSubscription,
@@ -32,10 +32,9 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    Login,
+    Landing,
     Dashboard,
     Navbar,
-    LoginForm,
     ProjectCreate,
     ProjectForm,
     Project,

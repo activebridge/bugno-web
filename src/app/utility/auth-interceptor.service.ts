@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
           localStorage.clear();
           // tslint:disable-next-line
           this.tokenService['authData'] = null;
-          this.router.navigate(['login']);
+          this.router.navigate(['welcome']);
         }
       }
     }

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Login, Dashboard, ProjectCreate, Project, ProjectSettings,
+import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
          Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile,
          OAuthCallback, ProjectSubscriptions } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: Login,
+    path: 'landing',
+    component: Landing,
     canActivate: [PublicGuard]
   },
   {
@@ -49,7 +49,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'oauth_callback', component: OAuthCallback, canActivate: [PublicGuard] },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'landing' }
 ];
 
 @NgModule({

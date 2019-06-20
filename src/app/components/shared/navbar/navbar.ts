@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
-import { Router } from '@angular/router';
 
 import { LocalStorageService } from '../../../utility';
 
@@ -10,16 +10,30 @@ import { LocalStorageService } from '../../../utility';
   styleUrls: ['./navbar.scss']
 })
 
-export class Navbar {
+export class Navbar implements OnInit {
+  registration_token: string;
   isOpen: boolean;
 
   constructor(public tokenAuthService: AngularTokenService,
               public localStorageService: LocalStorageService,
-              private router: Router) { }
+              private redirect: Router,
+              private router: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.router.queryParams.subscribe(queryParams => {
+      if (queryParams.registration_token) {
+        this.registration_token = queryParams.registration_token;
+      }
+    });
+  }
+
+  onSignInWithGithub() {
+    this.tokenAuthService.signInOAuth('github', this.registration_token);
+  }
 
   signOut() {
     this.tokenAuthService.signOut().subscribe(() => {
-      this.router.navigate(['login']);
+      this.redirect.navigate(['welcome']);
       localStorage.clear();
     }, () => { localStorage.clear(); });
   }
