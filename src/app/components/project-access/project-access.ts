@@ -35,7 +35,7 @@ export class ProjectAccess implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.projectUsers = resp.data;
+    this.projectUsers = resp;
   }
 
   private onGetError = (error) => {

@@ -16,7 +16,8 @@ export class Project implements OnInit {
   tabs: any = [
     {title: 'Events', url: 'events'},
     {title: 'Access', url: 'access'},
-    {title: 'Settings', url: 'settings'}
+    {title: 'Settings', url: 'settings'},
+    {title: 'Subscriptions', url: 'subscriptions'}
   ];
 
   constructor(private projectAPI: ProjectAPI,
@@ -29,17 +30,17 @@ export class Project implements OnInit {
     this.router.params.subscribe(params => {
       if (params.id) {
         this.projectId = params.id;
-        this.getProject(params.id);
+        this.getProject();
       }
     });
   }
 
-  getProject(id) {
-    this.projectAPI.get(id).subscribe(this.onGetSuccess, this.onGetError);
+  getProject() {
+    this.projectAPI.get(this.projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
   private onGetSuccess = (resp) => {
-    this.project = resp.data.attributes;
+    this.project = resp;
   }
 
   private onGetError = (error) => {

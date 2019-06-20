@@ -14,13 +14,15 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { GravatarModule } from  'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Login, Dashboard, Navbar, LoginForm, ProjectCreate, ProjectForm, Project,
          ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, Settings,
-         SettingsProfile, ProfileForm, OAuthCallback } from './components';
+         SettingsProfile, ProfileForm, OAuthCallback, ProjectSubscriptions, AddSubscription,
+         Subscription } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -53,7 +55,10 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     Settings,
     SettingsProfile,
     ProfileForm,
-    OAuthCallback
+    OAuthCallback,
+    ProjectSubscriptions,
+    AddSubscription,
+    Subscription
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
       round: false,
       cornerRadius: 3
     }),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxStripeModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard,
     {

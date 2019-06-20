@@ -4,19 +4,19 @@
      [sortablejs]="events"
      [sortablejsOptions]="sortableOptions"
      class="event-list">
-  <div *ngFor="let event of events" [attr.data-event-id]="event.attributes.id" class="event-list__item cursor-move">
+  <div *ngFor="let event of events" [attr.data-event-id]="event.id" class="event-list__item cursor-move">
     <div class="align-items-start d-flex justify-content-between">
-      <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.attributes.id]">
-        {{event.attributes.title}}
+      <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
+        {{event.title}}
       </a>
-      <span tooltip="{{event.attributes.created_at | date:'medium'}}"
+      <span tooltip="{{event.created_at | date:'medium'}}"
             placement="bottom"
             class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">
-        {{event.attributes.created_at | timeAgo}}
+        {{event.created_at | timeAgo}}
       </span>
     </div>
-    <small class="d-inline-block mw-100 text-truncate" *ngIf="event.attributes.message">
-      {{event.attributes.message}}
+    <small class="d-inline-block mw-100 text-truncate" *ngIf="event.message">
+      {{event.message}}
     </small>
   </div>
 </div>

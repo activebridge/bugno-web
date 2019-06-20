@@ -4,15 +4,15 @@
           class="list-group-item d-flex row justify-content-between align-items-center">
       <div>
         <p class="m-0">
-          {{item.attributes.user.data.attributes.email || item.attributes.user.data.attributes.nickname}}
-          <span class="text-itallic" *ngIf="!item.attributes.user.data.attributes.email">(github)</span>
+          {{item.user.email || item.user.nickname}}
+          <span class="text-itallic" *ngIf="!item.user.email">(github)</span>
         </p>
         <div class="border-bottom my-1"></div>
-        <p class="m-0">{{item.attributes.role}}</p>
+        <p class="m-0">{{item.role}}</p>
       </div>
-      <button confirm (confirm)="onDeleteProjectUser(item.attributes.id);"
+      <button confirm (confirm)="onDeleteProjectUser(item.id);"
               *ngIf="isCurrentUserOwner"
-              [hidden]="item.attributes.user_id == currentUser.id"
+              [hidden]="item.user_id == currentUser.id"
               class="btn btn-danger">Remove</button>
     </div>
 </div>
