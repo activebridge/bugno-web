@@ -13,7 +13,7 @@ export class ProjectAccess implements OnInit {
   projectUsers: any = [];
   projectId: string;
 
-  constructor(private ProjectUserAPI: ProjectUserAPI,
+  constructor(private projectUserAPI: ProjectUserAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService) { }
 
@@ -31,7 +31,7 @@ export class ProjectAccess implements OnInit {
   }
 
   getProjectUsers(projectId) {
-    this.ProjectUserAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
+    this.projectUserAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
   private onGetSuccess = (resp) => {

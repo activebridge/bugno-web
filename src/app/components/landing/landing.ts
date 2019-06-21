@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing.scss']
 })
 
-export class Landing {
-}
+export class Landing { }

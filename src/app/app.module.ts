@@ -12,7 +12,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { GravatarModule } from  'ngx-gravatar';
+import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
 

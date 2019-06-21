@@ -11,6 +11,7 @@ import { LocalStorageService } from '../../../utility';
 })
 
 export class Navbar implements OnInit {
+  // tslint:disable-next-line
   registration_token: string;
   isOpen: boolean;
 

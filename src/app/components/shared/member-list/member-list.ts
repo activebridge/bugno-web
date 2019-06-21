@@ -14,7 +14,7 @@ export class MemberList implements OnInit {
   currentUser: any = {};
   @Input() projectUsers: any = [];
   @Input() projectId: string;
-  constructor(private ProjectUserAPI: ProjectUserAPI,
+  constructor(private projectUserAPI: ProjectUserAPI,
               private tokenService: AngularTokenService,
               private localStorageService: LocalStorageService,
               private notifyService: NotificationService) { }
@@ -28,7 +28,7 @@ export class MemberList implements OnInit {
   }
 
   onDeleteProjectUser(projectUserId) {
-    this.ProjectUserAPI.delete(this.projectId, projectUserId).subscribe(
+    this.projectUserAPI.delete(this.projectId, projectUserId).subscribe(
       () => {
         this.onDeleteSuccess(projectUserId);
       }, this.onDeleteError);
