@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
          Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile,
-         OAuthCallback, ProjectSubscriptions } from './components';
+         OAuthCallback, ProjectSubscriptions, Plans } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -47,6 +47,10 @@ const routes: Routes = [
       {path: 'profile', component: SettingsProfile},
     ],
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'plans',
+    component: Plans,
   },
   { path: 'oauth_callback', component: OAuthCallback, canActivate: [PublicGuard] },
   { path: '**', redirectTo: 'landing' }

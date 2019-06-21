@@ -1,5 +1,6 @@
 export * from './dashboard/dashboard';
 export * from './landing/landing';
+export * from './plans/plans';
 export * from './project/project';
 export * from './create-project/create-project';
 export * from './project-settings/project-settings';

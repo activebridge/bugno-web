@@ -9,10 +9,10 @@
         Pricing
       </a>
       <div class="dropdown-menu dropdown-menu_transition-smooth">
-        <a class="dropdown-item font-weight-bold" href="#">Plans</a>
+        <a class="dropdown-item font-weight-bold" [routerLink]="'plans'">Plans</a>
         <div class="border-bottom my-3"></div>
         <a class="dropdown-item" href="#">Compare</a>
-        <a class="dropdown-item" href="#">Enterprise offers</a>
+        <a class="dropdown-item" href="#">Contact Us</a>
       </div>
     </li>
   </ul>
@@ -27,8 +27,8 @@
         <a class="dropdown-item" [routerLink]="'dashboard'">Dashboard</a>
       </li>
       <div class="border-bottom my-3"></div>
-      <li class="dropdown-item" (click)="signOut();">
-        <a class="cursor-pointer" (click)="false">
+      <li class="dropdown-item cursor-pointer" (click)="signOut();">
+        <a (click)="false">
           Sign Out
         </a>
       </li>

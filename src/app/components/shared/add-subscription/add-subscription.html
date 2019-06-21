@@ -3,7 +3,7 @@
   <p>Choose plan:</p>
   <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
     <div class="btn-group my-2" role="group">
-      <div class="form-group d-flex">
+      <div class="form-group d-flex flex-wrap justify-content-center">
         <div *ngFor="let plan of plans; let i = index">
           <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
           <label [attr.for]="'plan-' + i">
