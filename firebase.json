@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/bughub",
+    "public": "dist/bugno",
     "ignore": [
       "firebase.json",
       "**/.*",

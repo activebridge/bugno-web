@@ -70,7 +70,6 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      resetPasswordCallback: `${environment.host}/reset-password`,
       oAuthBase: environment.apiEndpoint,
       oAuthPaths: {
         github: 'auth/github'
