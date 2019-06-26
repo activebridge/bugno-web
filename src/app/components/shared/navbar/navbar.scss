@@ -1,42 +1,62 @@
 @import '../../../../styles/variables';
 
 :host {
-  nav.navbar {
+  .navbar {
     background-color: $shark;
+    max-height: 4.5rem;
+    padding: .5rem 1.25rem;
   }
   .dropdown-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    width: 300px;
+    left: -1.5rem;
+    padding: 1.5rem;
+    &_right {
+      width: auto;
+      left: auto;
+      right: 0;
+    }
+    &_transition-smooth {
+      transition: .25s;
+      transition-delay: .15s;
+      transition-timing-function: ease-in-out;
+    }
+  }
+  .dropdown-toggle:hover + .dropdown-menu, .dropdown-menu:hover {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+  .dropdown-item {
     font-size: 14px;
-    margin: .25rem;
-    margin-top: -5px;
+    line-height: 14px;
+    color: $shuttle_gray;
     padding: .5rem 0;
-    width: 240px;
-  }
-  .dropdown-menu:after {
-    border: 7px solid transparent;
-    border-bottom-color: $white;
-    left: auto;
-    right: 13px;
-    top: -14px;
-  }
-  .dropdown-menu:after, .dropdown-menu:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-  }
-  .dropdown-item, .btn-clear {
-    overflow: hidden;
-    padding: .5rem 1rem;
-    text-overflow: ellipsis;
-    white-space: pre-wrap;
-  }
-  .dropdown-item:hover {
-    background-color: $science_blue;
-    color: $white;
+    &:hover {
+      color: $science_blue;
+      background-color: $white;
+    }
   }
   .nav-link {
     color: $white;
+    padding: 1rem 0;
+    margin-right: 1rem;
+    &:hover {
+      color: rgba($white, 0.75);
+    }
+  }
+  .user-email {
+    display: inline-block;
+    padding: 1rem;
+    color: $white;
     font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
+  }
+  .bordered-link {
+    padding: .25rem .75rem;
+    border-radius: .25rem;
+    border: 1px rgba($white, 0.75) solid;
+    transition: color 5s;
   }
 }

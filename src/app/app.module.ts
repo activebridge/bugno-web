@@ -12,17 +12,17 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { GravatarModule } from  'ngx-gravatar';
+import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Login, Dashboard, Navbar, LoginForm, ProjectCreate, ProjectForm, Project,
+import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, Settings,
          SettingsProfile, ProfileForm, OAuthCallback, ProjectSubscriptions, AddSubscription,
-         Subscription } from './components';
+         Subscription, Plans } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -32,10 +32,9 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    Login,
+    Landing,
     Dashboard,
     Navbar,
-    LoginForm,
     ProjectCreate,
     ProjectForm,
     Project,
@@ -58,7 +57,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     OAuthCallback,
     ProjectSubscriptions,
     AddSubscription,
-    Subscription
+    Subscription,
+    Plans
   ],
   imports: [
     BrowserModule,

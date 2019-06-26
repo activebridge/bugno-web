@@ -1,8 +1,13 @@
+@import './variables';
+
 .cursor-pointer {
   cursor: pointer;
 }
 .cursor-move {
   cursor: move;
+}
+.cursor-default {
+  cursor: default;
 }
 .bd-highlight {
   background-color: rgba(92, 109, 103, 0.15);

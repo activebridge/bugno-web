@@ -14,7 +14,7 @@ import { NotificationService } from '../../../utility/notification.service';
 
 export class ProfileForm implements OnInit {
   profileForm: FormGroup;
-  submitDisabled: Boolean = false;
+  submitDisabled: boolean = false;
 
   constructor(private userAPI: UserAPI,
               private localStorageService: LocalStorageService,

@@ -16,7 +16,7 @@ export class InviteMember implements OnInit {
   @Input() projectId: string;
   inviteForm: FormGroup;
 
-  constructor(private ProjectUserAPI: ProjectUserAPI,
+  constructor(private projectUserAPI: ProjectUserAPI,
               private router: ActivatedRoute,
               private notifyService: NotificationService,
               private fb: FormBuilder) { }
@@ -25,7 +25,7 @@ export class InviteMember implements OnInit {
     }
 
     onInviteSumbit() {
-      this.ProjectUserAPI.create(this.projectId, this.inviteForm.value).subscribe(this.onGetSuccess, this.onGetError);
+      this.projectUserAPI.create(this.projectId, this.inviteForm.value).subscribe(this.onGetSuccess, this.onGetError);
     }
 
     private initForm() {

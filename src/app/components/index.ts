@@ -1,5 +1,6 @@
 export * from './dashboard/dashboard';
-export * from './login/login';
+export * from './landing/landing';
+export * from './plans/plans';
 export * from './project/project';
 export * from './create-project/create-project';
 export * from './project-settings/project-settings';
@@ -13,7 +14,6 @@ export * from './project-subscriptions/project-subscriptions';
 export * from './shared/subscription/subscription';
 export * from './shared/add-subscription/add-subscription';
 export * from './shared/navbar/navbar';
-export * from './shared/login-form/login-form';
 export * from './shared/project-form/project-form';
 export * from './shared/projects-list/projects-list';
 export * from './shared/projects-item/projects-item';

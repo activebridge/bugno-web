@@ -46,7 +46,8 @@ export class Event implements OnInit {
   }
 
   updateEventStatus(status) {
-    this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status) ).subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+    this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status))
+        .subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
   }
 
   isProjectException(fileName) {

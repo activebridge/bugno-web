@@ -1,0 +1,43 @@
+:host {
+  .header {
+    margin: auto;
+    width: 900px;
+    padding: 4rem;
+    &__top_heading {
+      font-family: monospace;
+      font-size: 16px;
+    }
+    &__main_heading {
+      font-size: 50px;
+    }
+    &__paragraph {
+      font-size: 20px;
+    }
+  }
+  .main {
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .card {
+    width: 300px;
+    flex-grow: 0;
+    &__per-time {
+      font-size: 16px;
+    }
+    &__description {
+      font-size: 14px;
+    }
+    &__events {
+      font-size: 15px;
+    }
+  }
+  .card-title {
+    font-size: 20px;
+  }
+  .btn {
+    padding: 1rem 1.5rem;
+  }
+}

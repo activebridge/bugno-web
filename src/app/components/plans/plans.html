@@ -1,0 +1,19 @@
+<div class="fade-in">
+  <div class="header text-center">
+    <h3 class="header__top_heading text-muted">Pricing</h3>
+    <h1 class="header__main_heading">Plans for every developer</h1>
+    <p class="header__paragraph text-muted">Whether you’re starting an open source project or choosing new tools for your team, we’ve got you covered.</p>
+  </div>
+  <div class="main">
+    <div class="card p-3 m-2" *ngFor="let plan of plans">
+      <div class="card-body text-center">
+        <h4 class="card-title">{{plan.name}}</h4>
+        <h1 class="card-text price">{{plan.price}}$</h1>
+        <p class="card-text card__events text-muted mb-0">{{plan.event_limit}} events</p>
+        <p class="card__per-time text-muted">per month</p>
+        <p class="card-text text-justify card__description">{{plan.description}}</p>
+        <a href="#" class="btn btn-primary btn-block">Subscribe to {{plan.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
