@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bughub": {
+    "bugno": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bughub",
+            "outputPath": "dist/bugno",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bughub:build"
+            "browserTarget": "bugno:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bughub:build:production"
+              "browserTarget": "bugno:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bughub:build"
+            "browserTarget": "bugno:build"
           }
         },
         "test": {
@@ -110,7 +110,7 @@
         }
       }
     },
-    "bughub-e2e": {
+    "bugno-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -119,11 +119,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bughub:serve"
+            "devServerTarget": "bugno:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "bughub:serve:production"
+              "devServerTarget": "bugno:serve:production"
             }
           }
         },
@@ -139,5 +139,5 @@
       }
     }
   },
-  "defaultProject": "bughub"
+  "defaultProject": "bugno"
 }
