@@ -38,6 +38,9 @@
       color: $science_blue;
       background-color: $white;
     }
+    &_:disabled {
+      color: $silver;
+    }
   }
   .nav-link {
     color: $white;

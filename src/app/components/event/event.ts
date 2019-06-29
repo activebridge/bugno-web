@@ -51,7 +51,7 @@ export class Event implements OnInit {
   }
 
   isProjectException(fileName) {
-    return fileName.includes(this.event.server_data.root);
+    return fileName.includes(this.event.server_data.root) && !fileName.includes('node_module');
   }
 
   private eventParams(status) {

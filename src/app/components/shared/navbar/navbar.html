@@ -1,9 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark">
   <a class="navbar-brand" [routerLink]='["/"]'>Bugno</a>
   <ul class="navbar-nav" *ngIf="!localStorageService.currentUser">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Features</a>
-    </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle cursor-default">
         Pricing
@@ -11,8 +8,8 @@
       <div class="dropdown-menu dropdown-menu_transition-smooth">
         <a class="dropdown-item font-weight-bold" [routerLink]="'plans'">Plans</a>
         <div class="border-bottom my-3"></div>
-        <a class="dropdown-item" href="#">Compare</a>
-        <a class="dropdown-item" href="#">Contact Us</a>
+        <a class="dropdown-item dropdown-item_disabled disabled">Compare</a>
+        <a class="dropdown-item dropdown-item_disabled disabled">Contact Us</a>
       </div>
     </li>
   </ul>
