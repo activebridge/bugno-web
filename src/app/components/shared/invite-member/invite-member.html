@@ -1,10 +1,17 @@
+<div class="p-3">
+  <h2>Make your Team</h2>
+  <h4>Add or invite collaborators</h4>
+</div>
 <form class="form-group" (ngSubmit)="onInviteSumbit()" [formGroup]="inviteForm">
-  <label class="font-weight-bold my-2">Invite collaborator</label>
-  <input type="email"
-         formControlName="email"
-         placeholder="By email"
-         class="form-control my-2"
-         required>
-   <small class="form-text text-muted">User will be invited even if he \ she does not even registered yet.</small>
-  <button type="submit" class="btn btn-success my-2">Invite</button>
+  <div class="input-group">
+    <input type="email"
+    formControlName="email"
+    placeholder="By email"
+    class="form-control m-0"
+    required>
+    <div class="input-group-prepend">
+      <button type="submit" class="btn btn-success m-0">Invite</button>
+    </div>
+  </div>
+  <small class="form-text text-muted">User will be invited even if he \ she does not even registered yet.</small>
 </form>
