@@ -1,9 +1,20 @@
 :host {
-  font-size: 14px;
   input[type=checkbox]:checked + div {
     display: block;
   }
   .item-content {
     display: none;
+  }
+  .trace-info {
+    margin: 0;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    font-size: 12px;
+  }
+  .icon {
+    width: 13px;
+    height: 13px;
+    &-copy {
+      opacity: .7;
+    }
   }
 }

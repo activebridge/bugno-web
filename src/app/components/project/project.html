@@ -1,11 +1,16 @@
-<div class="container-fluid">
-  <div class="project-navigation">
-    <h5 class="pt-2">{{project.name}} events board</h5>
-    <ul class="nav nav-tabs">
-      <li class="nav-item" *ngFor="let tab of tabs">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
-      </li>
-    </ul>
+<div class="container-fluid p-0">
+  <div class="row no-gutters navigation-wrapper">
+    <div class="col-1 border-bottom"></div>
+    <div class="col-6 navigation">
+      <p class="project-name">{{project.name}}</p>
+      <ul class="nav nav-tabs">
+        <li class="nav-item" *ngFor="let tab of tabs">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col border-bottom"></div>
   </div>
-  <router-outlet></router-outlet>
 </div>
+<router-outlet></router-outlet>
