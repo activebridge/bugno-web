@@ -1,4 +1,9 @@
+@import '../../../styles/variables';
+
 :host {
+  .plans {
+    background-color: $alabaster;
+  }
   .header {
     margin: auto;
     width: 900px;

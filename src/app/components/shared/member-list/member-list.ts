@@ -9,6 +9,7 @@ import { ProjectUserAPI } from '../../../api';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.html',
+  styleUrls: ['./member-list.scss']
 })
 export class MemberList implements OnInit {
   currentUser: any = {};

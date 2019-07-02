@@ -22,13 +22,13 @@
     </div>
   </div>
  <div class="row">
-  <tabset class="py-2 m-0" type="pills" #staticTabs>
+  <tabset class="py-2 m-0 w-100" type="pills" #staticTabs>
     <tab heading="Backtrace">
     <div *ngIf="event.backtrace?.length">
         <div class="list-group my-2">
           <div *ngIf="event.framework == 'browser-js'">
-            <div *ngFor="let line of event.backtrace" class="list-group-item font-weight-bold text-muted rounded my-1">
-              {{line.method}} <span class="font-weight-normal">in</span> {{line.filename}} <span class="font-weight-normal">at line:</span> {{line.lineno}}<span class="font-weight-normal">, column:</span> {{line.colno}}
+            <div *ngFor="let line of event.backtrace" class="list-group-item rounded my-1">
+              <p class="trace-info d-inline-block">{{line.method}} in {{line.filename}}:{{line.lineno}},{{line.colno}}</p>
             </div>
           </div>
           <div *ngIf="event.framework != 'browser-js'">
@@ -36,9 +36,9 @@
                    *ngFor="let line of event.backtrace; let i = index"
                    [class.border-danger]="line.project_error"
                    class="list-group-item flex-column align-items-start rounded cursor-pointer my-1">
-              <div class="font-weight-bold text-size"
-                   [class.text-muted]="!line.project_error">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
-              </div>
+                <p class="trace-info d-inline-block">
+                  {{line.filename}}:{{line.lineno}}
+                </p>
               <input type="checkbox"
                      [id]="'backtrace-line-' + i"
                      hidden

@@ -1,6 +1,13 @@
+@import '../../../styles/variables';
+
 :host {
+  .container-fluid {
+    background-color: $alabaster;
+  }
+  .col-welcome {
+    height: 500px;
+  }
   .welcome-message {
-    margin-top: 20vh;
     font-size: 5rem;
     font-weight: 300;
     user-select: none;

@@ -6,9 +6,15 @@
      class="event-list">
   <div *ngFor="let event of events" [attr.data-event-id]="event.id" class="event-list__item cursor-move">
     <div class="align-items-start d-flex justify-content-between">
-      <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
-        {{event.title}}
-      </a>
+      <div class="d-flex align-items-center">
+        <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
+          {{event.title}}
+        </a>
+        <span [class.badge-danger]="event.framework == 'rails'"
+              [class.badge-warning]="event.framework == 'browser-js'"
+              [class.badge-info]="event.framework == 'node-js'"
+              class="badge ml-1">{{event.framework}}</span>
+      </div>
       <span tooltip="{{event.created_at | date:'medium'}}"
             placement="bottom"
             class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">

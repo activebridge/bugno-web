@@ -1,18 +1,13 @@
+<div class="px-3 pb-3">
+  <h4>Member list:</h4>
+</div>
 <div class="list-group">
-  <h4 class="mb-4">Member list:</h4>
-    <div *ngFor="let item of projectUsers"
-          class="list-group-item d-flex row justify-content-between align-items-center">
-      <div>
-        <p class="m-0">
-          {{item.user.email || item.user.nickname}}
-          <span class="text-itallic" *ngIf="!item.user.email">(github)</span>
-        </p>
-        <div class="border-bottom my-1"></div>
-        <p class="m-0">{{item.role}}</p>
-      </div>
-      <button confirm (confirm)="onDeleteProjectUser(item.id);"
-              *ngIf="isCurrentUserOwner"
-              [hidden]="item.user_id == currentUser.id"
-              class="btn btn-danger">Remove</button>
-    </div>
+  <div *ngFor="let item of projectUsers"
+       class="list-group-item d-flex justify-content-between align-items-center">
+    <p class="m-0"><span class="font-weight-bold">{{item.user.email}}</span> as {{item.role}}</p>
+    <button confirm (confirm)="onDeleteProjectUser(item.id);"
+    *ngIf="isCurrentUserOwner"
+    [hidden]="item.user_id == currentUser.id"
+    class="btn btn-danger btn-sm">Remove</button>
+  </div>
 </div>
