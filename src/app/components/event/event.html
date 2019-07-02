@@ -26,23 +26,30 @@
     <tab heading="Backtrace">
     <div *ngIf="event.backtrace?.length">
         <div class="list-group my-2">
-          <label [attr.for]="'backtrace-line-' + i"
-                 *ngFor="let line of event.backtrace; let i = index"
-                 [class.border-danger]="isProjectException(line.filename)"
-                 class="list-group-item flex-column align-items-start rounded cursor-pointer my-1">
-            <div class="font-weight-bold text-size"
-                 [class.text-muted]="!isProjectException(line.filename)">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
+          <div *ngIf="event.framework == 'browser-js'">
+            <div *ngFor="let line of event.backtrace" class="list-group-item font-weight-bold text-muted rounded my-1">
+              {{line.method}} <span class="font-weight-normal">in</span> {{line.filename}} <span class="font-weight-normal">at line:</span> {{line.lineno}}<span class="font-weight-normal">, column:</span> {{line.colno}}
             </div>
-            <input type="checkbox"
-                   [id]="'backtrace-line-' + i"
-                   hidden
-                   [checked]="isProjectException(line.filename)">
-            <div class="item-content p-2">
-              <pre *ngFor="let line of line.context.pre" class="m-0">{{line}}</pre>
-              <pre class="rounded bg-danger text-white m-0">{{line.code}}</pre>
-              <pre *ngFor="let line of line.context.post" class="m-0">{{line}}</pre>
-            </div>
-          </label>
+          </div>
+          <div *ngIf="event.framework != 'browser-js'">
+            <label [attr.for]="'backtrace-line-' + i"
+                   *ngFor="let line of event.backtrace; let i = index"
+                   [class.border-danger]="line.project_error"
+                   class="list-group-item flex-column align-items-start rounded cursor-pointer my-1">
+              <div class="font-weight-bold text-size"
+                   [class.text-muted]="!line.project_error">{{line.filename}}<span class="text-muted font-weight-normal"> at line: </span>{{line.lineno}}
+              </div>
+              <input type="checkbox"
+                     [id]="'backtrace-line-' + i"
+                     hidden
+                     [checked]="line.project_error">
+              <div *ngIf="line.context" class="item-content p-2">
+                <pre *ngFor="let line of line.context?.pre" class="m-0">{{line}}</pre>
+                <pre class="rounded bg-danger text-white m-0">{{line.code}}</pre>
+                <pre *ngFor="let line of line.context?.post" class="m-0">{{line}}</pre>
+              </div>
+            </label>
+          </div>
         </div>
     </div>
   </tab>
