@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+:host {
+  .sidebar {
+    min-height: calc(100vh - 4.5rem);
+    width: 349px;
+    padding: 1rem;
+    margin: 0;
+    background-color: $white;
+  }
+}

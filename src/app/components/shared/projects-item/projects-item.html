@@ -1,8 +1,5 @@
-<div class="card bg-light m-2">
-  <a [routerLink]="['/projects', project.id]" class="list-group-item-action">
-    <h5 class="card-header">{{project.name}}</h5>
+<p class="m-2">
+  <a [routerLink]="['/projects', project.id]" class="font-weight-bold">
+    {{project.name}}
   </a>
-  <div class="card-body" [hidden]="isEmpty(project)">
-    <p class="card-text">{{project.description}}</p>
-  </div>
-</div>
+</p>
