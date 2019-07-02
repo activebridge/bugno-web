@@ -50,10 +50,6 @@ export class Event implements OnInit {
         .subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
   }
 
-  isProjectException(fileName) {
-    return fileName.includes(this.event.server_data.root) && !fileName.includes('node_module');
-  }
-
   private eventParams(status) {
     return { event: { status: status.toLowerCase() } };
   }
