@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from 'ngx-stripe';
 
-import { SubscriptionAPI, PlanAPI, ProjectAPI } from '../../../api';
+import { SubscriptionAPI, ProjectAPI } from '../../../api';
 import { NotificationService } from '../../../utility';
 
 @Component({
@@ -16,7 +16,7 @@ export class AddSubscription implements OnInit {
   @Output() subscribed: EventEmitter<any> = new EventEmitter();
   @Input() projectId: number;
   stripePublicKey: string;
-  plans: any = [];
+  @Input() plans: any = [];
   credentialsForm: FormGroup;
   elements: Elements;
   elementsOptions: ElementsOptions = {
@@ -25,8 +25,7 @@ export class AddSubscription implements OnInit {
   card: StripeElement;
   submitDisabled = false;
 
-  constructor(private planAPI: PlanAPI,
-              private subscriptionAPI: SubscriptionAPI,
+  constructor(private subscriptionAPI: SubscriptionAPI,
               private projectAPI: ProjectAPI,
               private fb: FormBuilder,
               private router: ActivatedRoute,
@@ -50,6 +49,10 @@ export class AddSubscription implements OnInit {
     });
   }
 
+  scrollToTheBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   private onCreateTokenError = (error) => {
     this.notificationService.showError(error);
   }
@@ -63,7 +66,6 @@ export class AddSubscription implements OnInit {
 
   private initStripe() {
     this.stripeService.setKey(this.stripePublicKey);
-    this.getPlans();
     this.initStripeElements();
   }
 
@@ -90,12 +92,6 @@ export class AddSubscription implements OnInit {
     }, (error) => {
       this.notificationService.showError(error);
       this.submitDisabled = false;
-    });
-  }
-
-  private getPlans() {
-    this.planAPI.query().subscribe((resp) => {
-      this.plans = resp;
     });
   }
 }
