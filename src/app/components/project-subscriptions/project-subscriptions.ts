@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ProjectAPI, SubscriptionAPI } from '../../api';
+import { PlanAPI, SubscriptionAPI } from '../../api';
 import { NotificationService } from '../../utility';
 
 @Component({
@@ -11,11 +11,12 @@ import { NotificationService } from '../../utility';
 
 export class ProjectSubscriptions implements OnInit {
   projectId: number;
+  plans: any = [];
   subscription: any;
   loading: boolean;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
-              private projectAPI: ProjectAPI,
+              private planAPI: PlanAPI,
               private router: ActivatedRoute) { }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class ProjectSubscriptions implements OnInit {
         this.getSubscription();
       }
     });
+    this.getPlans();
   }
 
   private onSubscribeSuccess(subscription) {
@@ -38,6 +40,11 @@ export class ProjectSubscriptions implements OnInit {
       this.loading = false;
     }, () => {
       this.loading = false;
+    });
+  }
+  private getPlans() {
+    this.planAPI.query().subscribe((resp) => {
+      this.plans = resp;
     });
   }
 }

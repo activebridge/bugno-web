@@ -1,9 +1,13 @@
 @import '../../../../styles/variables';
 
-input[type=radio]:checked + label > .card {
-  border: 2px solid $science_blue;
-}
-
-.card {
-  width: 280px;
+:host {
+  input[type=radio]:checked + label > .card {
+    background: $athens_gray;
+  }
+  .card {
+    width: 280px;
+  }
+  .btn-choose-plan {
+    padding: 1rem 1.5rem;
+  }
 }

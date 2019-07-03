@@ -1,32 +1,41 @@
-<div class="m-3">
-  <h5>Add subscription</h5>
-  <p>Choose plan:</p>
-  <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
-    <div class="btn-group my-2" role="group">
-      <div class="form-group d-flex flex-wrap justify-content-center">
-        <div *ngFor="let plan of plans; let i = index">
-          <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
-          <label [attr.for]="'plan-' + i">
-            <div class="card mr-3">
-              <div class="card-body">
-                <div class="card-title">
-                  <p class="font-weight-bold">{{plan.name}}</p>
-                </div>
-                <div class="card-text">
-                  <p>{{plan.description}}</p>
-                  <p>{{plan.price}}$</p>
-                  <p>{{plan.event_limit}} events</p>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="p-3">
+        <h2>Add subscription</h2>
+        <h4>Choose most adorable plan</h4>
       </div>
+      <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
+        <div class="btn-group w-100" role="group">
+          <div class="form-group d-flex flex-wrap justify-content-center m-0 w-100">
+            <div *ngFor="let plan of plans; let i = index" (click)="scrollToTheBottom();">
+              <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
+              <label [attr.for]="'plan-' + i">
+                <div class="card m-2 p-3">
+                  <div class="card-body text-center">
+                    <h4 class="card-title">{{plan.name}}</h4>
+                    <h1 class="card-text">{{plan.price}}$</h1>
+                    <p class="card-text text-muted mb-0">{{plan.event_limit}} events</p>
+                    <p class="text-muted">per month</p>
+                    <p class="card-text text-justify">{{plan.description}}</p>
+                    <p class="btn btn-primary btn-block btn-choose-plan cursor-pointer">Choose {{plan.name}}</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="credentialsForm.invalid" class="alert alert-warning">Choose a plan, first</div>
+        <div class="stripe-form d-flex flex-column justify-content-center">
+          <h4 class="p-3">And pay via Stripe</h4>
+          <div id="card-element" class="border rounded p-3"></div>
+          <div *ngIf="!card['_complete']" class="alert alert-warning my-3">Finish with entering your card credentials below</div>
+          <button [disabled]="credentialsForm.invalid || !card['_complete'] || submitDisabled" type="submit" class="btn btn-success btn-block my-3">
+            <span *ngIf="!submitDisabled">Subscribe</span>
+            <span *ngIf="submitDisabled">Awaiting for transaction response...</span>
+          </button>
+        </div>
+      </form>
     </div>
-    <p>Enter you credentials:</p>
-    <div id="card-element" class="form-group border rounded p-3"></div>
-    <button [disabled]="credentialsForm.invalid || !card['_complete'] || submitDisabled" type="submit" class="btn btn-success">
-      Subscribe
-    </button>
-  </form>
+  </div>
 </div>
