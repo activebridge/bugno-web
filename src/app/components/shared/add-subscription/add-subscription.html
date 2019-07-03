@@ -29,7 +29,7 @@
         <div class="stripe-form d-flex flex-column justify-content-center">
           <h4 class="p-3">And pay via Stripe</h4>
           <div id="card-element" class="border rounded p-3"></div>
-          <div *ngIf="!card['_complete']" class="alert alert-warning my-3">Finish with entering your card credentials below</div>
+          <div *ngIf="!card['_complete']" class="alert alert-warning my-3">Finish with entering your card credentials</div>
           <button [disabled]="credentialsForm.invalid || !card['_complete'] || submitDisabled" type="submit" class="btn btn-success btn-block my-3">
             <span *ngIf="!submitDisabled">Subscribe</span>
             <span *ngIf="submitDisabled">Awaiting for transaction response...</span>
