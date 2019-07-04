@@ -12,6 +12,7 @@ import { ProjectAPI, EventAPI } from '../../api';
 
 export class Project implements OnInit {
   project: any = {};
+  loading: boolean;
   projectId: number;
   tabs: any = [
     {title: 'Events', url: 'events'},
@@ -27,6 +28,7 @@ export class Project implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.router.params.subscribe(params => {
       if (params.id) {
         this.projectId = params.id;
@@ -39,8 +41,29 @@ export class Project implements OnInit {
     this.projectAPI.get(this.projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
+  isSubscriptionAlert() {
+    return !this.isSubscriptionPresent() || this.isSubscriptionExpired() || this.isSubscriptionExpireSoon();
+  }
+
+  isSubscriptionExpireSoon() {
+    if (this.project.subscription) {
+      return this.project.subscription.events <= 100 && this.project.subscription.status == 'active';
+    }
+  }
+
+  isSubscriptionExpired() {
+    if (this.project.subscription) {
+      return this.project.subscription.status == 'expired';
+    }
+  }
+
+  isSubscriptionPresent() {
+    return this.project.subscription;
+  }
+
   private onGetSuccess = (resp) => {
     this.project = resp;
+    this.loading = false;
   }
 
   private onGetError = (error) => {

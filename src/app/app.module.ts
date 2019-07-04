@@ -9,6 +9,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AlertModule } from 'ngx-bootstrap/alert';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
@@ -87,6 +88,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    AlertModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),
     ClipboardModule,
     GravatarModule.forRoot({
