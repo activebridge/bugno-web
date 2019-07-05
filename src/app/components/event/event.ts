@@ -4,7 +4,7 @@ import { NotificationService } from '../../utility/notification.service';
 import { pickBy, isNumber } from 'lodash';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
-import { EventStatus } from '../../enums/event_statuses';
+import { EventStatus } from '../../enums';
 import { EventAPI } from '../../api';
 
 @Component({
@@ -51,7 +51,7 @@ export class Event implements OnInit {
   }
 
   private eventParams(status) {
-    return { event: { status: status.toLowerCase() } };
+    return { event: { status } };
   }
 
   private setParentId() {

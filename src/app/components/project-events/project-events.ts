@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pickBy, isNumber } from 'lodash';
 
-import { EventStatus } from '../../enums/event_statuses';
+import { EventStatus } from '../../enums';
 
 @Component({
   selector: 'app-project-events',

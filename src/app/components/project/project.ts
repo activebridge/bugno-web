@@ -2,7 +2,9 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 
+import { SubscriptionStatus } from '../../enums';
 import { ProjectAPI, EventAPI } from '../../api';
+import { EVENT_LIMIT_ALERT } from '../../constants';
 
 @Component({
   selector: 'app-project',
@@ -11,6 +13,10 @@ import { ProjectAPI, EventAPI } from '../../api';
 })
 
 export class Project implements OnInit {
+  subscriptionAlert = false;
+  subscriptionExpiresSoon: boolean;
+  subscriptionExpired: boolean;
+  subscriptionStatuses = SubscriptionStatus;
   project: any = {};
   projectId: number;
   tabs: any = [
@@ -39,8 +45,17 @@ export class Project implements OnInit {
     this.projectAPI.get(this.projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
+  checkSubscriptionState() {
+    if (this.project.subscription) {
+      this.subscriptionExpiresSoon = this.project.subscription.events <= EVENT_LIMIT_ALERT && this.project.subscription.status == this.subscriptionStatuses.active;
+      this.subscriptionExpired = this.project.subscription.status == this.subscriptionStatuses.expired;
+    }
+    this.subscriptionAlert = !this.project.subscription || this.subscriptionExpiresSoon || this.subscriptionExpired;
+  }
+
   private onGetSuccess = (resp) => {
     this.project = resp;
+    this.checkSubscriptionState();
   }
 
   private onGetError = (error) => {

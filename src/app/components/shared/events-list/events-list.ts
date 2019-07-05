@@ -30,7 +30,7 @@ export class EventsList implements OnInit {
   }
 
   get eventParams() {
-    return { status: this.status.key.toLowerCase(), page: this.page };
+    return { status: this.status.key, page: this.page };
   }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class EventsList implements OnInit {
   }
 
   updateEventHandler = (event: any) => {
-    this.updateEvent(event.item.dataset.eventId, {status: this.status.key.toLowerCase(), position: event.newIndex + 1});
+    this.updateEvent(event.item.dataset.eventId, {status: this.status.key, position: event.newIndex + 1});
   }
 
   getEvents(projectId) {

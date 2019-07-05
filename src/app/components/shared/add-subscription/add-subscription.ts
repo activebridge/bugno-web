@@ -24,6 +24,7 @@ export class AddSubscription implements OnInit {
   };
   card: StripeElement;
   submitDisabled = false;
+  mountingStripeElements = true;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
               private projectAPI: ProjectAPI,
@@ -81,6 +82,7 @@ export class AddSubscription implements OnInit {
       if (!this.card) {
         this.card = this.elements.create('card', {});
         this.card.mount('#card-element');
+        this.mountingStripeElements = false;
       }
     });
   }

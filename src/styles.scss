@@ -28,3 +28,10 @@ button {
   animation-fill-mode:forwards;
   animation-duration:.5s;
 }
+
+app-project .subsciption-alert {
+  .alert {
+    border-radius: 0;
+    margin: 0;
+  }
+}
