@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 
 import { ProjectAPI, EventAPI } from '../../api';
+import { EVENT_LIMIT_ALERT } from '../../constants';
 
 @Component({
   selector: 'app-project',
@@ -47,7 +48,7 @@ export class Project implements OnInit {
 
   isSubscriptionExpireSoon() {
     if (this.project.subscription) {
-      return this.project.subscription.events <= 100 && this.project.subscription.status == 'active';
+      return this.project.subscription.events <= EVENT_LIMIT_ALERT && this.project.subscription.status == 'active';
     }
   }
 
