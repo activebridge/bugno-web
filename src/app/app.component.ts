@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { BugnoService } from './utility';
+import * as Bugno from 'bugno-js';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bugno';
+
+  constructor(@Inject(BugnoService) private bugno: Bugno) {}
 }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
-import { AuthInterceptor } from './utility';
+import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler } from './utility';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
@@ -100,11 +100,9 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     NgxStripeModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: BugnoErrorHandler },
+    { provide: BugnoService, useFactory: bugnoFactory }],
   bootstrap: [AppComponent],
   entryComponents: [DeleteConfirm, ConfirmModal]
 })
