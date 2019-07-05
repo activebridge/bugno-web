@@ -34,6 +34,7 @@ export class AddSubscription implements OnInit {
               private stripeService: StripeService) { }
 
   ngOnInit() {
+    this.mountingStripeElements = true;
     this.getStripeApiKey();
     this.initCredentialsForm();
   }
