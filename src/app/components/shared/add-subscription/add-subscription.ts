@@ -24,7 +24,7 @@ export class AddSubscription implements OnInit {
   };
   card: StripeElement;
   submitDisabled = false;
-  mountingStripeElements: boolean;
+  mountingStripeElements = true;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
               private projectAPI: ProjectAPI,
@@ -34,7 +34,6 @@ export class AddSubscription implements OnInit {
               private stripeService: StripeService) { }
 
   ngOnInit() {
-    this.mountingStripeElements = true;
     this.getStripeApiKey();
     this.initCredentialsForm();
   }

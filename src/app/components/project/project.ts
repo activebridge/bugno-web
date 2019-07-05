@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../utility/notification.service';
 
+import { SubscriptionStatus } from '../../enums';
 import { ProjectAPI, EventAPI } from '../../api';
 import { EVENT_LIMIT_ALERT } from '../../constants';
 
@@ -12,8 +13,11 @@ import { EVENT_LIMIT_ALERT } from '../../constants';
 })
 
 export class Project implements OnInit {
+  subscriptionAlert = false;
+  subscriptionExpiresSoon: boolean;
+  subscriptionExpired: boolean;
+  subscriptionStatuses = SubscriptionStatus;
   project: any = {};
-  loading: boolean;
   projectId: number;
   tabs: any = [
     {title: 'Events', url: 'events'},
@@ -29,7 +33,6 @@ export class Project implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.loading = true;
     this.router.params.subscribe(params => {
       if (params.id) {
         this.projectId = params.id;
@@ -42,29 +45,17 @@ export class Project implements OnInit {
     this.projectAPI.get(this.projectId).subscribe(this.onGetSuccess, this.onGetError);
   }
 
-  isSubscriptionAlert() {
-    return !this.isSubscriptionPresent() || this.isSubscriptionExpired() || this.isSubscriptionExpireSoon();
-  }
-
-  isSubscriptionExpireSoon() {
+  checkSubscriptionState() {
     if (this.project.subscription) {
-      return this.project.subscription.events <= EVENT_LIMIT_ALERT && this.project.subscription.status == 'active';
+      this.subscriptionExpiresSoon = this.project.subscription.events <= EVENT_LIMIT_ALERT && this.project.subscription.status == this.subscriptionStatuses.active;
+      this.subscriptionExpired = this.project.subscription.status == this.subscriptionStatuses.expired;
     }
-  }
-
-  isSubscriptionExpired() {
-    if (this.project.subscription) {
-      return this.project.subscription.status == 'expired';
-    }
-  }
-
-  isSubscriptionPresent() {
-    return this.project.subscription;
+    this.subscriptionAlert = !this.project.subscription || this.subscriptionExpiresSoon || this.subscriptionExpired;
   }
 
   private onGetSuccess = (resp) => {
     this.project = resp;
-    this.loading = false;
+    this.checkSubscriptionState();
   }
 
   private onGetError = (error) => {

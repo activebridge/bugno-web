@@ -1,11 +1,9 @@
 <div class="container-fluid p-0">
-  <div *ngIf="!loading">
-    <alert type="info " dismissible="dismissible" *ngIf="isSubscriptionAlert();" class="subsciption-alert">
-      <h3 *ngIf="isSubscriptionExpireSoon();" class="m-0">Your subscription is about to expire!</h3>
-      <h3 *ngIf="isSubscriptionExpired();" class="m-0">Your subscription has expired</h3>
-      <h3 *ngIf="!isSubscriptionPresent();" class="m-0">To start tracking exceptions choose a plan and subscribe</h3>
-    </alert>
-  </div>
+  <alert type="info " dismissible="dismissible" *ngIf="subscriptionAlert" class="subsciption-alert">
+    <h3 *ngIf="subscriptionExpiresSoon" class="m-0">Your subscription is about to expire!</h3>
+    <h3 *ngIf="subscriptionExpired" class="m-0">Your subscription has expired</h3>
+    <h3 *ngIf="!project.subscription" class="m-0">To start tracking exceptions choose a plan and subscribe</h3>
+  </alert>
   <div class="row no-gutters navigation-wrapper">
     <div class="col-1 border-bottom"></div>
     <div class="col-6 navigation">
