@@ -23,6 +23,7 @@
     "angular-sortablejs": "^2.7.0",
     "angular-token": "git+ssh://git@github.com/dmytsuu/angular-token-additional-data.git",
     "bootstrap": "^4.3.1",
+    "bugno-js": "git+https://github.com/activebridge/bugno-js.git",
     "core-js": "^2.5.4",
     "lodash": "^4.17.11",
     "ng2-validation": "^4.2.0",
