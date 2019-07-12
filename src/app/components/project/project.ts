@@ -18,6 +18,7 @@ export class Project implements OnInit {
   subscriptionExpired: boolean;
   subscriptionStatuses = SubscriptionStatus;
   project: any = {};
+  loading: boolean;
   projectId: number;
   tabs: any = [
     {title: 'Events', url: 'events'},
@@ -33,6 +34,7 @@ export class Project implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.router.params.subscribe(params => {
       if (params.id) {
         this.projectId = params.id;

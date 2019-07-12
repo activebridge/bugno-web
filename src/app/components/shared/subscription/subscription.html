@@ -1,8 +1,12 @@
-<div class="m-3">
-  <h5>Active subscription:</h5>
-  <table class="table table-hover my-2">
-    <td>{{subscription.plan.name}} plan</td>
-    <td>Expires at: {{subscription.expires_at | date:'MMM d, y'}}</td>
-    <td>Available events space: {{subscription.events}}</td>
-  </table>
+<div class="container">
+  <div class="row justify-content-center text-center mt-3">
+    <div class="col-8 p-3">
+      <h4>Yout subscription is <span class="font-weight-bold">{{subscription.status}}</span></h4>
+      <h4>Events left: {{subscription.events}}</h4>
+      <h4>Expire date: {{subscription.expires_at}}</h4>
+      <div *ngIf="!loading && !subscription.plan" class="alert alert-warning mt-3">Your subscription has no payment source(card), you need to choose plan and subscribe again</div>
+      <button class="btn btn-xl btn-primary mx-3 mt-3" (click)="triggerChangePlan();">Change plan / Resub</button>
+      <button class="btn btn-xl btn-primary mx-3 mt-3" (click)="cancelSubscription();">Detach card</button>
+    </div>
+  </div>
 </div>

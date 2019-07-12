@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="p-3">
+        <h2 class="text-capitalize">{{action}} subscription</h2>
+        <h4>Choose most adorable plan</h4>
+      </div>
+      <form class="form-group" novalidate (ngSubmit)="onCreateToken()" [formGroup]="credentialsForm">
+        <div class="btn-group w-100" role="group">
+          <div class="form-group d-flex flex-wrap justify-content-center m-0 w-100">
+            <div *ngFor="let plan of plans; let i = index" (click)="scrollToTheBottom();">
+              <input type="radio" formControlName="plan_id" [value]="plan.id" [id]="'plan-' + i" hidden>
+              <label [attr.for]="'plan-' + i">
+                <div class="card m-2 p-3">
+                  <div class="card-body text-center">
+                    <h4 class="card-title">{{plan.name}}</h4>
+                    <h1 class="card-text">{{plan.price}}$</h1>
+                    <p class="card-text text-muted mb-0">{{plan.event_limit}} events</p>
+                    <p class="text-muted">per month</p>
+                    <p class="card-text text-justify">{{plan.description}}</p>
+                    <p class="btn btn-primary btn-block btn-xl cursor-pointer">Choose {{plan.name}}</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="credentialsForm.invalid" class="alert alert-warning">Choose a plan, first</div>
+        <div *ngIf="currentPlan?.id == credentialsForm.controls.plan_id.value" class="alert alert-warning">Current plan selected, please choose different to proceed</div>
+        <div class="stripe-form d-flex flex-column justify-content-center">
+          <h4 class="p-3">And pay via Stripe</h4>
+          <div id="card-element" class="border rounded p-3"></div>
+          <div *ngIf="stripeElementsMounted">
+            <div *ngIf="!card['_complete']" class="alert alert-warning my-3">Finish with entering your card credentials</div>
+            <button [disabled]="credentialsForm.invalid || !card['_complete'] || currentPlan?.id == credentialsForm.value.plan_id || submitDisabled" type="submit" class="btn btn-success btn-block my-3">
+              <span *ngIf="!submitDisabled">Subscribe</span>
+              <span *ngIf="submitDisabled">Awaiting for transaction...</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

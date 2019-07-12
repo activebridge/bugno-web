@@ -23,3 +23,5 @@ export * from './shared/member-list/member-list';
 export * from './shared/invite-member/invite-member';
 export * from './shared/confirm-modal/confirm-modal';
 export * from './shared/profile-form/profile-form';
+export * from './shared/subscription-form/subscription-form';
+export * from './shared/change-subscription-plan/change-subscription-plan';
