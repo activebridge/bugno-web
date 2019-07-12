@@ -1,13 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { SubscriptionAPI, ProjectAPI } from '../../../api';
+import { NotificationService } from '../../../utility';
 
 @Component({
   selector: 'app-subscription',
-  templateUrl: './subscription.html'
+  templateUrl: './subscription.html',
+  styleUrls: ['./subscription.scss']
 })
 
 export class Subscription {
+  @Input() loading: true;
+  @Output() changePlan: EventEmitter<any> = new EventEmitter();
+  @Output() onCancelSubscription: EventEmitter<any> = new EventEmitter();
   @Input() projectId: number;
   @Input() subscription: any;
 
-  constructor() { }
+  constructor(private subscriptionAPI: SubscriptionAPI,
+              private notificationService: NotificationService) { }
+
+  triggerChangePlan() {
+    this.changePlan.emit();
+  }
+
+  cancelSubscription() {
+    this.subscriptionAPI.cancel(this.projectId, this.subscription.id).subscribe((resp) => {
+      this.notificationService.showSuccess('Card successfully detached');
+      this.subscription = resp;
+      this.onCancelSubscription.emit(resp)
+    },(error) => {
+      this.notificationService.showError(error);
+    })
+  }
 }

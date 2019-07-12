@@ -1,5 +1,19 @@
-<app-subscription *ngIf="subscription" [projectId]="projectId" [subscription]="subscription"></app-subscription>
-<app-add-subscription *ngIf="!loading && !subscription && plans.length" [projectId]="projectId" [plans]="plans" (subscribed)="onSubscribeSuccess($event);"></app-add-subscription>
+<app-subscription *ngIf="subscription && !changePlan"
+                  [projectId]="projectId"
+                  [subscription]="subscription"
+                  [loading]="loading"
+                  (onCancelSubscription)="(subscription = $event)"
+                  (changePlan)="changePlan = true"></app-subscription>
+<app-add-subscription *ngIf="!loading && !subscription && plans.length"
+                      [projectId]="projectId"
+                      [plans]="plans"
+                      (onSubscribe)="onSubscribeSuccess($event);"></app-add-subscription>
+<app-change-subscription-plan *ngIf="changePlan"
+                              [projectId]="projectId"
+                              [plans]="plans"
+                              [subscription]="subscription"
+                              [currentPlan]="subscription.plan"
+                              (onSubscribe)="onSubscribeSuccess($event);"></app-change-subscription-plan>
 <div *ngIf="!loading && !subscription && !plans.length" class="container my-3">
   <h2>Sorry, there are no any subscription plans yet...</h2>
 </div>

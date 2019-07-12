@@ -10,9 +10,10 @@ import { NotificationService } from '../../utility';
 })
 
 export class ProjectSubscriptions implements OnInit {
+  changePlan = false;
   projectId: number;
   plans: any = [];
-  subscription: any;
+  subscription: any = {};
   loading: boolean;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
@@ -29,13 +30,14 @@ export class ProjectSubscriptions implements OnInit {
     this.getPlans();
   }
 
-  private onSubscribeSuccess(subscription) {
+  onSubscribeSuccess(subscription) {
     this.subscription = subscription;
+    this.changePlan = false;
   }
 
   private getSubscription() {
     this.loading = true;
-    this.subscriptionAPI.query(this.projectId).subscribe((resp) => {
+    this.subscriptionAPI.get(this.projectId).subscribe((resp) => {
       this.subscription = resp;
       this.loading = false;
     }, () => {
