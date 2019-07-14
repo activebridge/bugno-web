@@ -3,6 +3,7 @@
 :host {
   .container-fluid {
     background-color: $alabaster;
+    height: calc(100vh - 4rem);
   }
   .col-welcome {
     height: 500px;
