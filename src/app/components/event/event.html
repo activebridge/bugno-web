@@ -53,7 +53,37 @@
         </div>
     </div>
   </tab>
-  <tab heading="Request Data"></tab>
+  <tab heading="Request Data">
+    <div class="container-fluild">
+      <p *ngIf="event.headers" class="font-weight-bold my-2">Headers:</p>
+      <div *ngFor="let item of event.headers | keyvalue" class="row">
+        <div class="col-2">{{item.key}}:</div>
+        <div class="col-10">{{item.value | json}}</div>
+      </div>
+      <p *ngIf="event.params" class="font-weight-bold my-2">Params:</p>
+      <div *ngFor="let item of event.params | keyvalue" class="row">
+        <div class="col-2">{{item.key}}:</div>
+        <div class="col-10">{{item.value | json}}</div>
+      </div>
+      <p *ngIf="event.person_data" class="font-weight-bold my-2">Person data:</p>
+      <div *ngFor="let item of event.person_data | keyvalue" class="row">
+        <div class="col-2">{{item.key}}:</div>
+        <div class="col-10">{{item.value | json}}</div>
+      </div>
+      <div *ngIf="event.url" class="row my-2">
+        <div class="col-md-2 font-weight-bold">URL:</div>
+        <div class="col-md-10">{{event.url}}</div>
+      </div>
+      <div *ngIf="event.ip_address" class="row my-2">
+        <div class="col-md-2 font-weight-bold">IP address:</div>
+        <div class="col-md-10">{{event.ip_address}}</div>
+      </div>
+      <div *ngIf="event.http_method" class="row my-2">
+        <div class="col-md-2 font-weight-bold">HTTP method:</div>
+        <div class="col-md-10">{{event.http_method}}</div>
+      </div>
+    </div>
+  </tab>
   <tab heading="Occurrences" (selectTab)="getOccurrences();">
     <table class="table table-hover my-2">
       <tr *ngFor="let occurrence of occurrences; let i = index">

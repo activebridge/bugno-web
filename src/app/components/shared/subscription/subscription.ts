@@ -26,9 +26,9 @@ export class Subscription {
     this.subscriptionAPI.cancel(this.projectId, this.subscription.id).subscribe((resp) => {
       this.notificationService.showSuccess('Card successfully detached');
       this.subscription = resp;
-      this.onCancelSubscription.emit(resp)
-    },(error) => {
+      this.onCancelSubscription.emit(resp);
+    }, (error) => {
       this.notificationService.showError(error);
-    })
+    });
   }
 }
