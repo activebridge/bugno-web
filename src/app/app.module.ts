@@ -21,9 +21,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
-         EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, Settings,
-         SettingsProfile, ProfileForm, OAuthCallback, ProjectSubscriptions, AddSubscription,
-         Subscription, Plans, SubscriptionForm, ChangeSubscriptionPlan } from './components';
+         EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
+         ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
+         ChangeSubscriptionPlan } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -52,9 +52,6 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ConfirmDirective,
     ConfirmModal,
     TimeAgoPipe,
-    Settings,
-    SettingsProfile,
-    ProfileForm,
     OAuthCallback,
     ProjectSubscriptions,
     AddSubscription,

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
-         Event, ProjectEvents, ProjectAccess, Settings, SettingsProfile,
-         OAuthCallback, ProjectSubscriptions, Plans } from './components';
+         Event, ProjectEvents, ProjectAccess, OAuthCallback, ProjectSubscriptions,
+         Plans } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -37,15 +37,6 @@ const routes: Routes = [
   {
     path: 'projects/:projectId/event/:id',
     component: Event,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'settings',
-    component: Settings,
-    children: [
-      {path: '', redirectTo: 'profile', pathMatch: 'full'},
-      {path: 'profile', component: SettingsProfile},
-    ],
     canActivate: [AuthGuard]
   },
   {
