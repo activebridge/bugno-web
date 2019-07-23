@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NotificationService } from '../../../utility/notification.service';
+import { uniqBy, orderBy } from 'lodash';
+import { NotificationService, GlobalEvents } from '../../../services';
 
 import { EventAPI } from '../../../api';
 
@@ -16,6 +17,7 @@ export class EventsList implements OnInit {
   sortableOptions: any = {};
 
   constructor(private eventAPI: EventAPI,
+              private globalEvents: GlobalEvents,
               private notifyService: NotificationService) {
     this.sortableOptions = {
       group: 'normal-group',
@@ -35,6 +37,29 @@ export class EventsList implements OnInit {
 
   ngOnInit() {
     this.getEvents(this.projectId);
+    this.globalEvents.subscribe('CREATE_EVENT', this.createEventHandle)
+    this.globalEvents.subscribe('UPDATE_EVENT', this.updateEventHandle)
+  }
+
+  ngOnDestroy() {
+    this.globalEvents.unsubscribe('CREATE_EVENT', this.createEventHandle)
+    this.globalEvents.unsubscribe('UPDATE_EVENT', this.updateEventHandle)
+  }
+
+  createEventHandle = (event) => {
+    if (event.status == this.status.key) {
+      this.events.push(event);
+    }
+  }
+
+  updateEventHandle = (data) => {
+    if (data.status == this.status.key) {
+      this.events = this.events.filter((event) => event.id != data.id);
+      this.events.push(data);
+      this.events = orderBy(this.events, ['position'], ['asc']);
+    } else {
+      this.events = this.events.filter((event) => event.id != data.id);
+    }
   }
 
   updateEventHandler = (event: any) => {

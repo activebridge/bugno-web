@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PlanAPI, SubscriptionAPI } from '../../api';
-import { NotificationService } from '../../utility';
+import { NotificationService } from '../../services';
 
 @Component({
   selector: 'app-project-subscriptions',

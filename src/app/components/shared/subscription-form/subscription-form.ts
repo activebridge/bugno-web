@@ -5,7 +5,7 @@ import { StripeService, Elements, Element as StripeElement, ElementsOptions } fr
 import { compact } from 'lodash';
 
 import { SubscriptionAPI, ProjectAPI } from '../../../api';
-import { NotificationService } from '../../../utility';
+import { NotificationService } from '../../../services';
 
 @Component({
   selector: 'app-subscription-form',

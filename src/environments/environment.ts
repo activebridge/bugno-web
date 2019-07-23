@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:3000',
+  websocketEndpoint: 'ws://localhost:3000',
   bugnoAccessToken: ''
 };
 

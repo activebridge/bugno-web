@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../utility/notification.service';
+import { NotificationService } from '../../services';
 import { pickBy, isNumber } from 'lodash';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 

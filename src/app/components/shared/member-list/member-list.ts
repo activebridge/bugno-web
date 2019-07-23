@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { find } from 'lodash';
-import { NotificationService } from '../../../utility/notification.service';
+import { NotificationService } from '../../../services';
 
-import { LocalStorageService } from '../../../utility';
+import { LocalStorageService } from '../../../services';
 import { ProjectUserAPI } from '../../../api';
 
 @Component({

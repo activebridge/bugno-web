@@ -4,6 +4,8 @@ import { HttpEvent, HttpRequest, HttpInterceptor, HttpHandler, HttpResponse, Htt
 
 import { AngularTokenService } from 'angular-token';
 
+import { ActionCableService } from './action-cable';
+
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -13,6 +15,7 @@ import { tap } from 'rxjs/operators';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor( private tokenService: AngularTokenService,
+               private actionCableService: ActionCableService,
                private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -50,6 +53,7 @@ export class AuthInterceptor implements HttpInterceptor {
         this.tokenService.getAuthHeadersFromResponse(res);
         if (res.status == 401) {
           localStorage.clear();
+          this.actionCableService.unsubscribe();
           // tslint:disable-next-line
           this.tokenService['authData'] = null;
           this.router.navigate(['welcome']);

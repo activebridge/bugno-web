@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup , Validators } from '@angular/forms
 import { CustomValidators } from 'ng2-validation';
 import { pickBy } from 'lodash';
 
-import { LocalStorageService } from '../../../utility';
+import { LocalStorageService } from '../../../services';
 import { UserAPI } from '../../../api/user';
-import { NotificationService } from '../../../utility/notification.service';
+import { NotificationService } from '../../../services';
 
 @Component({
   selector: 'app-profile-form',
