@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../../../utility/notification.service';
+import { NotificationService } from '../../../services';
 
 import { ProjectAPI } from '../../../api';
 

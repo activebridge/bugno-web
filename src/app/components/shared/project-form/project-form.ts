@@ -4,7 +4,7 @@ import { CustomValidators } from 'ng2-validation';
 import { compact } from 'lodash';
 
 import { ProjectAPI } from '../../../api';
-import { NotificationService } from '../../../utility/notification.service';
+import { NotificationService } from '../../../services';
 
 @Component({
   selector: 'app-project-form',

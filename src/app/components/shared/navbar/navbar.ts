@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 
-import { LocalStorageService } from '../../../utility';
+import { LocalStorageService, ActionCableService } from '../../../services';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +17,7 @@ export class Navbar implements OnInit {
 
   constructor(public tokenAuthService: AngularTokenService,
               public localStorageService: LocalStorageService,
+              private actionCableService: ActionCableService,
               private redirect: Router,
               private router: ActivatedRoute) { }
 
@@ -33,9 +34,15 @@ export class Navbar implements OnInit {
   }
 
   signOut() {
-    this.tokenAuthService.signOut().subscribe(() => {
-      this.redirect.navigate(['welcome']);
-      localStorage.clear();
-    }, () => { localStorage.clear(); });
+    this.tokenAuthService.signOut().subscribe(
+      () => {
+        this.redirect.navigate(['welcome']);
+        localStorage.clear();
+        this.actionCableService.unsubscribe();
+      },
+      () => {
+        localStorage.clear();
+        this.actionCableService.unsubscribe();
+      });
   }
 }

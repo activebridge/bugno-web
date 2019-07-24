@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SubscriptionAPI, ProjectAPI } from '../../../api';
-import { NotificationService } from '../../../utility';
+import { NotificationService } from '../../../services';
 
 @Component({
   selector: 'app-subscription',

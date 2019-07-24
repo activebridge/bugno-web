@@ -14,6 +14,14 @@ export class LocalStorageService {
     }
   }
 
+  get accessToken() {
+    try {
+      return localStorage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+    } catch (_) {
+      return undefined;
+    }
+  }
+
   set currentUser(data) {
     localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(data));
   }
