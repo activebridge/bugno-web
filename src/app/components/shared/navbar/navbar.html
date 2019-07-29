@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark">
+<nav class="navbar navbar-expand navbar-dark align-items-center">
   <a class="navbar-brand" [routerLink]='["/"]'>Bugno</a>
   <ul class="navbar-nav" *ngIf="!localStorageService.currentUser">
     <li class="nav-item dropdown">
@@ -13,7 +13,10 @@
       </div>
     </li>
   </ul>
-  <a class="nav-link ml-auto bordered-link cursor-pointer" (click)="onSignInWithGithub();" *ngIf="!localStorageService.currentUser">Sign In with GitHub</a>
+  <a class="nav-link ml-auto bordered-link cursor-pointer d-flex align-items-center" (click)="onSignInWithGithub();" *ngIf="!localStorageService.currentUser">
+    <img src="assets/github_octocat.svg" alt="github_logo" class="sign-in-github-logo mr-2">
+    <span>Get In</span>
+  </a>
   <div class="dropdown ml-auto" *ngIf="localStorageService.currentUser">
     <div class="dropdown-toggle">
       <span class="user-email">{{localStorageService.currentUser.email}}</span>
