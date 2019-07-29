@@ -2,15 +2,37 @@
 
 :host {
   .container-fluid {
-    background-color: $alabaster;
     height: calc(100vh - 4rem);
+    padding: 0;
   }
-  .col-welcome {
-    height: 500px;
+  .section {
+    height: 100%;
+    margin: 0;
+    &__top {
+      background-color: $mirage;
+      background-image: url("../../../assets/flat_mountains.svg"), linear-gradient(180deg, $shark 0%, $nepal 100%);
+      background-size: auto;
+      background-position: bottom left;
+      background-repeat: no-repeat;
+    }
+    &__description-text {
+      color: $mercury;
+      font-size: 20px;
+    }
   }
-  .welcome-message {
-    font-size: 5rem;
-    font-weight: 300;
-    user-select: none;
+  .form-group {
+    width: 450px;
+    input {
+      height: 45px;
+    }
+  }
+  .btn-sign-in{
+    width: 450px;
+  }
+  .bg-outer-space {
+    background-color: $outer_space;
+  }
+  .invited-heading {
+    font-size: 40px;
   }
 }

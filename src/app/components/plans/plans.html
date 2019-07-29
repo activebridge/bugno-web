@@ -1,16 +1,16 @@
-<div class="fade-in plans">
+<div class="plans text-light">
   <div class="header text-center">
-    <h3 class="header__top_heading text-muted">Pricing</h3>
+    <h3 class="header__top_heading">Pricing</h3>
     <h1 class="header__main_heading">Plans for every developer</h1>
-    <p class="header__paragraph text-muted">Whether you’re starting an open source project or choosing new tools for your team, we’ve got you covered.</p>
+    <p class="header__paragraph">Whether you’re starting an open source project or choosing new tools for your team, we’ve got you covered.</p>
   </div>
   <div class="main m-0">
-    <div class="card p-3 mx-2 mb-0" *ngFor="let plan of plans">
+    <div class="card p-3 mx-2 mb-0 border-none" *ngFor="let plan of plans">
       <div class="card-body text-center">
         <h4 class="card-title">{{plan.name}}</h4>
         <h1 class="card-text price">{{plan.price}}$</h1>
-        <p class="card-text card__events text-muted mb-0">{{plan.event_limit}} events</p>
-        <p class="card__per-time text-muted">per month</p>
+        <p class="card-text card__events mb-0">{{plan.event_limit}} events</p>
+        <p class="card__per-time">per month</p>
         <p class="card-text text-center card__description">{{plan.description}}</p>
       </div>
     </div>
