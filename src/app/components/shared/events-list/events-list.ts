@@ -15,6 +15,7 @@ export class EventsList implements OnInit {
   @Input() status: any;
   page = 1;
   events: any = [];
+  eventCount: number = 0;
   sortableOptions: any = {};
 
   constructor(private eventAPI: EventAPI,
@@ -76,7 +77,8 @@ export class EventsList implements OnInit {
   }
 
   private onGetEventsSuccess = (resp) => {
-    this.events = this.events.concat(resp);
+    this.events = this.events.concat(resp.events);
+    this.eventCount = resp.total_count;
   }
 
   private onGetEventsError = (error) => {
