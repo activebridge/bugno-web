@@ -13,7 +13,9 @@
         <span [class.badge-danger]="event.framework == 'rails'"
               [class.badge-warning]="event.framework == 'browser-js'"
               [class.badge-info]="event.framework == 'node-js'"
+              [class.badge-secondary]="event.framework == 'plain'"
               class="badge ml-1">{{event.framework}}</span>
+        <span *ngIf="event.occurence_count" class="badge badge-pill badge-warning ml-1">{{event.occurence_count}}</span>
       </div>
       <span tooltip="{{event.created_at | date:'medium'}}"
             placement="bottom"
