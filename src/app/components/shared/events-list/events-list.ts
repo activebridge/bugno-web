@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { uniqBy, orderBy } from 'lodash';
-import { NotificationService, GlobalEvents } from '../../../services';
+import { NotificationService, GlobalEvents, ProjectService } from '../../../services';
 
 import { EVENTS } from '../../../constants';
 import { EventAPI } from '../../../api';
@@ -19,6 +19,7 @@ export class EventsList implements OnInit {
 
   constructor(private eventAPI: EventAPI,
               private globalEvents: GlobalEvents,
+              private projectService: ProjectService,
               private notifyService: NotificationService) {
     this.sortableOptions = {
       group: 'normal-group',
@@ -48,12 +49,14 @@ export class EventsList implements OnInit {
   }
 
   createEventHandle = (event) => {
+    if (!this.isProjectEvent(event)) return;
     if (event.status == this.status.key) {
       this.events.push(event);
     }
   }
 
   updateEventHandle = (data) => {
+    if (!this.isProjectEvent(event)) return;
     if (data.status == this.status.key) {
       this.events = this.events.filter((event) => event.id != data.id);
       this.events.push(data);
@@ -61,6 +64,10 @@ export class EventsList implements OnInit {
     } else {
       this.events = this.events.filter((event) => event.id != data.id);
     }
+  }
+
+  isProjectEvent(event) {
+    return this.projectService.project.id == event.project_id;
   }
 
   updateEventHandler = (event: any) => {
