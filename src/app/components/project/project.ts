@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../services';
+import { NotificationService, ProjectService } from '../../services';
 
 import { SubscriptionStatus } from '../../enums';
 import { ProjectAPI, EventAPI } from '../../api';
@@ -31,6 +31,7 @@ export class Project implements OnInit {
               private eventAPI: EventAPI,
               private router: ActivatedRoute,
               private redirect: Router,
+              private projectService: ProjectService,
               private notifyService: NotificationService) { }
 
   ngOnInit() {
@@ -57,6 +58,7 @@ export class Project implements OnInit {
 
   private onGetSuccess = (resp) => {
     this.project = resp;
+    this.projectService.project = resp;
     this.checkSubscriptionState();
   }
 

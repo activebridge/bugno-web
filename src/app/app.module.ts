@@ -27,7 +27,8 @@ import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
-import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler, ActionCableService, GlobalEvents } from './services';
+import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler, ActionCableService,
+         GlobalEvents, ProjectService } from './services';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
@@ -98,7 +99,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     InfiniteScrollModule,
     NgxStripeModule.forRoot(),
   ],
-  providers: [BaseGuard, AuthGuard, PublicGuard, ActionCableService, GlobalEvents,
+  providers: [BaseGuard, AuthGuard, PublicGuard, ActionCableService, GlobalEvents, ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: BugnoErrorHandler },
     { provide: BugnoService, useFactory: bugnoFactory }],

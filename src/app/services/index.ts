@@ -4,3 +4,4 @@ export * from './local-storage';
 export * from './bugno';
 export * from './action-cable';
 export * from './global-events';
+export * from './project';
