@@ -1,8 +1,5 @@
 <div class="row p-3 no-gutters">
   <div class="col events-column" *ngFor="let status of statuses | keyvalue">
-    <div class="events-column__header">
-      <span class="font-weight-bold text-capitalize">{{status.key}}</span>
-    </div>
     <app-events-list [projectId]="projectId" [status]="status"></app-events-list>
   </div>
 </div>
