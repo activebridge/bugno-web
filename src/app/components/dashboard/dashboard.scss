@@ -1,12 +1,6 @@
 @import '../../../styles/variables';
 
 :host {
-  .sidebar {
-    min-height: calc(100vh - 4rem);
-    width: 349px;
-    padding: 1rem;
-    margin: 0;
-  }
   .recent-activity__heading {
     height: 31px;
   }
