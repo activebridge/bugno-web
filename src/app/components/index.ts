@@ -12,7 +12,7 @@ export * from './project-subscriptions/project-subscriptions';
 export * from './shared/subscription/subscription';
 export * from './shared/add-subscription/add-subscription';
 export * from './shared/navbar/navbar';
-export * from './shared/projects-list/projects-list';
+export * from './shared/project-list/project-list';
 export * from './shared/projects-item/projects-item';
 export * from './shared/delete-confirm/delete-confirm';
 export * from './shared/event-list/event-list';

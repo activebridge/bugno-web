@@ -20,7 +20,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
-         ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
+         ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
          ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
          ChangeSubscriptionPlan } from './components';
@@ -40,7 +40,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ProjectCreate,
     ProjectForm,
     Project,
-    ProjectsList,
+    ProjectList,
     ProjectsItem,
     ProjectSettings,
     DeleteConfirm,

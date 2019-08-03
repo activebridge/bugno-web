@@ -4,12 +4,12 @@ import { NotificationService } from '../../../services';
 import { ProjectAPI } from '../../../api';
 
 @Component({
-  selector: 'app-projects-list',
-  templateUrl: './projects-list.html',
-  styleUrls: ['./projects-list.scss']
+  selector: 'app-project-list',
+  templateUrl: './project-list.html',
+  styleUrls: ['./project-list.scss']
 })
 
-export class ProjectsList implements OnInit {
+export class ProjectList implements OnInit {
   projects: any = [];
 
   constructor(private projectAPI: ProjectAPI,
