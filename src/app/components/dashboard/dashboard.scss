@@ -1,6 +1,8 @@
 :host {
-  .project-list {
+  .row {
     min-height: calc(100vh - 4rem);
+  }
+  .project-list {
     width: 350px;
   }
 }
