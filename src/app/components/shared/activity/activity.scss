@@ -1,7 +1,11 @@
 @import '../../../../styles/variables';
 
 :host {
-  .recent-activity__heading {
-    height: 31px;
+  .activity-header {
+    height: 28px;
+    h5 {
+      font-size: 16px;
+      margin: 0;
+    }
   }
 }
