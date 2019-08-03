@@ -15,7 +15,7 @@ export * from './shared/navbar/navbar';
 export * from './shared/projects-list/projects-list';
 export * from './shared/projects-item/projects-item';
 export * from './shared/delete-confirm/delete-confirm';
-export * from './shared/events-list/events-list';
+export * from './shared/event-list/event-list';
 export * from './shared/member-list/member-list';
 export * from './shared/invite-member/invite-member';
 export * from './shared/confirm-modal/confirm-modal';

@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
-         EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
+         EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
          ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
          ChangeSubscriptionPlan } from './components';
 import { environment } from '../environments/environment';
@@ -46,7 +46,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     DeleteConfirm,
     Event,
     ProjectEvents,
-    EventsList,
+    EventList,
     ProjectAccess,
     MemberList,
     InviteMember,

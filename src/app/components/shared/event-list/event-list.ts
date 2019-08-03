@@ -6,11 +6,11 @@ import { EVENTS } from '../../../constants';
 import { EventAPI } from '../../../api';
 
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.html',
-  styleUrls: ['./events-list.scss']
+  selector: 'app-event-list',
+  templateUrl: './event-list.html',
+  styleUrls: ['./event-list.scss']
 })
-export class EventsList implements OnInit {
+export class EventList implements OnInit {
   @Input() projectId: any = {};
   @Input() status: any;
   page = 1;
