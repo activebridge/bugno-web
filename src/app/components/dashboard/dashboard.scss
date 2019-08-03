@@ -2,10 +2,12 @@
 
 :host {
   .sidebar {
-    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100vh - 4rem);
     width: 349px;
     padding: 1rem;
     margin: 0;
-    background-color: $white;
+  }
+  .recent-activity__heading {
+    height: 31px;
   }
 }
