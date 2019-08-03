@@ -23,7 +23,7 @@ import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
          ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
-         ChangeSubscriptionPlan } from './components';
+         ChangeSubscriptionPlan, Activity } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -59,7 +59,8 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     Subscription,
     Plans,
     SubscriptionForm,
-    ChangeSubscriptionPlan
+    ChangeSubscriptionPlan,
+    Activity
   ],
   imports: [
     BrowserModule,

@@ -22,3 +22,4 @@ export * from './shared/confirm-modal/confirm-modal';
 export * from './shared/project-form/project-form';
 export * from './shared/subscription-form/subscription-form';
 export * from './shared/change-subscription-plan/change-subscription-plan';
+export * from './shared/activity/activity';

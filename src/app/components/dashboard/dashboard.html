@@ -4,26 +4,7 @@
       <app-project-list></app-project-list>
     </div>
     <div class="col">
-
-      <div class="container-fluid px-0 py-3">
-        <div class="recent-activity__heading d-flex align-items-center">
-          <p class="h6">Recent activity</p>
-        </div>
-        <div class="border-bottom mt-3 mb-4"></div>
-        <div *ngFor="let activity of activities" class="row mx-1 mb-3 align-items-center">
-          <img ngxGravatar [email]="activity.owner.email || ''">
-          <p class="ml-1 mb-0 mx">
-            <span class="font-weight-bold">{{activity.owner.nickname}}</span> pushed
-            <span class="font-weight-bold"><a [routerLink]="['/projects', activity.recipient.slug, 'event', activity.trackable.id]"> {{activity.trackable.title}}</a></span>
-            <span class="badge badge-pill badge-warning mx-1"> {{activity.trackable.occurence_count}}</span>
-            <span class="badge badge-secondary mx-1"> {{activity.trackable.framework}}</span>
-            <span> from <span class="font-weight-bold">{{activity.parameters.status.previous}}</span> to <span class="font-weight-bold">{{activity.parameters.status.new}}</span></span>
-            <span> in <a class="font-weight-bold" [routerLink]="['/projects', activity.recipient.slug]">{{activity.recipient.name}}</a></span>
-            <span class="text-muted"> {{activity.created_at | timeAgo}}</span>
-          </p>
-        </div>
-      </div>
-
+      <app-activity></app-activity>
     </div>
   </div>
 </div>
