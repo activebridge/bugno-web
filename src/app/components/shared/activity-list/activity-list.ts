@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
 @Component({
-  selector: 'app-activity',
-  templateUrl: './activity.html',
-  styleUrls: ['./activity.scss']
+  selector: 'app-activity-list',
+  templateUrl: './activity-list.html',
+  styleUrls: ['./activity-list.scss']
 })
 
-export class Activity implements OnInit {
+export class ActivityList implements OnInit {
   activities: any = [];
 
   constructor(private http: HttpClient) { }
@@ -21,6 +21,7 @@ export class Activity implements OnInit {
     this.query().subscribe(
       (resp) => {
       this.activities = resp;
+      console.log('THIS.ACTIVITIES', this.activities)
       }),
       (error) => {
       console.log(error);
