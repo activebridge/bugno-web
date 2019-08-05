@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+
+import { ActivityAPI } from '../../../api';
 
 @Component({
   selector: 'app-activity-list',
@@ -11,24 +11,19 @@ import { environment } from '../../../../environments/environment';
 export class ActivityList implements OnInit {
   activities: any = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private activityAPI: ActivityAPI) { }
 
   ngOnInit() {
     this.getActivities();
   }
 
   private getActivities() {
-    this.query().subscribe(
+    this.activityAPI.query().subscribe(
       (resp) => {
       this.activities = resp;
-      console.log('THIS.ACTIVITIES', this.activities)
       }),
       (error) => {
       console.log(error);
       }
-  }
-
-  private query() {
-    return this.http.get(`${environment.apiEndpoint}/api/v1/activities`);
   }
 }

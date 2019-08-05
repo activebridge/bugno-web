@@ -3,11 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class UserAPI {
+export class ActivityAPI {
+  constructor(public http: HttpClient) { }
 
-  constructor(public http: HttpClient) {}
-
-  update(params) {
-    return this.http.put(`${environment.apiEndpoint}/auth`, params);
+  query() {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/activities`);
   }
 }
