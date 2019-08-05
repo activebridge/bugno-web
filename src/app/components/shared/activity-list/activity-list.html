@@ -3,15 +3,7 @@
 </div>
 <div class="border-bottom my-3"></div>
 <div class="container-fluid">
-  <div *ngFor="let activity of activities" class="row align-items-center mb-3">
-    <img ngxGravatar [email]="activity.owner.email || ''">
-    <p class="ml-1 mb-0 mx">
-      <span class="font-weight-bold">{{activity.owner.nickname}}<a *ngIf="activity.owner_type == 'Event'" [routerLink]="['/projects', activity.recipient.slug, 'event', activity.owner.id]">occurrence</a></span> pushed
-      <a class="font-weight-bold" [routerLink]="['/projects', activity.recipient.slug, 'event', activity.trackable.id]"> {{activity.trackable.title}}</a>
-      <span class="badge badge-pill badge-warning mx-1"> {{activity.trackable.occurrence_count}}</span>
-      <span> from <span class="font-weight-bold">{{activity.parameters.status.previous}}</span> to <span class="font-weight-bold">{{activity.parameters.status.new}}</span></span>
-      <span> in <a class="font-weight-bold" [routerLink]="['/projects', activity.recipient.slug]">{{activity.recipient.name}}</a></span>
-      <span class="text-muted"> {{activity.created_at | timeAgo}}</span>
-    </p>
+  <div *ngFor="let activity of activities" [ngSwitch]="activity.trackable_type">
+    <app-activity-event-item [item]="activity" *ngSwitchCase='"Event"' class="row align-items-center mb-3"></app-activity-event-item>
   </div>
 </div>

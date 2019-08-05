@@ -23,3 +23,4 @@ export * from './shared/project-form/project-form';
 export * from './shared/subscription-form/subscription-form';
 export * from './shared/change-subscription-plan/change-subscription-plan';
 export * from './shared/activity-list/activity-list';
+export * from './shared/activity-event-item/activity-event-item';
