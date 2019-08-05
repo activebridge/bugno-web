@@ -19,7 +19,7 @@
               [class.badge-info]="event.framework == 'node-js'"
               [class.badge-secondary]="event.framework == 'plain'"
               class="badge mx-1">{{event.framework}}</span>
-        <span *ngIf="event.occurence_count" class="badge badge-pill badge-warning cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurence_count}}</span>
+        <span *ngIf="event.occurrence_count" class="badge badge-pill badge-warning cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
       </div>
       <span tooltip="{{event.created_at | date:'medium'}}"
             placement="bottom"
