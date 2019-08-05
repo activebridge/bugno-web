@@ -57,7 +57,7 @@ export class EventList implements OnInit {
   }
 
   updateEventHandle = (data) => {
-    if (!this.isProjectEvent(event)) return;
+    if (!this.isProjectEvent(data)) return;
     if (data.status == this.status.key) {
       this.events = this.events.filter((event) => event.id != data.id);
       this.events.push(data);
