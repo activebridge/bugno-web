@@ -9,6 +9,7 @@ import { ActivityAPI } from '../../../api';
 })
 
 export class ActivityList implements OnInit {
+  page = 1;
   activities: any = [];
 
   constructor(private activityAPI: ActivityAPI) { }
@@ -18,12 +19,14 @@ export class ActivityList implements OnInit {
   }
 
   private getActivities() {
-    this.activityAPI.query().subscribe(
+    this.activityAPI.query({ page: this.page }).subscribe(
       (resp) => {
-      this.activities = resp;
-      }),
+        this.activities = resp['activities'];
+        this.page += 1;
+      },
       (error) => {
-      console.log(error);
+        console.log(error);
       }
+    )
   }
 }

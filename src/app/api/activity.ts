@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 export class ActivityAPI {
   constructor(public http: HttpClient) { }
 
-  query() {
-    return this.http.get(`${environment.apiEndpoint}/api/v1/activities`);
+  query(params = {}) {
+    return this.http.get(`${environment.apiEndpoint}/api/v1/activities`, { params });
   }
 }
