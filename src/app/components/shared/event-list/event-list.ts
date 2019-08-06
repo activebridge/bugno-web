@@ -15,7 +15,7 @@ export class EventList implements OnInit {
   @Input() status: any;
   page = 1;
   events: any = [];
-  eventCount: number = 0;
+  eventCount = 0;
   sortableOptions: any = {};
 
   constructor(private eventAPI: EventAPI,
@@ -50,14 +50,14 @@ export class EventList implements OnInit {
   }
 
   createEventHandle = (event) => {
-    if (!this.isProjectEvent(event)) return;
+    if (!this.isProjectEvent(event)) { return; }
     if (event.status == this.status.key) {
       this.events.push(event);
     }
   }
 
   updateEventHandle = (data) => {
-    if (!this.isProjectEvent(data)) return;
+    if (!this.isProjectEvent(data)) { return; }
     if (data.status == this.status.key) {
       this.events = this.events.filter((event) => event.id != data.id);
       this.events.push(data);

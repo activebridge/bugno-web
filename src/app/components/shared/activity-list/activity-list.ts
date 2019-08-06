@@ -9,8 +9,8 @@ import { ActivityAPI } from '../../../api';
 })
 
 export class ActivityList implements OnInit {
-  currentPage:number = 1;
-  page: number = 1;
+  currentPage = 1;
+  page = 1;
   activityTotalCount: number;
   activities: any = [];
 
@@ -28,12 +28,12 @@ export class ActivityList implements OnInit {
   private getActivities() {
     this.activityAPI.query({ page: this.page }).subscribe(
       (resp) => {
-        this.activities = resp['activities'];
-        this.activityTotalCount = resp['activity_total_count'];
+        this.activities = resp.activities;
+        this.activityTotalCount = resp.activity_total_count;
       },
       (error) => {
         console.log(error);
       }
-    )
+    );
   }
 }

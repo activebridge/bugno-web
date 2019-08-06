@@ -1,21 +1,20 @@
-<div class="activity-list-header d-flex align-items-center">
-  <span class="font-weight-light">Recent activity</span>
-</div>
-<div class="border-bottom my-3"></div>
-<div class="container-fluid">
-  <div class="row flex-column justify-content-between">
+<div class="container-fluid h-100">
+  <div class="row flex-column h-100 justify-content-between">
 
-    <div class="col-auto">
-      <div *ngFor="let activity of activities" [ngSwitch]="activity.trackable_type">
-        <app-activity-event-item [item]="activity" *ngSwitchCase='"Event"' class="row align-items-center mb-3"></app-activity-event-item>
+    <div class="col">
+      <div class="activity-list-header d-flex align-items-center">
+        <span class="font-weight-light">Recent activity</span>
       </div>
-    </div>
-    <div class="col-auto">
-      <div *ngIf="activityTotalCount > 10" class="row">
-        <div class="col-auto">
-          <pagination [(ngModel)]="currentPage" [totalItems]="activityTotalCount" (pageChanged)="pageChanged($event)"></pagination>
+      <div class="border-bottom my-3"></div>
+      <div class="container-fluid">
+        <div *ngFor="let activity of activities" [ngSwitch]="activity.trackable_type">
+          <app-activity-event-item [item]="activity" *ngSwitchCase='"Event"' class="row align-items-center mb-3"></app-activity-event-item>
         </div>
       </div>
+    </div>
+
+    <div *ngIf="activityTotalCount > 20" class="col-auto align-self-center">
+      <pagination [itemsPerPage]="20" [(ngModel)]="currentPage" [totalItems]="activityTotalCount" (pageChanged)="pageChanged($event)"></pagination>
     </div>
 
   </div>
