@@ -16,6 +16,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -100,6 +101,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     }),
     InfiniteScrollModule,
     NgxStripeModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard, ActionCableService, GlobalEvents, ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
