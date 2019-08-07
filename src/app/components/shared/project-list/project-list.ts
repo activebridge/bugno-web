@@ -9,6 +9,7 @@ import { ProjectAPI } from '../../../api';
 })
 
 export class ProjectList implements OnInit {
+  loading = true;
   projects: any = [];
 
   constructor(private projectAPI: ProjectAPI,
@@ -24,6 +25,7 @@ export class ProjectList implements OnInit {
 
   private onGetSuccess = (resp) => {
     this.projects = resp.projects;
+    this.loading = false;
   }
 
   private onGetError = (error) => {
