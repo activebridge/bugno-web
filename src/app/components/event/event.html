@@ -15,7 +15,7 @@
         </button>
         <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
           <li role="menuitem" *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)">
-            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize">{{item.key}}</a>
+            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize cursor-pointer">{{item.key}}</a>
           </li>
         </ul>
       </div>
