@@ -24,7 +24,7 @@ export class ProjectList implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.projects = resp.projects;
+    this.projects = resp;
     this.loading = false;
   }
 
