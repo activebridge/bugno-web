@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NotificationService } from '../../../services';
 import { ActivityAPI } from '../../../api';
 
 @Component({
@@ -15,7 +16,8 @@ export class ActivityList implements OnInit {
   activityTotalCount: number;
   activities: any = [];
 
-  constructor(private activityAPI: ActivityAPI) { }
+  constructor(private activityAPI: ActivityAPI,
+              private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.getActivities();
@@ -27,15 +29,16 @@ export class ActivityList implements OnInit {
   }
 
   private getActivities() {
-    this.activityAPI.query({ page: this.page }).subscribe(
-      (resp: any) => {
-        this.activities = resp.activities;
-        this.activityTotalCount = resp.activity_total_count;
-        this.loading = false;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.activityAPI.query({ page: this.page }).subscribe(this.onGetActivitiesSuccess, this.onGetActivitiesError);
+  }
+
+  private onGetActivitiesSuccess = (resp: any) => {
+    this.activities = resp.activities;
+    this.activityTotalCount = resp.activity_total_count;
+    this.loading = false;
+  }
+
+  private onGetActivitiesError = () => {
+    this.notificationService.showError('Activities was not fetched, try to reload page');
   }
 }
