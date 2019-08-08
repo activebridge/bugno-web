@@ -39,6 +39,6 @@ export class ProjectAccess implements OnInit {
   }
 
   private onGetError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 }

@@ -66,7 +66,7 @@ export class SubscriptionForm implements OnInit {
   }
 
   private onCreateTokenError = (error) => {
-    this.notificationService.showError(error);
+    this.notificationService.showApiError(error);
   }
 
   private getStripeApiKey() {
@@ -103,7 +103,7 @@ export class SubscriptionForm implements OnInit {
       this.notificationService.showSuccess('Successfully subscribed!');
       this.onSubscribe.emit(resp);
     }, (error) => {
-      this.notificationService.showError(error);
+      this.notificationService.showApiError(error);
       this.submitDisabled = false;
     });
   }

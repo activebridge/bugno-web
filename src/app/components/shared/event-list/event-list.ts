@@ -89,11 +89,11 @@ export class EventList implements OnInit {
   }
 
   private onGetEventsError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 
   private onUpdateStatusError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 
 }

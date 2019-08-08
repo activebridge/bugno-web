@@ -64,7 +64,7 @@ export class Event implements OnInit {
   }
 
   private onGetError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
     this.redirect.navigate(['dashboard']);
   }
 
@@ -73,7 +73,7 @@ export class Event implements OnInit {
   }
 
   private onGetOccurrencesError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
     this.redirect.navigate(['dashboard']);
   }
 
@@ -83,6 +83,6 @@ export class Event implements OnInit {
   }
 
   private onUpdateStatusError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 }

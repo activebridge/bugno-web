@@ -28,7 +28,7 @@ export class Subscription {
       this.subscription = resp;
       this.onCancelSubscription.emit(resp);
     }, (error) => {
-      this.notificationService.showError(error);
+      this.notificationService.showApiError(error);
     });
   }
 }

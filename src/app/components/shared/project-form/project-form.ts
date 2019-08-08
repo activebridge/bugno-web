@@ -53,7 +53,7 @@ export class ProjectForm implements OnInit {
   }
 
   private onCreateError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
     this.submitDisabled = false;
   }
 }

@@ -42,6 +42,6 @@ export class MemberList implements OnInit {
   }
 
   private onDeleteError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 }
