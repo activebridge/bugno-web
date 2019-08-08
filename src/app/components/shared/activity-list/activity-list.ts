@@ -29,12 +29,16 @@ export class ActivityList implements OnInit {
   }
 
   private getActivities() {
-    this.activityAPI.query({ page: this.page }).subscribe(this.onGetActivitiesSuccess, this.onGetActivitiesError);
+    this.activityAPI.query(this.activitiesParams).subscribe(this.onGetActivitiesSuccess, this.onGetActivitiesError);
+  }
+
+  private get activitiesParams() {
+    return { page: this.page };
   }
 
   private onGetActivitiesSuccess = (resp: any) => {
     this.activities = resp.activities;
-    this.activityTotalCount = resp.activity_total_count;
+    this.activityTotalCount = resp.total_count;
     this.loading = false;
   }
 
