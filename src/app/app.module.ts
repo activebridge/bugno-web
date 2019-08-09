@@ -16,14 +16,15 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PaginationModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
-         ProjectsList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
-         EventsList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
+         ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
+         EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
          ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
-         ChangeSubscriptionPlan } from './components';
+         ChangeSubscriptionPlan, ActivityList, ActivityEventItem } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
@@ -40,13 +41,13 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ProjectCreate,
     ProjectForm,
     Project,
-    ProjectsList,
+    ProjectList,
     ProjectsItem,
     ProjectSettings,
     DeleteConfirm,
     Event,
     ProjectEvents,
-    EventsList,
+    EventList,
     ProjectAccess,
     MemberList,
     InviteMember,
@@ -59,7 +60,9 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     Subscription,
     Plans,
     SubscriptionForm,
-    ChangeSubscriptionPlan
+    ChangeSubscriptionPlan,
+    ActivityList,
+    ActivityEventItem
   ],
   imports: [
     BrowserModule,
@@ -98,6 +101,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     }),
     InfiniteScrollModule,
     NgxStripeModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [BaseGuard, AuthGuard, PublicGuard, ActionCableService, GlobalEvents, ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

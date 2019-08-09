@@ -38,7 +38,7 @@ export class ProjectSettings implements OnInit {
 
   deleteProject() {
     this.projectAPI.delete(this.project.id)
-                   .subscribe(this.onDeleteSuccess, this.notifyService.showError);
+                   .subscribe(this.onDeleteSuccess, this.notifyService.showApiError);
   }
 
   copyApiKey() {

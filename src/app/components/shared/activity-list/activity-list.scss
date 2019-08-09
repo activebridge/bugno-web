@@ -1,0 +1,10 @@
+@import '../../../../styles/variables';
+
+:host {
+  .activity-list-header {
+    height: 28px;
+    span {
+      font-size: 16px;
+    }
+  }
+}

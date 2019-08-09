@@ -6,16 +6,16 @@ import { EVENTS } from '../../../constants';
 import { EventAPI } from '../../../api';
 
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.html',
-  styleUrls: ['./events-list.scss']
+  selector: 'app-event-list',
+  templateUrl: './event-list.html',
+  styleUrls: ['./event-list.scss']
 })
-export class EventsList implements OnInit {
+export class EventList implements OnInit {
   @Input() projectId: any = {};
   @Input() status: any;
   page = 1;
   events: any = [];
-  eventCount: number = 0;
+  eventCount = 0;
   sortableOptions: any = {};
 
   constructor(private eventAPI: EventAPI,
@@ -50,14 +50,14 @@ export class EventsList implements OnInit {
   }
 
   createEventHandle = (event) => {
-    if (!this.isProjectEvent(event)) return;
+    if (!this.isProjectEvent(event)) { return; }
     if (event.status == this.status.key) {
       this.events.push(event);
     }
   }
 
   updateEventHandle = (data) => {
-    if (!this.isProjectEvent(event)) return;
+    if (!this.isProjectEvent(data)) { return; }
     if (data.status == this.status.key) {
       this.events = this.events.filter((event) => event.id != data.id);
       this.events.push(data);
@@ -89,11 +89,11 @@ export class EventsList implements OnInit {
   }
 
   private onGetEventsError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 
   private onUpdateStatusError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 
 }

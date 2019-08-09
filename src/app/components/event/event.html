@@ -15,7 +15,7 @@
         </button>
         <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
           <li role="menuitem" *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)">
-            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize">{{item.key}}</a>
+            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize cursor-pointer">{{item.key}}</a>
           </li>
         </ul>
       </div>
@@ -86,15 +86,18 @@
   </tab>
   <tab heading="Occurrences" (selectTab)="getOccurrences();">
     <table class="table table-hover my-2">
-      <tr *ngFor="let occurrence of occurrences; let i = index">
+      <tr *ngFor="let occurrence of occurrences">
         <div class="cursor-pointer" (click)="selectTab(0)" [routerLink]="['/projects', projectId, 'event', occurrence.id]">
-          <td># {{i}}</td>
+          <td># {{occurrence.id}}</td>
           <td>{{occurrence.created_at | timeAgo}}</td>
           <td>{{occurrence.title}}</td>
           <td>{{occurrence.message}}</td>
         </div>
      </tr>
     </table>
+    <div *ngIf="occurrenceTotalCount > 25">
+      <pagination [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
+    </div>
   </tab>
   </tabset>
  </div>

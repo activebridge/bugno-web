@@ -13,7 +13,11 @@ export class NotificationService {
     this.toastr.success(message, title);
   }
 
-  showError = (response) =>  {
+  showError(message, title?) {
+    this.toastr.error(message, title);
+  }
+
+  showApiError = (response) =>  {
     if (response.error && response.error.errors) {
       this.toastr.error(response.error.errors);
     } else if (response.error && response.error.error) {

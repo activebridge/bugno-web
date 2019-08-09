@@ -4,11 +4,12 @@ import { NotificationService } from '../../../services';
 import { ProjectAPI } from '../../../api';
 
 @Component({
-  selector: 'app-projects-list',
-  templateUrl: './projects-list.html',
+  selector: 'app-project-list',
+  templateUrl: './project-list.html'
 })
 
-export class ProjectsList implements OnInit {
+export class ProjectList implements OnInit {
+  loading = true;
   projects: any = [];
 
   constructor(private projectAPI: ProjectAPI,
@@ -23,10 +24,11 @@ export class ProjectsList implements OnInit {
   }
 
   private onGetSuccess = (resp) => {
-    this.projects = resp.projects;
+    this.projects = resp;
+    this.loading = false;
   }
 
   private onGetError = (error) => {
-    this.notifyService.showError(error);
+    this.notifyService.showApiError(error);
   }
 }

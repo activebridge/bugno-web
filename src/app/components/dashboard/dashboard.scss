@@ -1,11 +1,9 @@
-@import '../../../styles/variables';
-
 :host {
-  .sidebar {
-    min-height: calc(100vh - 4.5rem);
-    width: 349px;
-    padding: 1rem;
-    margin: 0;
-    background-color: $white;
+  .row {
+    min-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 4rem);
+  }
+  .project-list {
+    width: 350px;
   }
 }
