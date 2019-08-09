@@ -15,6 +15,8 @@ import { EventAPI } from '../../api';
 export class Event implements OnInit {
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
   event: any = {};
+  occurrencesPage = 1;
+  occurrenceTotalCount: number;
   occurrences: any = [];
   statuses = pickBy(EventStatus, isNumber);
   projectId: number;
@@ -37,17 +39,26 @@ export class Event implements OnInit {
     this.staticTabs.tabs[tabId].active = true;
   }
 
-  getEvent(projectId, id) {
-    this.eventAPI.get(projectId, id).subscribe(this.onGetSuccess, this.onGetError);
-  }
-
   getOccurrences() {
-    this.eventAPI.queryOccurrences(this.projectId, this.parentId).subscribe(this.onGetOccurrencesSuccess, this.onGetOccurrencesError);
+    this.eventAPI.getOccurrences(this.projectId, this.parentId, this.occurrencesParams).subscribe(this.onGetOccurrencesSuccess, this.onGetOccurrencesError);
   }
 
   updateEventStatus(status) {
     this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status))
         .subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+  }
+
+  occurrencesPageChanged(event: any): void {
+    this.occurrencesPage = event.page;
+    this.getOccurrences();
+  }
+
+  private getEvent(projectId, id) {
+    this.eventAPI.get(projectId, id).subscribe(this.onGetSuccess, this.onGetError);
+  }
+
+  private get occurrencesParams() {
+    return { page: this.occurrencesPage };
   }
 
   private eventParams(status) {
@@ -69,7 +80,8 @@ export class Event implements OnInit {
   }
 
   private onGetOccurrencesSuccess = (resp) => {
-    this.occurrences = resp;
+    this.occurrences = resp.events;
+    this.occurrenceTotalCount = resp.total_count;
   }
 
   private onGetOccurrencesError = (error) => {
