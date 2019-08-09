@@ -1,6 +1,5 @@
 <div class="container-fluid h-100">
   <div class="row flex-column h-100 justify-content-between">
-
     <div class="col">
       <div class="activity-list-header d-flex align-items-center">
         <span class="font-weight-light">Recent activity</span>
@@ -15,10 +14,8 @@
         </div>
       </div>
     </div>
-
     <div *ngIf="activityTotalCount > 20" class="col-auto align-self-center">
       <pagination [itemsPerPage]="20" [(ngModel)]="currentPage" [totalItems]="activityTotalCount" (pageChanged)="pageChanged($event)"></pagination>
     </div>
-
   </div>
 </div>
