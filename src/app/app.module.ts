@@ -74,11 +74,13 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
+      signInRedirect: '/landing',
       oAuthBase: environment.apiEndpoint,
       oAuthPaths: {
         github: 'auth/github'
       },
-      oAuthWindowType: 'sameWindow'
+      oAuthWindowType: 'sameWindow',
+      signOutFailedValidate: true
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({

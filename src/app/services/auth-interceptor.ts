@@ -51,12 +51,11 @@ export class AuthInterceptor implements HttpInterceptor {
     if (res instanceof HttpResponse || res instanceof HttpErrorResponse) {
       if (this.tokenService.tokenOptions.apiBase === null || (res.url && res.url.match(this.tokenService.tokenOptions.apiBase))) {
         this.tokenService.getAuthHeadersFromResponse(res);
-        if (res.status == 401) {
-          localStorage.clear();
+        if (res.status === 401) {
+          this.tokenService.signOut().subscribe();
+          localStorage.removeItem('currentUser');
           this.actionCableService.unsubscribe();
-          // tslint:disable-next-line
-          this.tokenService['authData'] = null;
-          this.router.navigate(['welcome']);
+          this.router.navigate(['landing']);
         }
       }
     }

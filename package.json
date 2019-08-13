@@ -23,7 +23,7 @@
     "@angular/router": "^7.2.14",
     "actioncable": "^5.2.3",
     "angular-sortablejs": "^2.7.0",
-    "angular-token": "git+ssh://git@github.com:dmytsuu/angular-token-additional-data.git",
+    "angular-token": "git+https://github.com/dmytsuu/angular-token-oauth-data.git",
     "bootstrap": "^4.3.1",
     "bugno-js": "git+https://github.com/activebridge/bugno-js.git",
     "core-js": "^2.5.4",

@@ -11,8 +11,7 @@ import { LocalStorageService, ActionCableService } from '../../../services';
 })
 
 export class Navbar implements OnInit {
-  // tslint:disable-next-line
-  registration_token: string;
+  registrationToken: string;
   isOpen: boolean;
 
   constructor(public tokenAuthService: AngularTokenService,
@@ -24,25 +23,22 @@ export class Navbar implements OnInit {
   ngOnInit() {
     this.router.queryParams.subscribe(queryParams => {
       if (queryParams.registration_token) {
-        this.registration_token = queryParams.registration_token;
+        this.registrationToken = queryParams.registration_token;
       }
     });
   }
 
   onSignInWithGithub() {
-    this.tokenAuthService.signInOAuth('github', this.registration_token);
+    this.tokenAuthService.signInOAuth('github', this.registrationToken);
   }
 
   signOut() {
-    this.tokenAuthService.signOut().subscribe(
-      () => {
-        this.redirect.navigate(['welcome']);
-        localStorage.clear();
-        this.actionCableService.unsubscribe();
-      },
-      () => {
-        localStorage.clear();
-        this.actionCableService.unsubscribe();
-      });
+    this.tokenAuthService.signOut().subscribe(this.handleSignOutRequest);
+  }
+
+  handleSignOutRequest = () => {
+    this.redirect.navigate(['landing']);
+    localStorage.removeItem('currentUser');
+    this.actionCableService.unsubscribe();
   }
 }
