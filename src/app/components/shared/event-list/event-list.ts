@@ -59,12 +59,36 @@ export class EventList implements OnInit {
   updateEventHandle = (data) => {
     if (!this.isProjectEvent(data)) { return; }
     if (data.status == this.status.key) {
-      this.events = this.events.filter((event) => event.id != data.id);
+      this.prepareEventList(data);
       this.events.push(data);
+      this.updatePositions(data);
       this.events = orderBy(this.events, ['position'], ['asc']);
     } else {
-      this.events = this.events.filter((event) => event.id != data.id);
+      this.prepareEventList(data);
     }
+  }
+
+  prepareEventList(data) {
+    this.events = this.events.filter((event) => event.id != data.id);
+    this.updatePositionsByIndex();
+  }
+
+  updatePositionsByIndex() {
+    this.events.forEach((event) => {
+      let newPosition = this.events.findIndex((item) => {
+        return item.id == event.id;
+      });
+      event.position = newPosition + 1;
+    });
+  }
+
+  updatePositions(data) {
+    this.events.forEach((event) => {
+      if (event.id == data.id) { return; }
+      if (event.position >= data.position) {
+        event.position += 1;
+      }
+    });
   }
 
   isProjectEvent(event) {
