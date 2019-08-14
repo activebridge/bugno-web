@@ -7,10 +7,12 @@ import { BaseGuard } from './base';
 export class AuthGuard extends BaseGuard {
 
   canActivate() {
-    if (this.tokenAuthService.userSignedIn()) {
+    if (this.tokenAuthService.userSignedIn() && this.localStorageService.currentUser) {
       return true;
+    } else {
+      this.router.navigate(['landing']);
+      localStorage.removeItem('currentUser');
+      return false;
     }
-    this.router.navigate(['welcome']);
-    return false;
   }
 }

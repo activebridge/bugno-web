@@ -26,11 +26,11 @@ const routes: Routes = [
     path: 'projects/:id',
     component: Project,
     children: [
-      {path: '', redirectTo: 'events', pathMatch: 'full'},
-      {path: 'events', component: ProjectEvents},
-      {path: 'access', component: ProjectAccess},
-      {path: 'settings', component: ProjectSettings},
-      {path: 'subscriptions', component: ProjectSubscriptions},
+      {path: '', redirectTo: 'events', pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'events', component: ProjectEvents, canActivate: [AuthGuard]},
+      {path: 'access', component: ProjectAccess, canActivate: [AuthGuard]},
+      {path: 'settings', component: ProjectSettings, canActivate: [AuthGuard]},
+      {path: 'subscriptions', component: ProjectSubscriptions, canActivate: [AuthGuard]},
     ],
     canActivate: [AuthGuard]
   },
