@@ -1,30 +1,31 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../services';
 import { pickBy, isNumber } from 'lodash';
-import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
+import { EventService, OccurrencesService, NotificationService } from '../../services';
 import { EventStatus } from '../../enums';
 import { EventAPI } from '../../api';
 
 @Component({
   selector: 'app-event',
-  templateUrl: './event.html',
-  styleUrls: ['./event.scss']
+  templateUrl: './event.html'
 })
 export class Event implements OnInit {
-  @ViewChild('staticTabs') staticTabs: TabsetComponent;
   event: any = {};
-  occurrencesPage = 1;
-  occurrenceTotalCount: number;
-  occurrences: any = [];
   statuses = pickBy(EventStatus, isNumber);
   projectId: number;
-  parentId: any;
-  constructor(private router: ActivatedRoute,
+  tabs: any = [
+    {title: 'Trace', url: 'trace'},
+    {title: 'Data', url: 'request-data'},
+    {title: 'Occurrences', url: 'occurrences'},
+  ];
+
+  constructor(public occurrencesService: OccurrencesService,
+              private eventService: EventService,
+              private notifyService: NotificationService,
               private eventAPI: EventAPI,
-              private redirect: Router,
-              private notifyService: NotificationService) { }
+              private router: ActivatedRoute,
+              private redirect: Router) { }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
@@ -35,12 +36,8 @@ export class Event implements OnInit {
     });
   }
 
-  selectTab(tabId: number) {
-    this.staticTabs.tabs[tabId].active = true;
-  }
-
-  getOccurrences() {
-    this.eventAPI.getOccurrences(this.projectId, this.parentId, this.occurrencesParams).subscribe(this.onGetOccurrencesSuccess, this.onGetOccurrencesError);
+  get parentId() {
+    return this.event.parent_id || this.event.id;
   }
 
   updateEventStatus(status) {
@@ -48,43 +45,42 @@ export class Event implements OnInit {
         .subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
   }
 
-  occurrencesPageChanged(event: any): void {
-    this.occurrencesPage = event.page;
-    this.getOccurrences();
+  getOccurrences() {
+    this.occurrencesService.occurrencesByDate = null;
+    this.occurrencesService.occurrenceTotalCount = 0;
+    this.occurrencesService.occurrencesLoading = true;
+    this.eventAPI.getOccurrences(this.event.project_id, this.parentId)
+                 .subscribe(this.onGetOccurrencesSuccess, this.onGetOccurrencesError);
+  }
+
+  private onGetOccurrencesSuccess = (resp) => {
+    this.occurrencesService.occurrencesByDate = resp.events;
+    this.occurrencesService.occurrenceTotalCount = resp.total_count;
+    this.occurrencesService.occurrencesLoading = false;
+  }
+
+  private onGetOccurrencesError = (error) => {
+    this.notifyService.showApiError(error);
+    this.redirect.navigate(['dashboard']);
+    this.occurrencesService.occurrencesLoading = false;
   }
 
   private getEvent(projectId, id) {
+    this.eventService.event = null;
     this.eventAPI.get(projectId, id).subscribe(this.onGetSuccess, this.onGetError);
-  }
-
-  private get occurrencesParams() {
-    return { page: this.occurrencesPage };
   }
 
   private eventParams(status) {
     return { event: { status } };
   }
 
-  private setParentId() {
-    this.parentId = this.event.parent_id || this.event.id;
-  }
-
   private onGetSuccess = (resp) => {
     this.event = resp;
-    this.setParentId();
+    this.eventService.event = resp;
+    this.getOccurrences();
   }
 
   private onGetError = (error) => {
-    this.notifyService.showApiError(error);
-    this.redirect.navigate(['dashboard']);
-  }
-
-  private onGetOccurrencesSuccess = (resp) => {
-    this.occurrences = resp.events;
-    this.occurrenceTotalCount = resp.total_count;
-  }
-
-  private onGetOccurrencesError = (error) => {
     this.notifyService.showApiError(error);
     this.redirect.navigate(['dashboard']);
   }

@@ -1,104 +1,37 @@
 <div class="container">
-  <div class="row border-bottom py-3">
-    <div class="col p-0">
-      <h5 class="font-weight-normal">
-      {{event.title}}
-      </h5>
-      <p class='m-0'>{{event.message}}</p>
-    </div>
-    <div class="col-md-2 float-right">
-      <div class="btn-group" dropdown>
-        <button class="btn btn-sm btn-success mb-2 dropdown-toggle" aria-controls="dropdown-basic" dropdownToggle>
-          <span class="text-capitalize">
-            status: <span class="font-weight-bold">{{event.status}}</span>
-          </span>
-        </button>
-        <ul class="dropdown-menu" id="dropdown-basic" role="menu" aria-labelledby="button-basic" *dropdownMenu>
-          <li role="menuitem" *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)">
-            <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize cursor-pointer">{{item.key}}</a>
-          </li>
-        </ul>
+  <div class="row my-3">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="font-weight-normal">
+          {{event.title}}
+        </h3>
+        <div class="btn-group" dropdown>
+          <button class="btn btn-outline-dark">
+            <span class="text-capitalize">{{event.status}}</span>
+          </button>
+          <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" id="button-split" aria-controls="dropdown-split" dropdownToggle>
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+          </button>
+          <ul class="dropdown-menu" id="dropdown-split" role="menu" aria-labelledby="button-split" *dropdownMenu>
+            <li role="menuitem" *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)">
+              <a (click)="updateEventStatus(item.key);" class="dropdown-item text-capitalize cursor-pointer">{{item.key}}</a>
+            </li>
+          </ul>
+        </div>
       </div>
+      <p class="text-truncate">{{event.message}}</p>
     </div>
   </div>
- <div class="row">
-  <tabset class="py-2 m-0 w-100" type="pills" #staticTabs>
-    <tab heading="Backtrace">
-    <div *ngIf="event.backtrace?.length">
-        <div class="list-group my-2">
-          <div *ngIf="event.framework == 'browser-js'">
-            <div *ngFor="let line of event.backtrace" class="list-group-item rounded my-1">
-              <p class="trace-info d-inline-block">{{line.method}} in {{line.filename}}:{{line.lineno}},{{line.colno}}</p>
-            </div>
-          </div>
-          <div *ngIf="event.framework != 'browser-js'">
-            <label [attr.for]="'backtrace-line-' + i"
-                   *ngFor="let line of event.backtrace; let i = index"
-                   [class.border-danger]="line.project_error"
-                   class="list-group-item flex-column align-items-start rounded cursor-pointer my-1">
-                <p class="trace-info d-inline-block">
-                  {{line.filename}}:{{line.lineno}}
-                </p>
-              <input type="checkbox"
-                     [id]="'backtrace-line-' + i"
-                     hidden
-                     [checked]="line.project_error">
-              <div *ngIf="line.context" class="item-content p-2">
-                <pre *ngFor="let line of line.context?.pre" class="m-0">{{line}}</pre>
-                <pre class="rounded bg-danger text-white m-0">{{line.code}}</pre>
-                <pre *ngFor="let line of line.context?.post" class="m-0">{{line}}</pre>
-              </div>
-            </label>
-          </div>
-        </div>
+  <div class="row my-3">
+    <div class="col">
+      <ul class="nav nav-tabs">
+        <li class="nav-item" *ngFor="let tab of tabs">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}
+          </a>
+        </li>
+      </ul>
     </div>
-  </tab>
-  <tab heading="Request Data">
-    <div class="container-fluild">
-      <p *ngIf="event.headers" class="font-weight-bold my-2">Headers:</p>
-      <div *ngFor="let item of event.headers | keyvalue" class="row">
-        <div class="col-2">{{item.key}}:</div>
-        <div class="col-10">{{item.value | json}}</div>
-      </div>
-      <p *ngIf="event.params" class="font-weight-bold my-2">Params:</p>
-      <div *ngFor="let item of event.params | keyvalue" class="row">
-        <div class="col-2">{{item.key}}:</div>
-        <div class="col-10">{{item.value | json}}</div>
-      </div>
-      <p *ngIf="event.person_data" class="font-weight-bold my-2">Person data:</p>
-      <div *ngFor="let item of event.person_data | keyvalue" class="row">
-        <div class="col-2">{{item.key}}:</div>
-        <div class="col-10">{{item.value | json}}</div>
-      </div>
-      <div *ngIf="event.url" class="row my-2">
-        <div class="col-md-2 font-weight-bold">URL:</div>
-        <div class="col-md-10">{{event.url}}</div>
-      </div>
-      <div *ngIf="event.ip_address" class="row my-2">
-        <div class="col-md-2 font-weight-bold">IP address:</div>
-        <div class="col-md-10">{{event.ip_address}}</div>
-      </div>
-      <div *ngIf="event.http_method" class="row my-2">
-        <div class="col-md-2 font-weight-bold">HTTP method:</div>
-        <div class="col-md-10">{{event.http_method}}</div>
-      </div>
-    </div>
-  </tab>
-  <tab heading="Occurrences" (selectTab)="getOccurrences();">
-    <table class="table table-hover my-2">
-      <tr *ngFor="let occurrence of occurrences">
-        <div class="cursor-pointer" (click)="selectTab(0)" [routerLink]="['/projects', projectId, 'event', occurrence.id]">
-          <td># {{occurrence.id}}</td>
-          <td>{{occurrence.created_at | timeAgo}}</td>
-          <td>{{occurrence.title}}</td>
-          <td>{{occurrence.message}}</td>
-        </div>
-     </tr>
-    </table>
-    <div *ngIf="occurrenceTotalCount > 25">
-      <pagination [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
-    </div>
-  </tab>
-  </tabset>
- </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>

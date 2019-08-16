@@ -1,0 +1,51 @@
+<div *ngIf="eventService.event.backtrace?.length" [hidden]="!eventService.event" class="row">
+
+  <accordion class="col">
+    <accordion-group *ngFor="let trace of eventService.event.backtrace; let i = index" class="mb-3 trace-group" [isOpen]="trace.project_error" [isDisabled]="eventService.event.framework == 'browser-js'">
+      <div class="container-fluid filename text-truncate text-nowrap" accordion-heading>
+        <div class="row">
+          <div class="col-auto">
+            <span *ngIf="eventService.event.framework == 'browser-js'" class="font-weight-bold">{{trace.method}}</span>
+          </div>
+          <div *ngIf="eventService.event.framework == 'browser-js'" class="col-auto">in</div>
+          <div *ngIf="eventService.event.framework != 'browser-js'" class="col">{{trace.filename}}:{{trace.lineno}}</div>
+          <div *ngIf="eventService.event.framework == 'browser-js'" class="col">{{trace.filename}}:{{trace.lineno}} <span *ngIf="trace.colno">:{{trace.colno}}</span></div>
+        </div>
+      </div>
+
+      <div *ngIf="trace.context" class="container-fluid">
+        <div *ngFor="let line of trace.context?.pre; let i = index" class="row px-3 trace-line">
+          <div class="col-auto text-muted">
+            {{trace.lineno - (trace.context.pre.length - i)}}
+          </div>
+          <div class="col">
+            {{line}}
+          </div>
+        </div>
+
+        <div *ngIf="eventService.event.framework != 'browser-js'" class="row px-3 trace-line error-line">
+          <div class="col-auto text-muted">
+            {{trace.lineno}}
+          </div>
+          <div class="col">
+            {{trace.code}}
+          </div>
+        </div>
+
+        <div *ngFor="let line of trace.context?.post; let i = index" class="row px-3 trace-line">
+          <div class="col-auto text-muted">
+            {{trace.lineno + i + 1}}
+          </div>
+          <div class="col">
+            {{line}}
+          </div>
+        </div>
+      </div>
+
+    </accordion-group>
+  </accordion>
+</div>
+
+<div *ngIf="!eventService.event.backtrace?.length" [hidden]="!eventService.event">
+  <h3 class="display-4 my-5 text-center">Trace is missing...</h3>
+</div>

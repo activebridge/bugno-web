@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
          Event, ProjectEvents, ProjectAccess, OAuthCallback, ProjectSubscriptions,
-         Plans } from './components';
+         Plans, EventTrace, EventRequestData, EventOccurrences } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -37,6 +37,12 @@ const routes: Routes = [
   {
     path: 'projects/:projectId/event/:id',
     component: Event,
+    children: [
+      {path: '', redirectTo: 'trace', pathMatch: 'full', canActivate: [AuthGuard]},
+      {path: 'trace', component: EventTrace, canActivate: [AuthGuard]},
+      {path: 'request-data', component: EventRequestData, canActivate: [AuthGuard]},
+      {path: 'occurrences', component: EventOccurrences, canActivate: [AuthGuard]},
+    ],
     canActivate: [AuthGuard]
   },
   {
