@@ -2,9 +2,9 @@
   <accordion *ngIf="isParamsPresent" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
-        <div class="row">
-          <div class="col-auto">Params</div>
-          <div class="col"></div>
+        <div class="row justify-content-center">
+          <div class="col-auto ">Params</div>
+          <div class="col d-none d-md-block"></div>
         </div>
       </div>
       <div *ngIf="eventService.event.params" class="container-fluid">
@@ -35,9 +35,9 @@
   <accordion *ngIf="eventService.event.person_data" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-auto">User data</div>
-          <div class="col"></div>
+          <div class="col d-none d-md-block"></div>
         </div>
       </div>
       <div class="container-fluid">
@@ -52,9 +52,9 @@
   <accordion *ngIf="eventService.event.headers" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-auto">Headers</div>
-          <div class="col"></div>
+          <div class="col d-none d-md-block"></div>
         </div>
       </div>
       <div class="container-fluid">

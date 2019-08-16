@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { find } from 'lodash';
-import { NotificationService } from '../../../services';
 
-import { LocalStorageService } from '../../../services';
+import { LocalStorageService, NotificationService } from '../../../services';
 import { ProjectUserAPI } from '../../../api';
 
 @Component({
@@ -36,7 +35,7 @@ export class MemberList implements OnInit {
   }
 
   private onDeleteSuccess = (id) => {
-    const index = this.projectUsers.findIndex((projectUser) => projectUser.id == id);
+    const index = this.projectUsers.findIndex((projectUser) => projectUser.id === id);
     this.projectUsers.splice(index, 1);
     this.notifyService.showSuccess('User removed');
   }

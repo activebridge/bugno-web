@@ -9,8 +9,6 @@ import { EventService } from '../../../services';
 })
 
 export class EventRequestData {
-  paramsOpened = true;
-
   constructor(public eventService: EventService) { }
 
   get isParamsPresent() {

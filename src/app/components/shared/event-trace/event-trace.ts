@@ -9,7 +9,5 @@ import { EventService } from '../../../services';
 })
 
 export class EventTrace {
-  event: any = {};
-
   constructor(public eventService: EventService) { }
 }
