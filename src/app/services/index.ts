@@ -5,3 +5,5 @@ export * from './bugno';
 export * from './action-cable';
 export * from './global-events';
 export * from './project';
+export * from './event';
+export * from './occurrences';
