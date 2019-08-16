@@ -2,6 +2,7 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import './styles/public_pages';
 @import './styles/custom';
+@import './styles/overrides';
 
 ul {
   list-style-type: none;
@@ -17,11 +18,4 @@ input, textarea {
 
 button {
   margin-bottom: .5rem;
-}
-
-app-project .subsciption-alert {
-  .alert {
-    border-radius: 0;
-    margin: 0;
-  }
 }
