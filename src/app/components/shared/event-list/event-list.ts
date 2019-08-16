@@ -75,7 +75,7 @@ export class EventList implements OnInit {
 
   updatePositionsByIndex() {
     this.events.forEach((event) => {
-      let newPosition = this.events.findIndex((item) => {
+      const newPosition = this.events.findIndex((item) => {
         return item.id == event.id;
       });
       event.position = newPosition + 1;
