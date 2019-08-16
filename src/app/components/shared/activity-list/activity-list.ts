@@ -23,7 +23,12 @@ export class ActivityList implements OnInit {
     this.getActivities();
   }
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
   pageChanged(event: any): void {
+    this.scrollToTop();
     this.page = event.page;
     this.getActivities();
   }
