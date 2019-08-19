@@ -1,4 +1,4 @@
-<div *ngIf="eventService.event.backtrace?.length" [hidden]="!eventService.event" class="row">
+<div *ngIf="eventService.event?.backtrace?.length" [hidden]="!eventService.event" class="row">
   <accordion class="col">
     <accordion-group *ngFor="let trace of eventService.event.backtrace; let i = index" class="mb-3 trace-group" [isOpen]="trace.project_error" [isDisabled]="eventService.event.framework == 'browser-js'">
       <div class="container-fluid font-trace text-truncate text-nowrap" accordion-heading>
@@ -40,6 +40,6 @@
     </accordion-group>
   </accordion>
 </div>
-<div *ngIf="!eventService.event.backtrace?.length" [hidden]="!eventService.event">
+<div *ngIf="!eventService.event?.backtrace?.length" [hidden]="!eventService.event">
   <h3 class="display-4 my-5 text-center">Trace is missing...</h3>
 </div>
