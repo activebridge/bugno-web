@@ -13,7 +13,6 @@
           <div class="col preformatted">{{item.value | json}}</div>
         </div>
       </div>
-
       <div class="container-fluid">
         <div *ngIf="eventService.event.http_method" class="row py-3 border-bottom">
           <div class="col-auto col-header-key">method:</div>
@@ -28,10 +27,8 @@
           <div class="col">{{eventService.event.ip_address}}</div>
         </div>
       </div>
-
     </accordion-group>
   </accordion>
-
   <accordion *ngIf="eventService.event.person_data" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
@@ -48,7 +45,6 @@
       </div>
     </accordion-group>
   </accordion>
-
   <accordion *ngIf="eventService.event.headers" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
@@ -65,9 +61,7 @@
       </div>
     </accordion-group>
   </accordion>
-
   <div *ngIf="!isParamsPresent && !eventService.event.person_data && !eventService.event.headers" class="text-center">
     <h3 class="display-4 my-5">Request data is missing...</h3>
   </div>
-
 </div>
