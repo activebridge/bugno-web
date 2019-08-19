@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:prod": "ng build --configuration production && firebase deploy -P production",
+    "deploy:prod": "ng build --configuration production && firebase deploy -P default",
     "deploy:staging": "ng build --configuration staging && firebase deploy -P staging"
   },
   "private": true,
