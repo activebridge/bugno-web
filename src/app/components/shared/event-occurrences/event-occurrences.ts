@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { EventService, OccurrencesService, NotificationService } from '../../../services';
 import { EventAPI } from '../../../api';
+import { scrollToTop } from '../../../lib';
 
 @Component({
   selector: 'app-event-occurrences',
@@ -27,12 +28,8 @@ export class EventOccurrences {
     return { page: this.occurrencesPage };
   }
 
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
   occurrencesPageChanged(event: any): void {
-    this.scrollToTop();
+    scrollToTop();
     this.occurrencesPage = event.page;
     this.getOccurrences();
   }
