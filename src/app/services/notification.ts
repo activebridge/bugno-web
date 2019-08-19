@@ -22,7 +22,7 @@ export class NotificationService {
       this.toastr.error(response.error.errors);
     } else if (response.error && response.error.error) {
       this.toastr.error(response.error.error);
-    } else if (response.name == 'HttpErrorResponse') {
+    } else if (response.name === 'HttpErrorResponse') {
       this.toastr.error('Service temporarily unavailable');
     } else {
       this.toastr.error('Whoops! Something went wrong...');

@@ -42,11 +42,11 @@ export class SubscriptionForm implements OnInit {
     this.initCredentialsForm();
   }
 
-  subscriptionParams(stripe_source, plan_id) {
+  subscriptionParams(stripeSource, planId) {
     return compact([
       this.projectId,
       this.subscription && this.subscription.id,
-      { stripe_source, plan_id }
+      { stripe_source: stripeSource, plan_id: planId }
     ]);
   }
 

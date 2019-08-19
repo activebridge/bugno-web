@@ -51,14 +51,14 @@ export class EventList implements OnInit {
 
   createEventHandle = (event) => {
     if (!this.isProjectEvent(event)) { return; }
-    if (event.status == this.status.key) {
+    if (event.status === this.status.key) {
       this.events.push(event);
     }
   }
 
   updateEventHandle = (data) => {
     if (!this.isProjectEvent(data)) { return; }
-    if (data.status == this.status.key) {
+    if (data.status === this.status.key) {
       this.prepareEventList(data);
       this.events.push(data);
       this.updatePositions(data);
@@ -69,14 +69,14 @@ export class EventList implements OnInit {
   }
 
   prepareEventList(data) {
-    this.events = this.events.filter((event) => event.id != data.id);
+    this.events = this.events.filter((event) => event.id !== data.id);
     this.updatePositionsByIndex();
   }
 
   updatePositionsByIndex() {
     this.events.forEach((event) => {
       const newPosition = this.events.findIndex((item) => {
-        return item.id == event.id;
+        return item.id === event.id;
       });
       event.position = newPosition + 1;
     });
@@ -84,7 +84,7 @@ export class EventList implements OnInit {
 
   updatePositions(data) {
     this.events.forEach((event) => {
-      if (event.id == data.id) { return; }
+      if (event.id === data.id) { return; }
       if (event.position >= data.position) {
         event.position += 1;
       }
@@ -92,7 +92,7 @@ export class EventList implements OnInit {
   }
 
   isProjectEvent(event) {
-    return this.projectService.project.id == event.project_id;
+    return this.projectService.project.id === event.project_id;
   }
 
   updateEventHandler = (event: any) => {
