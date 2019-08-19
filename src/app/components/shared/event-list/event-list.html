@@ -1,6 +1,6 @@
 <div class="px-2 mb-2">
   <span class="font-weight-bold text-capitalize">{{status.key}}</span>
-  <span class="badge badge-pill badge-success ml-1" tooltip="Total events" placement="bottom">{{eventCount}}</span>
+  <span class="badge badge-pill badge-secondary ml-1" tooltip="Total events" placement="bottom">{{eventCount}}</span>
 </div>
 <div infinite-scroll
      [scrollWindow]="false"
@@ -19,7 +19,7 @@
               [class.badge-info]="event.framework == 'node-js'"
               [class.badge-secondary]="event.framework == 'plain'"
               class="badge mx-1">{{event.framework}}</span>
-        <span *ngIf="event.occurrence_count" class="badge badge-pill badge-warning cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
+        <span *ngIf="event.occurrence_count" class="badge badge-pill badge-secondary cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
       </div>
       <span tooltip="{{event.created_at | date:'medium'}}"
             placement="bottom"

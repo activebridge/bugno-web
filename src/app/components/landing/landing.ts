@@ -11,7 +11,7 @@ import { AngularTokenService } from 'angular-token';
 
 export class Landing implements OnInit {
   registrationTokenForm: FormGroup;
-  submitDisabled: Boolean = false;
+  submitDisabled: false;
 
   constructor(private router: ActivatedRoute,
               private tokenAuthService: AngularTokenService,

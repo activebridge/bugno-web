@@ -1,0 +1,67 @@
+<div [hidden]="!eventService.event">
+  <accordion *ngIf="isParamsPresent" class="row my-3">
+    <accordion-group class="col">
+      <div accordion-heading class="container-fluid cursor-pointer">
+        <div class="row justify-content-center">
+          <div class="col-auto ">Params</div>
+          <div class="col d-none d-md-block"></div>
+        </div>
+      </div>
+      <div *ngIf="eventService.event.params" class="container-fluid">
+        <div *ngFor="let item of eventService.event.params | keyvalue" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">{{item.key}}:</div>
+          <div class="col preformatted">{{item.value | json}}</div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div *ngIf="eventService.event.http_method" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">method:</div>
+          <div class="col">{{eventService.event.http_method}}</div>
+        </div>
+        <div *ngIf="eventService.event.url" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">url:</div>
+          <div class="col">{{eventService.event.url}}</div>
+        </div>
+        <div *ngIf="eventService.event.ip_address" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">ip_address:</div>
+          <div class="col">{{eventService.event.ip_address}}</div>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+  <accordion *ngIf="eventService.event.person_data" class="row my-3">
+    <accordion-group class="col">
+      <div accordion-heading class="container-fluid cursor-pointer">
+        <div class="row justify-content-center">
+          <div class="col-auto">User data</div>
+          <div class="col d-none d-md-block"></div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div *ngFor="let item of eventService.event.person_data | keyvalue" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">{{item.key}}:</div>
+          <div class="col preformatted">{{item.value | json}}</div>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+  <accordion *ngIf="eventService.event.headers" class="row my-3">
+    <accordion-group class="col">
+      <div accordion-heading class="container-fluid cursor-pointer">
+        <div class="row justify-content-center">
+          <div class="col-auto">Headers</div>
+          <div class="col d-none d-md-block"></div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div *ngFor="let item of eventService.event.headers | keyvalue" class="row py-3 border-bottom">
+          <div class="col-auto col-header-key">{{item.key}}:</div>
+          <div class="col preformatted">{{item.value | json}}</div>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
+  <div *ngIf="!isParamsPresent && !eventService.event.person_data && !eventService.event.headers" class="text-center">
+    <h3 class="display-4 my-5">Request data is missing...</h3>
+  </div>
+</div>

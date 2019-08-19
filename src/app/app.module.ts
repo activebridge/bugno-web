@@ -17,6 +17,7 @@ import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaginationModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,12 +25,13 @@ import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
          ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
-         ChangeSubscriptionPlan, ActivityList, ActivityEventItem } from './components';
+         ChangeSubscriptionPlan, ActivityList, ActivityEventItem, EventTrace, EventRequestData,
+         EventOccurrences } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
 import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler, ActionCableService,
-         GlobalEvents, ProjectService } from './services';
+         GlobalEvents, ProjectService, EventService, OccurrencesService } from './services';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
@@ -62,7 +64,10 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     SubscriptionForm,
     ChangeSubscriptionPlan,
     ActivityList,
-    ActivityEventItem
+    ActivityEventItem,
+    EventTrace,
+    EventRequestData,
+    EventOccurrences
   ],
   imports: [
     BrowserModule,
@@ -103,12 +108,22 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     }),
     InfiniteScrollModule,
     NgxStripeModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    AccordionModule.forRoot()
   ],
-  providers: [BaseGuard, AuthGuard, PublicGuard, ActionCableService, GlobalEvents, ProjectService,
+  providers: [
+    BaseGuard,
+    AuthGuard,
+    PublicGuard,
+    ActionCableService,
+    GlobalEvents,
+    ProjectService,
+    EventService,
+    OccurrencesService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: BugnoErrorHandler },
-    { provide: BugnoService, useFactory: bugnoFactory }],
+    { provide: BugnoService, useFactory: bugnoFactory }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DeleteConfirm, ConfirmModal]
 })

@@ -1,0 +1,22 @@
+@import '../../../../styles/variables';
+
+:host {
+  .col-lineno {
+    min-width: 60px;
+  }
+
+  .trace-line {
+    padding-top: .1rem;
+    padding-bottom: .1rem;
+    white-space: pre;
+  }
+
+  .font-trace {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 12px;
+  }
+
+  .error-line {
+    background-color: $chablis;
+  }
+}

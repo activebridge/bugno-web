@@ -50,8 +50,9 @@ export class Project implements OnInit {
 
   checkSubscriptionState() {
     if (this.project.subscription) {
-      this.subscriptionExpiresSoon = this.project.subscription.events <= EVENT_LIMIT_ALERT && this.project.subscription.status == this.subscriptionStatuses.active;
-      this.subscriptionExpired = this.project.subscription.status == this.subscriptionStatuses.expired;
+      this.subscriptionExpiresSoon = this.project.subscription.events <= EVENT_LIMIT_ALERT &&
+        this.project.subscription.status === this.subscriptionStatuses.active;
+      this.subscriptionExpired = this.project.subscription.status === this.subscriptionStatuses.expired;
     }
     this.subscriptionAlert = !this.project.subscription || this.subscriptionExpiresSoon || this.subscriptionExpired;
   }

@@ -4,7 +4,7 @@
   <a *ngIf="item.owner_type == 'Event'" [routerLink]="['/projects', item.recipient.slug, 'event', item.owner.id]" class="font-weight-bold">occurrence</a>
 &nbsp;pushed
   <a [routerLink]="['/projects', item.recipient.slug, 'event', item.trackable.id]" class="font-weight-bold">{{item.trackable.title}}</a>
-  <span class="badge badge-pill badge-warning mx-1"> {{item.trackable.occurrence_count}}</span>
+  <span class="badge badge-pill badge-secondary mx-1"> {{item.trackable.occurrence_count}}</span>
 &nbsp;from
   <span class="font-weight-bold">&nbsp;{{item.parameters.status.previous}}</span>
 &nbsp;to

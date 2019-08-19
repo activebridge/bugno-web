@@ -7,13 +7,13 @@
 <app-add-subscription *ngIf="!loading && !subscription && plans.length"
                       [projectId]="projectId"
                       [plans]="plans"
-                      (onSubscribe)="onSubscribeSuccess($event);"></app-add-subscription>
+                      (subscribe)="onSubscribeSuccess($event);"></app-add-subscription>
 <app-change-subscription-plan *ngIf="changePlan"
                               [projectId]="projectId"
                               [plans]="plans"
                               [subscription]="subscription"
                               [currentPlan]="subscription.plan"
-                              (onSubscribe)="onSubscribeSuccess($event);"></app-change-subscription-plan>
+                              (subscribe)="onSubscribeSuccess($event);"></app-change-subscription-plan>
 <div *ngIf="!loading && !subscription && !plans.length" class="container my-3">
   <h2>Sorry, there are no any subscription plans yet...</h2>
 </div>

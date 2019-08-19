@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NotificationService } from '../../../services';
 import { ActivityAPI } from '../../../api';
+import { scrollToTop } from '../../../lib';
 
 @Component({
   selector: 'app-activity-list',
@@ -24,6 +25,7 @@ export class ActivityList implements OnInit {
   }
 
   pageChanged(event: any): void {
+    scrollToTop();
     this.page = event.page;
     this.getActivities();
   }
