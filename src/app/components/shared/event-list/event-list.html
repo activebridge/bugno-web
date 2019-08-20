@@ -21,9 +21,7 @@
               class="badge mx-1">{{event.framework}}</span>
         <span *ngIf="event.occurrence_count" class="badge badge-pill badge-secondary cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
       </div>
-      <span tooltip="{{event.created_at | date:'medium'}}"
-            placement="bottom"
-            class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">
+      <span class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">
         {{event.created_at | timeAgo}}
       </span>
     </div>
