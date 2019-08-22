@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { isEmpty } from 'lodash';
 
 import { EventService } from '../../../services';
 
@@ -9,6 +10,7 @@ import { EventService } from '../../../services';
 })
 
 export class EventRequestData {
+  isEmpty = isEmpty;
   constructor(public eventService: EventService) { }
 
   get isParamsPresent() {

@@ -29,7 +29,7 @@
       </div>
     </accordion-group>
   </accordion>
-  <accordion *ngIf="eventService.event.person_data" class="row my-3">
+  <accordion *ngIf="!isEmpty(eventService.event.person_data);" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
         <div class="row justify-content-center">
@@ -45,7 +45,7 @@
       </div>
     </accordion-group>
   </accordion>
-  <accordion *ngIf="eventService.event.headers" class="row my-3">
+  <accordion *ngIf="!isEmpty(eventService.event.headers);" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
         <div class="row justify-content-center">
