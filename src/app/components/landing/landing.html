@@ -1,17 +1,17 @@
 <div class="container-fluid user-select-none">
   <div class="section section__top bg-outer-space row justify-content-center align-items-center">
-    <div class="col-md-5">
+    <div class="col-md offset-md-1">
       <h1 class="text-light display-4">Built for your convenience</h1>
       <p class="section__description-text">
         Bugno is an error tracking service. From development to production, you can track and see errors through, easy to manage them with board, and jump right to the code line where troubles come from.
       </p>
     </div>
-    <div class="col-md-5 d-flex flex-column align-items-center justify-content-center">
+    <div class="col-md d-flex flex-column align-items-center justify-content-center">
       <p class="text-light invited-heading">Got invitation?</p>
-      <form class="form-group bg-white rounded p-4 mx-auto" [formGroup]="registrationTokenForm">
+      <form class="form-group bg-white rounded p-4" [formGroup]="registrationTokenForm">
         <input formControlName="registrationToken" type="text" class="form-control mb-0" placeholder="Enter invitation token if you got">
       </form>
-      <button [disabled]="submitDisabled" type="button" (click)="onSignIn();" class="btn btn-success btn-xl btn-block btn-sign-in">Get In</button>
+      <button [disabled]="submitDisabled" type="button" (click)="onSignInWithGithub();" class="btn btn-success btn-xl btn-block btn-sign-in">Get In</button>
     </div>
   </div>
 </div>

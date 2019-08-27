@@ -14,7 +14,7 @@ export class Navbar implements OnInit {
   registrationToken: string;
   isOpen: boolean;
 
-  constructor(public tokenAuthService: AngularTokenService,
+  constructor(public tokenService: AngularTokenService,
               public localStorageService: LocalStorageService,
               private actionCableService: ActionCableService,
               private redirect: Router,
@@ -29,14 +29,24 @@ export class Navbar implements OnInit {
   }
 
   onSignInWithGithub() {
-    this.tokenAuthService.signInOAuth('github', this.registrationToken);
+    this.tokenService.signInOAuth('github', { registration_token: this.registrationToken })
+                         .subscribe(this.onSignInSuccess);
   }
+
 
   signOut() {
-    this.tokenAuthService.signOut().subscribe(this.handleSignOutRequest);
+    this.tokenService.signOut().subscribe(this.onSignOutSuccess);
   }
 
-  handleSignOutRequest = () => {
+  private onSignInSuccess = () => {
+    this.tokenService.validateToken().subscribe(() => {
+      this.localStorageService.currentUser = this.tokenService.currentUserData;
+      this.actionCableService.subscribe();
+      this.redirect.navigate(['/dashboard']);
+    });
+  }
+
+  private onSignOutSuccess = () => {
     this.redirect.navigate(['landing']);
     localStorage.removeItem('currentUser');
     this.actionCableService.unsubscribe();
