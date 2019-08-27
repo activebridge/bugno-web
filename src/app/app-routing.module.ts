@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
-         Event, ProjectEvents, ProjectAccess, OAuthCallback, ProjectSubscriptions,
-         Plans, EventTrace, EventRequestData, EventOccurrences } from './components';
+         Event, ProjectEvents, ProjectAccess, ProjectSubscriptions,
+         ProjectIntegrations, Plans, EventTrace, EventRequestData, EventOccurrences } from './components';
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -31,6 +31,7 @@ const routes: Routes = [
       {path: 'access', component: ProjectAccess, canActivate: [AuthGuard]},
       {path: 'settings', component: ProjectSettings, canActivate: [AuthGuard]},
       {path: 'subscriptions', component: ProjectSubscriptions, canActivate: [AuthGuard]},
+      {path: 'integrations', component: ProjectIntegrations, canActivate: [AuthGuard]},
     ],
     canActivate: [AuthGuard]
   },
@@ -49,7 +50,6 @@ const routes: Routes = [
     path: 'plans',
     component: Plans,
   },
-  { path: 'oauth_callback', component: OAuthCallback, canActivate: [PublicGuard] },
   { path: '**', redirectTo: 'landing' }
 ];
 

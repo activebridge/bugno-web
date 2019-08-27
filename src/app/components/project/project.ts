@@ -1,10 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService, ProjectService } from '../../services';
 
 import { SubscriptionStatus } from '../../enums';
-import { ProjectAPI, EventAPI } from '../../api';
 import { EVENT_LIMIT_ALERT } from '../../constants';
+import { ProjectService, ProjectUserService, NotificationService } from '../../services';
+import { ProjectAPI, ProjectUserAPI } from '../../api';
 
 @Component({
   selector: 'app-project',
@@ -24,14 +24,16 @@ export class Project implements OnInit {
     {title: 'Events', url: 'events'},
     {title: 'Access', url: 'access'},
     {title: 'Settings', url: 'settings'},
-    {title: 'Subscriptions', url: 'subscriptions'}
+    {title: 'Subscriptions', url: 'subscriptions'},
+    {title: 'Integrations', url: 'integrations'}
   ];
 
   constructor(private projectAPI: ProjectAPI,
-              private eventAPI: EventAPI,
+              private projectUserAPI: ProjectUserAPI,
+              private projectService: ProjectService,
+              private projectUserService: ProjectUserService,
               private router: ActivatedRoute,
               private redirect: Router,
-              private projectService: ProjectService,
               private notifyService: NotificationService) { }
 
   ngOnInit() {
@@ -40,12 +42,17 @@ export class Project implements OnInit {
       if (params.id) {
         this.projectId = params.id;
         this.getProject();
+        this.getProjectUsers();
       }
     });
   }
 
   getProject() {
-    this.projectAPI.get(this.projectId).subscribe(this.onGetSuccess, this.onGetError);
+    this.projectAPI.get(this.projectId).subscribe(this.onGetProjectSuccess, this.onGetError);
+  }
+
+  getProjectUsers() {
+    this.projectUserAPI.query(this.projectId).subscribe(this.onGetProjectUsersSuccess, this.onGetError);
   }
 
   checkSubscriptionState() {
@@ -57,10 +64,14 @@ export class Project implements OnInit {
     this.subscriptionAlert = !this.project.subscription || this.subscriptionExpiresSoon || this.subscriptionExpired;
   }
 
-  private onGetSuccess = (resp) => {
+  private onGetProjectSuccess = (resp) => {
     this.project = resp;
     this.projectService.project = resp;
     this.checkSubscriptionState();
+  }
+
+  private onGetProjectUsersSuccess = (resp) => {
+    this.projectUserService.projectUsers = resp;
   }
 
   private onGetError = (error) => {
