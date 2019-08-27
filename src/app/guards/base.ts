@@ -8,7 +8,7 @@ import { LocalStorageService } from '../services';
 
 export class BaseGuard implements CanActivate {
 
-  constructor(protected tokenAuthService: AngularTokenService,
+  constructor(protected tokenService: AngularTokenService,
               protected router: Router,
               protected localStorageService: LocalStorageService) {
   }

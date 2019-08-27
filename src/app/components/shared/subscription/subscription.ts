@@ -16,7 +16,7 @@ export class Subscription {
   @Input() subscription: any;
 
   constructor(private subscriptionAPI: SubscriptionAPI,
-              private notificationService: NotificationService) { }
+              private notifyService: NotificationService) { }
 
   triggerChangePlan() {
     this.changePlan.emit();
@@ -24,11 +24,11 @@ export class Subscription {
 
   cancelSubscription() {
     this.subscriptionAPI.cancel(this.projectId, this.subscription.id).subscribe((resp) => {
-      this.notificationService.showSuccess('Card successfully detached');
+      this.notifyService.showSuccess('Card successfully detached');
       this.subscription = resp;
       this.onCancelSubscription.emit(resp);
     }, (error) => {
-      this.notificationService.showApiError(error);
+      this.notifyService.showApiError(error);
     });
   }
 }

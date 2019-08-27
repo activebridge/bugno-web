@@ -18,7 +18,7 @@ export class ActivityList implements OnInit {
   activities: any = [];
 
   constructor(private activityAPI: ActivityAPI,
-              private notificationService: NotificationService) { }
+              private notifyService: NotificationService) { }
 
   ngOnInit() {
     this.getActivities();
@@ -45,6 +45,6 @@ export class ActivityList implements OnInit {
   }
 
   private onGetActivitiesError = () => {
-    this.notificationService.showError('Activities was not fetched, try to reload page');
+    this.notifyService.showError('Activities was not fetched, try to reload page');
   }
 }

@@ -12,11 +12,11 @@ export class AppComponent implements OnInit {
   title = 'bugno';
 
   constructor(@Inject(BugnoService) private bugno: Bugno,
-              private tokenAuthService: AngularTokenService,
+              private tokenService: AngularTokenService,
               private actionCableService: ActionCableService) {}
 
   ngOnInit() {
-    if (this.tokenAuthService.userSignedIn()) {
+    if (this.tokenService.userSignedIn()) {
       this.actionCableService.subscribe();
     }
   }
