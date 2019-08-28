@@ -79,10 +79,11 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      signInRedirect: '/landing',
+      signInRedirect: 'landing',
       oAuthBase: environment.apiEndpoint,
       oAuthPaths: {
-        github: 'auth/github'
+        github: 'auth/github',
+        slack: 'auth/slack'
       },
       signOutFailedValidate: true
     }),
