@@ -29,6 +29,6 @@
     <pagination [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
   </div>
 </div>
-<div *ngIf="!occurrencesService.occurrencesByDate" [hidden]="occurrencesService.occurrencesLoading">
+<div *ngIf="isEmpty(occurrencesService.occurrencesByDate)" [hidden]="occurrencesService.occurrencesLoading">
   <h3 class="display-4 my-5 text-center">There are no any occurrence yet.</h3>
 </div>

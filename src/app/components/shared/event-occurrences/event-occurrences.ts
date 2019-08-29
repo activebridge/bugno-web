@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { isEmpty } from 'lodash';
 
 import { EventService, OccurrencesService, NotificationService } from '../../../services';
 import { EventAPI } from '../../../api';
@@ -12,6 +13,7 @@ import { scrollToTop } from '../../../lib';
 })
 
 export class EventOccurrences {
+  isEmpty = isEmpty;
   occurrencesPage = 1;
 
   constructor(public eventService: EventService,
