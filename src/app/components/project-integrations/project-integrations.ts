@@ -49,7 +49,9 @@ export class ProjectIntegrations implements OnInit {
   }
 
   get slackParams() {
-    return { project_id: this.projectService.project.id , user_id: this.localStorageService.currentUser.action_cable_token};
+    return { project_id: this.projectService.project.id,
+             user_id: this.localStorageService.currentUser.action_cable_token,
+             integration_provider: 'slack'};
   }
 
   onAddSlackIntegration() {
