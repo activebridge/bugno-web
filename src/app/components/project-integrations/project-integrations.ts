@@ -14,7 +14,7 @@ import { GlobalEvents, LocalStorageService, NotificationService, ProjectService,
 export class ProjectIntegrations implements OnInit {
   loading = true;
   projectId: string;
-  integrations: any[];
+  integrations: any = [];
 
   constructor(public projectUserService: ProjectUserService,
               private globalEvents: GlobalEvents,
