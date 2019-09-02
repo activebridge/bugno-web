@@ -23,15 +23,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
-         EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal, OAuthCallback,
-         ProjectSubscriptions, AddSubscription, Subscription, Plans, SubscriptionForm,
+         EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal,
+         ProjectSubscriptions, ProjectIntegrations, AddSubscription, Subscription, Plans, SubscriptionForm,
          ChangeSubscriptionPlan, ActivityList, ActivityEventItem, EventTrace, EventRequestData,
          EventOccurrences } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
 import { ApiModule } from './api/api.module';
 import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler, ActionCableService,
-         GlobalEvents, ProjectService, EventService, OccurrencesService } from './services';
+         GlobalEvents, ProjectService, EventService, OccurrencesService, ProjectUserService } from './services';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
 
 @NgModule({
@@ -42,32 +42,32 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     Navbar,
     ProjectCreate,
     ProjectForm,
-    Project,
     ProjectList,
     ProjectsItem,
-    ProjectSettings,
-    DeleteConfirm,
-    Event,
+    Project,
     ProjectEvents,
-    EventList,
     ProjectAccess,
+    ProjectSettings,
+    ProjectSubscriptions,
+    ProjectIntegrations,
+    DeleteConfirm,
+    EventList,
+    Event,
+    EventTrace,
+    EventRequestData,
+    EventOccurrences,
     MemberList,
     InviteMember,
     ConfirmDirective,
     ConfirmModal,
     TimeAgoPipe,
-    OAuthCallback,
-    ProjectSubscriptions,
     AddSubscription,
-    Subscription,
-    Plans,
     SubscriptionForm,
+    Subscription,
     ChangeSubscriptionPlan,
+    Plans,
     ActivityList,
     ActivityEventItem,
-    EventTrace,
-    EventRequestData,
-    EventOccurrences
   ],
   imports: [
     BrowserModule,
@@ -79,12 +79,12 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     TooltipModule.forRoot(),
     AngularTokenModule.forRoot({
       apiBase: environment.apiEndpoint,
-      signInRedirect: '/landing',
+      signInRedirect: 'landing',
       oAuthBase: environment.apiEndpoint,
       oAuthPaths: {
-        github: 'auth/github'
+        github: 'auth/github',
+        slack: 'auth/slack'
       },
-      oAuthWindowType: 'sameWindow',
       signOutFailedValidate: true
     }),
     BrowserAnimationsModule,
@@ -120,6 +120,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ProjectService,
     EventService,
     OccurrencesService,
+    ProjectUserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: BugnoErrorHandler },
     { provide: BugnoService, useFactory: bugnoFactory }

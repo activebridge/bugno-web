@@ -7,7 +7,7 @@ import { BaseGuard } from './base';
 export class PublicGuard extends BaseGuard {
 
   canActivate() {
-    if (this.tokenAuthService.userSignedIn() && this.localStorageService.currentUser) {
+    if (this.tokenService.userSignedIn() && this.localStorageService.currentUser) {
       this.router.navigate(['dashboard']);
       return false;
     } else {

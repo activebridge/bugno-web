@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from '../../services';
 import { ClipboardService } from 'ngx-clipboard';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
 
+import { NotificationService } from '../../services';
 import { ProjectAPI } from '../../api';
 import { ProjectForm } from '../shared/project-form/project-form';
 

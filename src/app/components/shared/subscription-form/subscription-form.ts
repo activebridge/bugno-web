@@ -34,7 +34,7 @@ export class SubscriptionForm implements OnInit {
               private projectAPI: ProjectAPI,
               private fb: FormBuilder,
               private router: ActivatedRoute,
-              private notificationService: NotificationService,
+              private notifyService: NotificationService,
               private stripeService: StripeService) { }
 
   ngOnInit() {
@@ -66,7 +66,7 @@ export class SubscriptionForm implements OnInit {
   }
 
   private onCreateTokenError = (error) => {
-    this.notificationService.showApiError(error);
+    this.notifyService.showApiError(error);
   }
 
   private getStripeApiKey() {
@@ -100,10 +100,10 @@ export class SubscriptionForm implements OnInit {
 
   private subscriptionRequest(params) {
     this.subscriptionAPI[this.action](...params).subscribe((resp) => {
-      this.notificationService.showSuccess('Successfully subscribed!');
+      this.notifyService.showSuccess('Successfully subscribed!');
       this.onSubscribe.emit(resp);
     }, (error) => {
-      this.notificationService.showApiError(error);
+      this.notifyService.showApiError(error);
       this.submitDisabled = false;
     });
   }

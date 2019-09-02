@@ -1,0 +1,35 @@
+<div class="container my-3">
+  <div class="row p-3 justify-content-center">
+    <div class="col">
+      <h5>Slack</h5>
+      <p>Add webhooks to your workspace to be aware</p>
+      <button class="btn btn-dark btn-xl"
+        (click)="onAddSlackIntegration();"
+        *ngIf="projectUserService.isCurrentUserOwner">Add webhooks</button>
+      <button class="btn btn-dark btn-xl disabled"
+        *ngIf="!projectUserService.isCurrentUserOwner"
+        tooltip="Only project owner can perform this action.">Add webhooks</button>
+    </div>
+    <div class="col">
+      <h5>Active integrations</h5>
+      <table *ngIf="integrations.length && !loading" class="table">
+        <thead>
+          <tr>
+            <th scope="col">Channel</th>
+            <th scope="col">Workspace</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let integration of integrations; let i = index">
+            <td>{{integration.web_hook_info_channel}}</td>
+            <td><a [href]="integration.workspace_url">{{integration.workspace_team}}</a></td>
+            <td><button class="btn btn-danger btn-sm" *ngIf="projectUserService.isCurrentUserOwner" (click)="deleteIntegration(integration.id);">Remove</button></td>
+            <td><button class="btn btn-danger btn-sm disabled" *ngIf="!projectUserService.isCurrentUserOwner" container="body" tooltip="Only project owner can perform this action.">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!integrations.length && !loading">There is no any slack workspace connected yet...</p>
+    </div>
+  </div>
+</div>

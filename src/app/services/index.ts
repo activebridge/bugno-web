@@ -7,3 +7,4 @@ export * from './global-events';
 export * from './project';
 export * from './event';
 export * from './occurrences';
+export * from './project-user';

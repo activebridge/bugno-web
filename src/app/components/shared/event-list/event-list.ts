@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { uniqBy, orderBy } from 'lodash';
 import { NotificationService, GlobalEvents, ProjectService } from '../../../services';
 
-import { EVENTS } from '../../../constants';
+import { ACTIONS } from '../../../constants';
 import { EventAPI } from '../../../api';
 
 @Component({
@@ -40,13 +40,13 @@ export class EventList implements OnInit {
 
   ngOnInit() {
     this.getEvents(this.projectId);
-    this.globalEvents.subscribe(EVENTS.CREATE_EVENT, this.createEventHandle);
-    this.globalEvents.subscribe(EVENTS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.subscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
+    this.globalEvents.subscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
   }
 
   ngOnDestroy() {
-    this.globalEvents.unsubscribe(EVENTS.CREATE_EVENT, this.createEventHandle);
-    this.globalEvents.unsubscribe(EVENTS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.unsubscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
+    this.globalEvents.unsubscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
   }
 
   createEventHandle = (event) => {
