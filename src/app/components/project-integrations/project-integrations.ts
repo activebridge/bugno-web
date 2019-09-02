@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 
-import { INTEGRATIONS } from '../../constants';
+import { ACTIONS } from '../../constants';
 import { IntegrationsAPI } from '../../api';
 import { GlobalEvents, LocalStorageService, NotificationService, ProjectService, ProjectUserService } from '../../services';
 
@@ -32,11 +32,11 @@ export class ProjectIntegrations implements OnInit {
         this.getIntegrations();
       }
     });
-    this.globalEvents.subscribe(INTEGRATIONS.CREATE_SLACK_INTEGRATION, this.createSlackIntegration);
+    this.globalEvents.subscribe(ACTIONS.CREATE_SLACK_INTEGRATION, this.createSlackIntegration);
   }
 
   ngOnDestroy() {
-    this.globalEvents.unsubscribe(INTEGRATIONS.CREATE_SLACK_INTEGRATION, this.createSlackIntegration);
+    this.globalEvents.unsubscribe(ACTIONS.CREATE_SLACK_INTEGRATION, this.createSlackIntegration);
   }
 
   createSlackIntegration = (data) => {
@@ -51,7 +51,7 @@ export class ProjectIntegrations implements OnInit {
   get slackParams() {
     return { project_id: this.projectService.project.id,
              user_id: this.localStorageService.currentUser.action_cable_token,
-             integration_provider: 'slack'};
+             integration_provider: true};
   }
 
   onAddSlackIntegration() {
