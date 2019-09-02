@@ -8,7 +8,8 @@ import { EventAPI } from '../../api';
 
 @Component({
   selector: 'app-event',
-  templateUrl: './event.html'
+  templateUrl: './event.html',
+  styleUrls: ['./event.scss']
 })
 export class Event implements OnInit {
   event: any = {};
