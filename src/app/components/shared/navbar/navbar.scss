@@ -5,7 +5,7 @@
     background-color: $shark;
     min-height: 4rem;
     max-height: 4rem;
-    padding: .5rem 1.25rem;
+    padding: .5rem 1rem;
   }
   .dropdown-menu {
     display: block;
@@ -69,5 +69,13 @@
     filter: invert(100%);
     height: 26px;
     width: 26px;
+  }
+  .bugno-logo {
+    filter: invert(100%);
+    height: 35px;
+    width: 35px;
+    &:hover {
+      filter: invert(85%);
+    }
   }
 }
