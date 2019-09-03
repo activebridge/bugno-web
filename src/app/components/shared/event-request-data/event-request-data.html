@@ -1,4 +1,4 @@
-<div [hidden]="!eventService.event">
+<div *ngIf="eventService.event">
   <accordion *ngIf="isParamsPresent" class="row my-3">
     <accordion-group class="col">
       <div accordion-heading class="container-fluid cursor-pointer">
@@ -7,7 +7,7 @@
           <div class="col d-none d-md-block"></div>
         </div>
       </div>
-      <div *ngIf="eventService.event.params" class="container-fluid">
+      <div *ngIf="eventService.event?.params" class="container-fluid">
         <div *ngFor="let item of eventService.event.params | keyvalue" class="row py-3 border-bottom">
           <div class="col-auto col-header-key">{{item.key}}:</div>
           <div class="col preformatted">{{item.value | json}}</div>
@@ -61,7 +61,7 @@
       </div>
     </accordion-group>
   </accordion>
-  <div *ngIf="!isParamsPresent && !eventService.event.person_data && !eventService.event.headers" class="text-center">
-    <h3 class="display-4 my-5">Request data is missing...</h3>
-  </div>
+</div>
+<div *ngIf="!isParamsPresent && !eventService.event?.person_data && !eventService.event?.headers" class="text-center">
+  <h3 class="display-4 my-5">Request data is missing...</h3>
 </div>

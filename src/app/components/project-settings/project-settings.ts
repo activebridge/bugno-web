@@ -4,7 +4,7 @@ import { ClipboardService } from 'ngx-clipboard';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DeleteConfirm } from '../shared/delete-confirm/delete-confirm';
 
-import { NotificationService } from '../../services';
+import { NotificationService, ProjectUserService } from '../../services';
 import { ProjectAPI } from '../../api';
 import { ProjectForm } from '../shared/project-form/project-form';
 
@@ -17,7 +17,8 @@ export class ProjectSettings implements OnInit {
   @ViewChild(ProjectForm) projectForm: ProjectForm;
   project: any = {};
 
-  constructor(private router: ActivatedRoute,
+  constructor(public projectUserService: ProjectUserService,
+              private router: ActivatedRoute,
               private projectAPI: ProjectAPI,
               private modalService: BsModalService,
               private redirect: Router,

@@ -14,6 +14,7 @@ export class EventRequestData {
   constructor(public eventService: EventService) { }
 
   get isParamsPresent() {
+    if (!this.eventService.event) { return false; }
     return this.eventService.event.params || this.eventService.event.http_method
       || this.eventService.event.url || this.eventService.event.ip_address;
   }
