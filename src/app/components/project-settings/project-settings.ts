@@ -58,6 +58,7 @@ export class ProjectSettings implements OnInit {
 
   onProjectUpdate(project) {
     this.project = project;
+    this.redirect.navigate(['projects', project.slug, 'settings']);
   }
 
   private onGetSuccess = (resp) => {
