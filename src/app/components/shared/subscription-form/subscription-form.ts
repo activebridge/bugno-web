@@ -58,6 +58,7 @@ export class SubscriptionForm implements OnInit {
           this.subscriptionParams(resp.token.id, this.credentialsForm.value.plan_id)
         );
       }
+      this.submitDisabled = false;
     });
   }
 
