@@ -8,7 +8,7 @@
     <div class="col border-left">
       <div class="container-fluid list-group list-group-flush">
         <div *ngFor="let occurrence of group.value" class="list-group-item list-group-item-action">
-          <a [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="text-dark text-decoration-none">
+          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="text-dark text-decoration-none">
             <div class="row">
               <div class="col-auto col-time text-center">
                 {{occurrence.created_at | date:'mediumTime'}}
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div *ngIf="occurrencesService.occurrenceTotalCount > 25" class="row justify-content-center py-3">
-    <pagination [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
+    <pagination [disabled]="isEmpty(eventService.event)" [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
   </div>
 </div>
 <div *ngIf="isEmpty(occurrencesService.occurrencesByDate)" [hidden]="occurrencesService.occurrencesLoading">
