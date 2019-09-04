@@ -64,7 +64,9 @@ export class ProjectSettings implements OnInit {
 
   private onGetSuccess = (resp) => {
     this.project = resp;
-    this.projectForm.init(this.project);
+    if (this.projectForm) {
+      this.projectForm.init(this.project);
+    }
   }
 
   private onGetError = (error) => {
