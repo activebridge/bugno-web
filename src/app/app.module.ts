@@ -10,7 +10,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { SortablejsModule } from 'angular-sortablejs';
+import { SortablejsModule } from 'ngx-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { GravatarModule } from 'ngx-gravatar';
