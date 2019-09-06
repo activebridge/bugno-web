@@ -14,7 +14,7 @@ import { ProjectForm } from '../shared/project-form/project-form';
 })
 
 export class ProjectSettings implements OnInit {
-  @ViewChild(ProjectForm) projectForm: ProjectForm;
+  @ViewChild(ProjectForm, { static: false }) projectForm: ProjectForm;
   project: any = {};
 
   constructor(public projectUserService: ProjectUserService,
