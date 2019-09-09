@@ -55,7 +55,7 @@ export class Event implements OnInit {
   }
 
   private onGetOccurrencesSuccess = (resp) => {
-    this.occurrencesService.occurrencesByDate = resp.events;
+    this.occurrencesService.occurrences = resp.events;
     this.occurrencesService.occurrenceTotalCount = resp.total_count;
     this.occurrencesService.occurrencesLoading = false;
   }

@@ -1,13 +1,13 @@
 <div *ngIf="occurrencesService.occurrencesByDate" [hidden]="occurrencesService.occurrencesLoading" class="container-fluid">
-  <div *ngFor="let group of occurrencesService.occurrencesByDate | keyvalue" class="row py-3 border-bottom">
+  <div *ngFor="let group of occurrencesService.occurrencesByDate" class="row py-3 border-bottom">
     <div class="col-auto mx-3">
       <h5 class="text-muted py-3">
-        {{group.key | date:'mediumDate'}}
+        {{group[0] | date:'mediumDate'}}
       </h5>
     </div>
     <div class="col border-left">
       <div class="container-fluid list-group list-group-flush">
-        <div *ngFor="let occurrence of group.value" class="list-group-item list-group-item-action">
+        <div *ngFor="let occurrence of group[1]" class="list-group-item list-group-item-action">
           <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="text-dark text-decoration-none">
             <div class="row">
               <div class="col-auto col-time text-center">
