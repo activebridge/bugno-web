@@ -20,7 +20,7 @@
           </ul>
         </div>
       </div>
-      <p>{{event.message}}</p>
+      <p class="event-message">{{event.message}}</p>
       <div *ngIf="event.user_agent" class="user-agent">
         <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
       </div>

@@ -4,4 +4,8 @@
     top: 77px;
     left: 10px;
   }
+  .event-message {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
