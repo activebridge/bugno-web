@@ -21,6 +21,7 @@
         </div>
       </div>
       <p class="event-message">{{event.message}}</p>
+      <p class="text-muted">{{event.created_at | date:'medium'}}</p>
       <div *ngIf="event.user_agent" class="user-agent">
         <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
       </div>
