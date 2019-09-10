@@ -1,5 +1,10 @@
 :host {
-  .col-time {
-    min-width: 120px;
+  .row-occurrence {
+    a:hover {
+      text-decoration: none;
+    }
+    &:hover {
+      background-color: #EFF1F3;
+    }
   }
 }

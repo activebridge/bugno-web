@@ -1,16 +1,17 @@
 <div *ngIf="occurrencesService.occurrencesByDate" [hidden]="occurrencesService.occurrencesLoading" class="container-fluid">
-  <div *ngFor="let group of occurrencesService.occurrencesByDate" class="row py-3 border-bottom">
-    <div class="col-auto mx-3">
+  <div *ngFor="let group of occurrencesService.occurrencesByDate" class="row flex-column border-bottom">
+    <div class="col-auto border-bottom">
       <h5 class="text-muted py-3">
         {{group[0] | date:'mediumDate'}}
       </h5>
     </div>
-    <div class="col border-left">
-      <div class="container-fluid list-group list-group-flush">
-        <div *ngFor="let occurrence of group[1]" class="list-group-item list-group-item-action">
-          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="text-dark text-decoration-none">
-            <div class="row">
-              <div class="col-auto col-time text-center">
+    <div class="col-auto px-0">
+      <div class="container-fluid">
+        <div *ngFor="let occurrence of group[1]" class="row row-occurrence">
+          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="py-3 w-100">
+            <div class="container-fluid">
+            <div class="row text-dark text-decoration-none">
+              <div class="col-auto col-time text-left">
                 {{occurrence.created_at | date:'mediumTime'}}
               </div>
               <div class="col-auto">
@@ -20,6 +21,12 @@
                 {{occurrence.message}}
               </div>
             </div>
+            <div class="row no-gutters">
+              <div *ngFor="let field of occurrence.user_agent | keyvalue" class="col-auto">
+                <span class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
+              </div>
+            </div>
+          </div>
           </a>
         </div>
       </div>
