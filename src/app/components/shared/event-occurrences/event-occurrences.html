@@ -21,7 +21,7 @@
                 {{occurrence.message}}
               </div>
             </div>
-            <div class="row no-gutters">
+            <div *ngIf="occurrence.user_agent" class="row no-gutters">
               <div *ngFor="let field of occurrence.user_agent | keyvalue" class="col-auto">
                 <span class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
               </div>
