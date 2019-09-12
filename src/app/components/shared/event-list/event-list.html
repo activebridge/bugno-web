@@ -7,8 +7,9 @@
      (scrolled)="onScrollDown()"
      [sortablejs]="events"
      [sortablejsOptions]="sortableOptions"
-     class="event-list">
-  <div *ngFor="let event of events" [attr.data-event-id]="event.id" class="event-list__item cursor-move">
+     class="event-list"
+     [id]="status.key">
+  <div *ngFor="let event of events" [attr.data-event-id]="event.id" [class.disabled]="isDisabled" class="event-list__item cursor-move">
     <div class="align-items-start d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
