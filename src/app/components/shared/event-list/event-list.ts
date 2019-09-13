@@ -142,7 +142,9 @@ export class EventList implements OnInit {
   }
 
   private onUpdateStatusError = (error, sortableEvent) => {
+    this.notifyService.showApiError(error);
     const event = this.events.find((element) => element.id == sortableEvent.item.dataset.eventId);
+    if (!event) { return; }
     if (sortableEvent.from.id !== this.status.key) {
       this.globalEvents.publish(ACTIONS.PUSH_EVENT_BACK , { sortableEvent, event });
     } else {
@@ -150,6 +152,5 @@ export class EventList implements OnInit {
       this.events.splice(sortableEvent.oldIndex, 0, event);
     }
     this.isDisabled = false;
-    this.notifyService.showApiError(error);
   }
 }
