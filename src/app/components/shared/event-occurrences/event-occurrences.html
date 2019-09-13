@@ -26,7 +26,7 @@
     </div>
   </div>
   <div *ngIf="occurrencesService.occurrenceTotalCount > 25" class="row justify-content-center py-3">
-    <pagination [disabled]="isEmpty(eventService.event)" [itemsPerPage]="25" [(ngModel)]="currentPage" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
+    <pagination [disabled]="isEmpty(eventService.event)" [itemsPerPage]="25" [(ngModel)]="currentPage" [maxSize]="10" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
   </div>
 </div>
 <div *ngIf="isEmpty(occurrencesService.occurrencesByDate)" [hidden]="occurrencesService.occurrencesLoading">
