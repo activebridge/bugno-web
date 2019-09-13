@@ -15,7 +15,7 @@
       </div>
     </div>
     <div *ngIf="activityTotalCount > 20" class="px-0 col-auto align-self-center">
-      <pagination [itemsPerPage]="20" [(ngModel)]="currentPage" [totalItems]="activityTotalCount" (pageChanged)="pageChanged($event)"></pagination>
+      <pagination [itemsPerPage]="20" [maxSize]="10" [(ngModel)]="currentPage" [totalItems]="activityTotalCount" (pageChanged)="pageChanged($event)"></pagination>
     </div>
   </div>
 </div>
