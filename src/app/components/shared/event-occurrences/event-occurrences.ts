@@ -42,7 +42,7 @@ export class EventOccurrences {
   }
 
   private onGetOccurrencesSuccess = (resp) => {
-    this.occurrencesService.occurrencesByDate = resp.events;
+    this.occurrencesService.occurrences = resp.events;
     this.occurrencesService.occurrenceTotalCount = resp.total_count;
   }
 

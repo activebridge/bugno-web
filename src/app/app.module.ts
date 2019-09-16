@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -121,6 +122,7 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     EventService,
     OccurrencesService,
     ProjectUserService,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: BugnoErrorHandler },
     { provide: BugnoService, useFactory: bugnoFactory }

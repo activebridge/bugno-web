@@ -1,25 +1,32 @@
 <div *ngIf="occurrencesService.occurrencesByDate" [hidden]="occurrencesService.occurrencesLoading" class="container-fluid">
-  <div *ngFor="let group of occurrencesService.occurrencesByDate | keyvalue" class="row py-3 border-bottom">
-    <div class="col-auto mx-3">
-      <h5 class="text-muted py-3">
-        {{group.key | date:'mediumDate'}}
+  <div *ngFor="let group of occurrencesService.occurrencesByDate" class="row flex-column border-bottom">
+    <div class="col-auto border-bottom">
+      <h5 class="text-muted py-3 m-0">
+        {{group[0] | date:'mediumDate'}}
       </h5>
     </div>
-    <div class="col border-left">
-      <div class="container-fluid list-group list-group-flush">
-        <div *ngFor="let occurrence of group.value" class="list-group-item list-group-item-action">
-          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="text-dark text-decoration-none">
-            <div class="row">
-              <div class="col-auto col-time text-center">
+    <div class="col-auto px-0">
+      <div class="container-fluid">
+        <div *ngFor="let occurrence of group[1]" class="row row-occurrence">
+          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="py-1 w-100">
+            <div class="container-fluid">
+            <div class="row text-dark text-decoration-none">
+              <div class="col-auto col-time text-left">
                 {{occurrence.created_at | date:'mediumTime'}}
               </div>
               <div class="col-auto">
                 {{occurrence.title}}
               </div>
-              <div class="col">
+              <div class="col text-truncate">
                 {{occurrence.message}}
               </div>
             </div>
+            <div *ngIf="occurrence.user_agent" class="row no-gutters">
+              <div *ngFor="let field of occurrence.user_agent | keyvalue" class="col-auto">
+                <span class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
+              </div>
+            </div>
+          </div>
           </a>
         </div>
       </div>

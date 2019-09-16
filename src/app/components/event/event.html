@@ -1,6 +1,3 @@
-<a [routerLink]="['/projects', event.project_id]">
-  <div class="back-button btn btn-md btn-dark">Back</div>
-</a>
 <div class="container">
   <div class="row my-3">
     <div class="col">
@@ -23,7 +20,11 @@
           </ul>
         </div>
       </div>
-      <p class="text-truncate">{{event.message}}</p>
+      <p class="event-message">{{event.message}}</p>
+      <p class="text-muted">{{event.created_at | date:'medium'}}</p>
+      <div *ngIf="event.user_agent" class="user-agent">
+        <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
+      </div>
     </div>
   </div>
   <div class="row my-3">
@@ -38,3 +39,6 @@
   </div>
   <router-outlet></router-outlet>
 </div>
+<a [routerLink]="['/projects', event.project_id]">
+  <div class="back-button btn btn-md btn-dark">Back</div>
+</a>
