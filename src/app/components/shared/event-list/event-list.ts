@@ -13,6 +13,7 @@ import { EventAPI } from '../../../api';
 export class EventList implements OnInit {
   @Input() projectId: any = {};
   @Input() status: any;
+  isDisabled = false;
   page = 1;
   events: any = [];
   eventCount = 0;
@@ -25,7 +26,8 @@ export class EventList implements OnInit {
     this.sortableOptions = {
       group: 'normal-group',
       onUpdate: this.updateEventHandler,
-      onAdd: this.updateEventHandler
+      onAdd: this.updateEventHandler,
+      filter: '.disabled'
     };
   }
 
@@ -42,21 +44,40 @@ export class EventList implements OnInit {
     this.getEvents(this.projectId);
     this.globalEvents.subscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
     this.globalEvents.subscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.subscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
   }
 
   ngOnDestroy() {
     this.globalEvents.unsubscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
     this.globalEvents.unsubscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.unsubscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
+  }
+
+  pushEventBack = (data) => {
+    const fromStatus = data.sortableEvent.from.id;
+    const toStatus = data.sortableEvent.to.id;
+    const oldIndex = data.sortableEvent.oldIndex;
+    const event = data.event;
+
+    if (this.status.key !== fromStatus) {
+      if (this.status.key === toStatus) {
+        this.events = this.events.filter((element) => element.id !== event.id);
+      }
+      this.isDisabled = false;
+      return;
+    }
+    this.events.splice(oldIndex, 0, event);
   }
 
   createEventHandle = (event) => {
+    this.isDisabled = true;
     if (!this.isProjectEvent(event)) { return; }
-    if (event.status === this.status.key) {
-      this.events.push(event);
-    }
+    if (event.status === this.status.key) { this.events.push(event); }
+    this.isDisabled = false;
   }
 
   updateEventHandle = (data) => {
+    this.isDisabled = true;
     if (!this.isProjectEvent(data)) { return; }
     if (data.status === this.status.key) {
       this.prepareEventList(data);
@@ -66,14 +87,15 @@ export class EventList implements OnInit {
     } else {
       this.prepareEventList(data);
     }
+    this.isDisabled = false;
   }
 
   prepareEventList(data) {
     this.events = this.events.filter((event) => event.id !== data.id);
-    this.updatePositionsByIndex();
+    this.updatePositionsByIndexArray();
   }
 
-  updatePositionsByIndex() {
+  updatePositionsByIndexArray() {
     this.events.forEach((event) => {
       const newPosition = this.events.findIndex((item) => {
         return item.id === event.id;
@@ -96,15 +118,18 @@ export class EventList implements OnInit {
   }
 
   updateEventHandler = (event: any) => {
-    this.updateEvent(event.item.dataset.eventId, {status: this.status.key, position: event.newIndex + 1});
+    this.isDisabled = true;
+    this.updateEvent(event.item.dataset.eventId, { status: this.status.key, position: event.newIndex + 1 }, event);
   }
 
   getEvents(projectId) {
     this.eventAPI.query(projectId, this.eventParams).subscribe(this.onGetEventsSuccess, this.onGetEventsError);
   }
 
-  updateEvent(id, params) {
-    this.eventAPI.update(this.projectId, id, {event: params}).subscribe(() => {}, this.onUpdateStatusError);
+  updateEvent(id, params, sortableEvent) {
+    this.eventAPI.update(this.projectId, id, {event: params}).subscribe(() => {}, (error) => {
+      this.onUpdateStatusError(error, sortableEvent);
+    });
   }
 
   private onGetEventsSuccess = (resp) => {
@@ -116,8 +141,16 @@ export class EventList implements OnInit {
     this.notifyService.showApiError(error);
   }
 
-  private onUpdateStatusError = (error) => {
+  private onUpdateStatusError = (error, sortableEvent) => {
     this.notifyService.showApiError(error);
+    const event = this.events.find((element) => element.id == sortableEvent.item.dataset.eventId);
+    if (!event) { return; }
+    if (sortableEvent.from.id !== this.status.key) {
+      this.globalEvents.publish(ACTIONS.PUSH_EVENT_BACK , { sortableEvent, event });
+    } else {
+      this.prepareEventList(event);
+      this.events.splice(sortableEvent.oldIndex, 0, event);
+    }
+    this.isDisabled = false;
   }
-
 }
