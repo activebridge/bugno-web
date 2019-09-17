@@ -100,7 +100,7 @@ export class EventList implements OnInit {
       const newPosition = this.events.findIndex((item) => {
         return item.id === event.id;
       });
-      event.position = newPosition + 1;
+      event.position = newPosition;
     });
   }
 
@@ -119,7 +119,7 @@ export class EventList implements OnInit {
 
   updateEventHandler = (event: any) => {
     this.isDisabled = true;
-    this.updateEvent(event.item.dataset.eventId, { status: this.status.key, position: event.newIndex + 1 }, event);
+    this.updateEvent(event.item.dataset.eventId, { status: this.status.key, position: event.newIndex }, event);
   }
 
   getEvents(projectId) {
