@@ -1,4 +1,4 @@
-<img ngxGravatar [email]="item.owner.email || ''">
+<img [src]="item.owner.image || 'assets/bugno-logo.svg'" class="avatar rounded-50">
 <p class="ml-1 mb-0 mx">
   <span *ngIf="item.owner_type == 'User'" class="font-weight-bold">{{item.owner.nickname}}</span>
   <a *ngIf="item.owner_type == 'Event'" [routerLink]="['/projects', item.recipient.slug, 'event', item.owner.id]" class="font-weight-bold">occurrence</a>

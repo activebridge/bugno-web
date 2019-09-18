@@ -7,29 +7,50 @@
      (scrolled)="onScrollDown()"
      [sortablejs]="events"
      [sortablejsOptions]="sortableOptions"
-     class="event-list"
+     class="event-list container-fluid"
      [id]="status.key">
-  <div *ngFor="let event of events" [attr.data-event-id]="event.id" [class.disabled]="isDisabled" class="event-list__item cursor-move">
-    <div class="align-items-start d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-        <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
-          {{event.title}}
-        </a>
-        <span [class.badge-danger]="event.framework == 'rails'"
-              [class.badge-warning]="event.framework == 'browser-js'"
-              [class.badge-info]="event.framework == 'node-js'"
-              [class.badge-secondary]="event.framework == 'plain'"
-              class="badge mx-1">{{event.framework}}</span>
-        <span *ngIf="event.occurrence_count" class="badge badge-pill badge-secondary cursor-default mr-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
-      </div>
+  <div *ngFor="let event of events" [attr.data-event-id]="event.id" [class.disabled]="isDisabled" class="row no-gutters event-list__item cursor-move">
+    <div class="col d-flex flex-column">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="head-left d-flex align-items-center">
+          <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
+            {{event.title}}
+          </a>
+          <div class="d-flex align-items-center">
+            <span [class.badge-danger]="event.framework == 'rails'"
+            [class.badge-warning]="event.framework == 'browser-js'"
+            [class.badge-info]="event.framework == 'node-js'"
+            [class.badge-secondary]="event.framework == 'plain'"
+            class="badge ml-1">{{event.framework}}</span>
+            <span *ngIf="event.occurrence_count" class="badge badge-pill badge-secondary cursor-default ml-1" tooltip="Total occurences" placement="bottom">{{event.occurrence_count}}</span>
+          </div>
+        </div>
       <span tooltip="{{event.last_occurrence_at || event.created_at | date:'medium'}}"
-            placement="bottom"
-            class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">
+        placement="bottom"
+        class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer">
         {{event.last_occurrence_at || event.created_at | timeAgo}}
       </span>
+      </div>
+      <small class="d-inline-block mw-100 text-truncate" *ngIf="event.message">
+        {{event.message}}
+      </small>
+      <div class="d-flex align-items-center assign" *ngIf="projectUserService.projectUsers">
+        <span dropdown class="cursor-pointer">
+          <img dropdownToggle [src]="event?.user?.image ? event.user.image : 'assets/bugno-logo.svg'" id="basic-link" aria-controls="basic-link-dropdown" class="avatar rounded-50 hover-border">
+          <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="basic-link">
+            <li role="menuitem" *ngIf="event.user_id" class="dropdown-item">
+              <a (click)="updateEvent(event.id, {user_id: null}, null);">Unassign</a>
+            </li>
+            <div *ngIf="event.user_id" class="dropdown-divider"></div>
+            <li (click)="updateEvent(event.id, {user_id: item.user_id}, null)" role="menuitem" *ngFor="let item of projectUserService.projectUsers" class="dropdown-item">
+              <img [src]="item?.user?.image ? item.user.image : 'assets/bugno-logo.svg'" class="avatar rounded-50">
+              <a class="w-auto ml-2 cursor-pointer">{{item.user.nickname}}</a>
+            </li>
+          </ul>
+        </span>
+        <span (click)="assignCurrenUserOrUnassign(event)" placement="bottom" [tooltip]="event.user_id ? 'Unassign' : null" class="ml-1 p-1 rounded hover-gray cursor-pointer">{{event?.user?.nickname || 'Assign self'}}</span>
+      </div>
     </div>
-    <small class="d-inline-block mw-100 text-truncate" *ngIf="event.message">
-      {{event.message}}
-    </small>
   </div>
 </div>

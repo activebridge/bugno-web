@@ -28,3 +28,16 @@
 .text-decoration-none *, .text-decoration-none *:hover {
   text-decoration: none;
 }
+.avatar {
+  width: 25px;
+  height: 25px;
+}
+.rounded-50 {
+  border-radius: 50%;
+}
+.hover-gray:hover {
+  background-color: $athens_gray;
+}
+.hover-border:hover {
+  border: 2px solid $shuttle_gray;
+}

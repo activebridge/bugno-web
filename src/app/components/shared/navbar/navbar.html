@@ -22,7 +22,7 @@
   <div class="dropdown ml-auto" *ngIf="localStorageService.currentUser">
     <div class="dropdown-toggle">
       <span class="user-email">{{localStorageService.currentUser.email}}</span>
-      <img ngxGravatar [email]="localStorageService.currentUser.email || ''">
+      <img [attr.src]="localStorageService.currentUser.image || 'assets/bugno-logo.svg'" [class.invert-color]="!localStorageService.currentUser.image" class="avatar">
     </div>
     <ul class="dropdown-menu dropdown-menu_right dropdown-menu_transition-smooth text-center">
       <li>

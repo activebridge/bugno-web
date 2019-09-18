@@ -41,14 +41,8 @@ export class Event implements OnInit {
     });
   }
 
-  userNickname(userId) {
-    const projectUser = this.projectUserService.projectUsers.find((element) => element.user_id === userId);
-    if (!projectUser) { return null; }
-    return projectUser.user.nickname;
-  }
-
-  assignCurrenUser() {
-    if (this.event.user_id) { return; }
+  assignCurrenUserOrUnassign() {
+    if (this.event.user_id) { return this.updateEvent({user_id: null}); }
     this.updateEvent({user_id: this.localStorageService.currentUser.id});
   }
 

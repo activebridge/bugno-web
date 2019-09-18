@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { uniqBy, orderBy } from 'lodash';
-import { NotificationService, GlobalEvents, ProjectService } from '../../../services';
+import { NotificationService, GlobalEvents, ProjectService, LocalStorageService, ProjectUserService } from '../../../services';
 
 import { ACTIONS } from '../../../constants';
 import { EventAPI } from '../../../api';
@@ -19,7 +19,9 @@ export class EventList implements OnInit {
   eventCount = 0;
   sortableOptions: any = {};
 
-  constructor(private eventAPI: EventAPI,
+  constructor(public localStorageService: LocalStorageService,
+              public projectUserService: ProjectUserService,
+              private eventAPI: EventAPI,
               private globalEvents: GlobalEvents,
               private projectService: ProjectService,
               private notifyService: NotificationService) {
@@ -29,6 +31,11 @@ export class EventList implements OnInit {
       onAdd: this.updateEventHandler,
       filter: '.disabled'
     };
+  }
+
+  assignCurrenUserOrUnassign(event) {
+    if (event.user_id) { return this.updateEvent(event.id, { user_id: null }, null); }
+    this.updateEvent(event.id, { user_id: this.localStorageService.currentUser.id }, null);
   }
 
   onScrollDown() {
@@ -127,7 +134,7 @@ export class EventList implements OnInit {
   }
 
   updateEvent(id, params, sortableEvent) {
-    this.eventAPI.update(this.projectId, id, {event: params}).subscribe(() => {}, (error) => {
+    this.eventAPI.update(this.projectId, id, {event: { ...params }}).subscribe(() => {}, (error) => {
       this.onUpdateStatusError(error, sortableEvent);
     });
   }
@@ -143,6 +150,7 @@ export class EventList implements OnInit {
 
   private onUpdateStatusError = (error, sortableEvent) => {
     this.notifyService.showApiError(error);
+    if (!sortableEvent) { return; }
     const event = this.events.find((element) => element.id == sortableEvent.item.dataset.eventId);
     if (!event) { return; }
     if (sortableEvent.from.id !== this.status.key) {
