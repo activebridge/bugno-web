@@ -6,34 +6,45 @@
           {{event.title}}
         </h3>
         <div class="d-flex flex-column align-items-end">
-          <div class="btn-group" dropdown>
+          <div dropdown class="btn-group">
             <button class="btn btn-outline-dark">
               <span class="text-capitalize">{{event.status}}</span>
             </button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" id="button-split" aria-controls="dropdown-split" dropdownToggle>
+            <button dropdownToggle
+                    type="button"
+                    aria-controls="dropdown-split"
+                    class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+                    id="button-split">
               <span class="caret"></span>
               <span class="sr-only">Split button!</span>
             </button>
-            <ul class="dropdown-menu" id="dropdown-split" role="menu" aria-labelledby="button-split" *dropdownMenu>
-              <li role="menuitem" *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)">
+            <ul *dropdownMenu role="menu" aria-labelledby="button-split" class="dropdown-menu" id="dropdown-split">
+              <li *ngFor="let item of statuses | keyvalue" [hidden]="event.status == (item.key | lowercase)" role="menuitem">
                 <a (click)="updateEvent({status: item.key});" class="dropdown-item text-capitalize cursor-pointer">{{item.key}}</a>
               </li>
             </ul>
           </div>
-          <div *ngIf="projectUserService.projectUsers" class="btn-group" dropdown>
-            <button class="btn btn-outline-dark" (click)="assignCurrenUserOrUnassign()" placement="bottom" [tooltip]="event.user_id ? 'Unassign' : null">
+          <div dropdown *ngIf="projectUserService.projectUsers" class="btn-group">
+            <button (click)="assignCurrenUserOrUnassign()"
+                    [tooltip]="event.user_id ? 'Unassign' : null"
+                    placement="bottom"
+                    class="btn btn-outline-dark">
               <span class="text-capitalize">{{event?.user?.nickname || 'Assign self'}}</span>
             </button>
-            <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" id="button-split" aria-controls="dropdown-split" dropdownToggle>
+            <button dropdownToggle
+                    type="button"
+                    aria-controls="dropdown-split"
+                    class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+                    id="button-split">
               <span class="caret"></span>
               <span class="sr-only">Split button!</span>
             </button>
-            <ul class="dropdown-menu" id="dropdown-split" role="menu" aria-labelledby="button-split" *dropdownMenu>
-              <li role="menuitem" *ngIf="event.user_id">
+            <ul *dropdownMenu role="menu" aria-labelledby="button-split" class="dropdown-menu" id="dropdown-split">
+              <li *ngIf="event.user_id" role="menuitem">
                 <a (click)="updateEvent({user_id: null});" class="dropdown-item cursor-pointer">Unassign</a>
               </li>
               <div *ngIf="event.user_id" class="dropdown-divider"></div>
-              <li role="menuitem" *ngFor="let item of projectUserService.projectUsers">
+              <li *ngFor="let item of projectUserService.projectUsers" role="menuitem">
                 <a (click)="updateEvent({user_id: item.user_id});" class="dropdown-item text-capitalize cursor-pointer">{{item.user.nickname}}</a>
               </li>
             </ul>
