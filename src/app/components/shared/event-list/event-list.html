@@ -49,7 +49,7 @@
           <img dropdownToggle
                [src]="event?.user?.image ? event.user.image : 'assets/bugno-logo.svg'"
                aria-controls="basic-link-dropdown"
-               class="avatar rounded-50 hover-border"
+               class="avatar rounded-circle hover-border"
                id="basic-link">
           <ul *dropdownMenu
               role="menu"
@@ -65,7 +65,7 @@
                 role="menuitem"
                 class="dropdown-item"
                 [class.bg-primary]="event.id === item.user_id">
-              <img [src]="item?.user?.image ? item.user.image : 'assets/bugno-logo.svg'" class="avatar rounded-50">
+              <img [src]="item?.user?.image ? item.user.image : 'assets/bugno-logo.svg'" class="avatar rounded-circle">
               <a class="w-auto ml-2 cursor-pointer">{{item.user.nickname}}</a>
             </li>
           </ul>
