@@ -1,0 +1,11 @@
+.docs-text {
+  width: 1000px;
+  padding: 40px;
+  text-align: justify;
+  ::ng-deep{
+    h2 {
+      margin-top: 35px;
+      margin-bottom: 15px;
+    }
+  }
+}

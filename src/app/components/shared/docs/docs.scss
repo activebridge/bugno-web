@@ -1,0 +1,38 @@
+.docs-main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .docs-aside {
+    margin: 20px;
+    width: 240px;
+    .docs-aside-title {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 15px;
+      margin-top: 20px;
+      margin-left: 20px;
+      text-transform: uppercase;
+    }
+    .docs-aside-title:first-child {
+      margin-top: 5px;
+    }
+    .docs-aside-div {
+      .list-group-item {
+        color: black;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+      }
+      .child {
+        margin-left: 30px;
+      }
+      .active {
+        color: white;
+      }
+      .no-active {
+        pointer-events: none;
+      }
+    }
+  }
+}

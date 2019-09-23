@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Landing, Dashboard, Navbar, ProjectCreate, ProjectForm, Project,
+import { Landing, Dashboard, Docs, DocsCreateProject, DocsRor, DocsBrowserJs, DocsAngular,
+         Navbar, ProjectCreate, ProjectForm, Project,
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal,
          ProjectSubscriptions, ProjectIntegrations, AddSubscription, Subscription, Plans, SubscriptionForm,
@@ -33,12 +34,18 @@ import { ApiModule } from './api/api.module';
 import { AuthInterceptor, BugnoService, bugnoFactory, BugnoErrorHandler, ActionCableService,
          GlobalEvents, ProjectService, EventService, OccurrencesService, ProjectUserService } from './services';
 import { ConfirmDirective } from './directives/confirm/confirm.directive';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
     AppComponent,
     Landing,
     Dashboard,
+    Docs,
+    DocsCreateProject,
+    DocsRor,
+    DocsBrowserJs,
+    DocsAngular,
     Navbar,
     ProjectCreate,
     ProjectForm,
@@ -70,6 +77,21 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     ActivityEventItem,
   ],
   imports: [
+    MarkdownModule.forRoot({
+      loader: HttpClient, // optional, only if you use [src] attribute
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          tables: true,
+          breaks: false,
+          pedantic: false,
+          sanitize: false,
+          smartLists: true,
+          smartypants: false,
+        },
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

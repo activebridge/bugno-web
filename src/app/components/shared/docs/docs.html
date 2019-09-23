@@ -1,0 +1,33 @@
+<main class="docs-main">
+  <aside class="docs-aside">
+    <span class="docs-aside-title">
+      Overview
+    </span>
+    <div class="docs-aside-div">
+      <ul class="list-group">
+        <li *ngFor="let tab of tabsOverview">
+          <a class="list-group-item"(click)="tab.isOpen2 = toggle(tab.isOpen2)" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <span class="docs-aside-title">
+      SDK
+    </span>
+    <div class="docs-aside-div">
+      <ul class="list-group">
+        <li *ngFor="let tab of tabsSdk">
+          <a class="list-group-item" *ngIf="tab.url"  routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
+          <span class="list-group-item" *ngIf="!tab.url" (click)="tab.isOpen = toggle(tab.isOpen)">{{tab.title}}</span>
+          <ul class="list-group" *ngIf="!tab.url && tab.isOpen">
+            <li *ngFor="let subtab of tab.tabs">
+              <a class="list-group-item child" routerLinkActive="active" [routerLink]="[subtab.url]">{{subtab.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </aside>
+  <router-outlet></router-outlet>
+</main>
