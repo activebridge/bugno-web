@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pickBy, isNumber } from 'lodash';
 
-import { EventService, OccurrencesService, NotificationService } from '../../services';
+import { EventService, OccurrencesService, ProjectUserService, NotificationService, LocalStorageService } from '../../services';
 import { EventStatus } from '../../enums';
-import { EventAPI } from '../../api';
+import { EventAPI, ProjectUserAPI } from '../../api';
 
 @Component({
   selector: 'app-event',
@@ -22,6 +22,9 @@ export class Event implements OnInit {
   ];
 
   constructor(public occurrencesService: OccurrencesService,
+              public projectUserService: ProjectUserService,
+              private localStorageService: LocalStorageService,
+              private projectUserAPI: ProjectUserAPI,
               private eventService: EventService,
               private notifyService: NotificationService,
               private eventAPI: EventAPI,
@@ -32,18 +35,28 @@ export class Event implements OnInit {
     this.router.params.subscribe(params => {
       if (params.id && params.projectId) {
         this.projectId = params.projectId;
-        this.getEvent(params.projectId, params.id);
+        this.getEvent(params.id);
+        this.getProjectUsers();
       }
     });
+  }
+
+  assignCurrenUserOrUnassign() {
+    if (this.event.user_id) { return this.updateEvent({user_id: null}); }
+    this.updateEvent({user_id: this.localStorageService.currentUser.id});
   }
 
   get parentId() {
     return this.event.parent_id || this.event.id;
   }
 
-  updateEventStatus(status) {
-    this.eventAPI.update(this.event.project_id, this.event.id, this.eventParams(status))
-        .subscribe(this.onUpdateStatusSuccess, this.onUpdateStatusError);
+  updateEvent(params) {
+    this.eventAPI.update(this.event.project_id, this.event.id, { event:  { ...params } })
+        .subscribe(this.onUpdateSuccess, this.onUpdateError);
+  }
+
+  getProjectUsers() {
+    this.projectUserAPI.query(this.projectId).subscribe(this.onGetUsersSuccess, this.onGetError);
   }
 
   getOccurrences() {
@@ -66,13 +79,13 @@ export class Event implements OnInit {
     this.occurrencesService.occurrencesLoading = false;
   }
 
-  private getEvent(projectId, id) {
+  private getEvent(id) {
     this.eventService.event = null;
-    this.eventAPI.get(projectId, id).subscribe(this.onGetSuccess, this.onGetError);
+    this.eventAPI.get(this.projectId, id).subscribe(this.onGetSuccess, this.onGetError);
   }
 
-  private eventParams(status) {
-    return { event: { status } };
+  private onGetUsersSuccess = (resp) => {
+    this.projectUserService.projectUsers = resp;
   }
 
   private onGetSuccess = (resp) => {
@@ -86,12 +99,12 @@ export class Event implements OnInit {
     this.redirect.navigate(['dashboard']);
   }
 
-  private onUpdateStatusSuccess = (resp) => {
-    this.notifyService.showSuccess('Status has been updated');
-    this.event.status = resp.status;
+  private onUpdateSuccess = (resp) => {
+    this.event = resp;
+    this.notifyService.showSuccess('Event has been updated');
   }
 
-  private onUpdateStatusError = (error) => {
+  private onUpdateError = (error) => {
     this.notifyService.showApiError(error);
   }
 }

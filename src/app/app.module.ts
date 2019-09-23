@@ -14,7 +14,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { SortablejsModule } from 'ngx-sortablejs';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { GravatarModule } from 'ngx-gravatar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaginationModule } from 'ngx-bootstrap';
@@ -102,11 +101,6 @@ import { ConfirmDirective } from './directives/confirm/confirm.directive';
     AlertModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),
     ClipboardModule,
-    GravatarModule.forRoot({
-      size: 25,
-      round: false,
-      cornerRadius: 3
-    }),
     InfiniteScrollModule,
     NgxStripeModule.forRoot(),
     PaginationModule.forRoot(),
