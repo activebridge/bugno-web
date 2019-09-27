@@ -7,6 +7,7 @@ import {
   ProjectIntegrations, Plans, EventTrace, EventRequestData, EventOccurrences,
   Docs, DocsCreateProject, DocsBrowserJs, DocsRor, DocsAngular,
 } from './components';
+
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -24,11 +25,11 @@ const routes: Routes = [
     path: 'docs',
     component: Docs,
     children: [
-      {path: '', redirectTo: 'create-project', pathMatch: 'full', canActivate: [AuthGuard]},
-      {path: 'create-project', component: DocsCreateProject, canActivate: [AuthGuard]},
-      {path: 'ruby-on-rails', component: DocsRor, canActivate: [AuthGuard]},
-      {path: 'browser-js', component: DocsBrowserJs, canActivate: [AuthGuard]},
-      {path: 'angular', component: DocsAngular, canActivate: [AuthGuard]}
+      {path: '', redirectTo: 'create-project', pathMatch: 'full'},
+      {path: 'create-project', component: DocsCreateProject},
+      {path: 'ruby-on-rails', component: DocsRor},
+      {path: 'browser-js', component: DocsBrowserJs},
+      {path: 'angular', component: DocsAngular}
     ]
   },
   {

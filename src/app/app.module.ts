@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -78,7 +78,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
   ],
   imports: [
     MarkdownModule.forRoot({
-      loader: HttpClient, // optional, only if you use [src] attribute
+      loader: HttpClient,
       markedOptions: {
         provide: MarkedOptions,
         useValue: {

@@ -21,7 +21,7 @@ export * from './shared/event-request-data/event-request-data';
 export * from './shared/event-trace/event-trace';
 export * from './shared/invite-member/invite-member';
 export * from './shared/member-list/member-list';
-export * from './shared/docs/docs';
+export * from './docs/docs';
 export * from './shared/docs-ror/docs-ror';
 export * from './shared/docs-browser-js/docs-browser-js';
 export * from './shared/docs-create-project/docs-create-project';

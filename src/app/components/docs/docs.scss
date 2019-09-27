@@ -1,0 +1,15 @@
+.container {
+  .docs-aside {
+    .docs-aside-title {
+      font-size: 20px;
+      margin-left: 1.1rem;
+    }
+    .list-group-item {
+      user-select: none;
+      color: black;
+    }
+    .list-group-item.active {
+      color: white;
+    }
+  }
+}

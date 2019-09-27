@@ -1,14 +1,18 @@
 .docs-text {
-  width: 1000px;
-  padding: 40px;
-  text-align: justify;
+  max-width: 900px;
   ::ng-deep {
     pre {
       background-color: #24292E;
+      padding: 0.5em;
     }
-    h2 {
-      margin-top: 35px;
-      margin-bottom: 15px;
+    h1, h2, h3, h4, h5, h6 {
+      margin: 25px 0;
+    }
+    h1:first-child {
+      margin-top: 1rem;
+    }
+    p {
+      margin: 15px 0;
     }
   }
 }

@@ -7,12 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class Docs {
-  selectedIndex: number = null;
-  flag = false;
   tabsOverview: any = [
-    {title: 'How to create project', url: 'create-project', isOpen: 'active'},
-    {title: 'How to invite collaborators', url: 'create-project', isOpen: false},
-    {title: 'Manage subscription', url: 'create-project', isOpen: false}
+    {title: 'How to create project', url: 'create-project', id: 'create-project'},
+    {title: 'How to invite collaborators', id: 'invite-collaborator'},
+    {title: 'Manage subscription', id: 'manage-subscription'}
   ];
   tabsSdk: any = [
     {title: 'Ruby on Rails', url: 'ruby-on-rails'},

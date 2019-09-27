@@ -1,0 +1,31 @@
+<main class="container">
+ <div class="row flex-nowrap">
+   <div class="col-md-auto docs-aside border-right mt-3">
+     <span class="docs-aside-title text-uppercase d-block border-bottom py-3">Overview</span>
+     <div class="text-decoration-none mt-3">
+       <ul class="list-group">
+         <li *ngFor="let tab of tabsOverview">
+           <a class="list-group-item border-0" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
+         </li>
+       </ul>
+     </div>
+     <span class="docs-aside-title d-block mt-3 border-bottom py-3">SDK</span>
+     <div class="docs-aside-div text-decoration-none mt-3">
+       <ul class="list-group">
+         <li *ngFor="let tab of tabsSdk">
+           <a class="list-group-item border-0" *ngIf="tab.url"  routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}</a>
+           <span class="list-group-item cursor-pointer border-0" *ngIf="!tab.url" (click)="tab.isOpen = toggle(tab.isOpen)">{{tab.title}}</span>
+           <ul class="list-group" *ngIf="!tab.url && tab.isOpen">
+             <li *ngFor="let subtab of tab.tabs">
+               <a class="list-group-item child border-0 ml-3" routerLinkActive="active" [routerLink]="[subtab.url]">{{subtab.title}}</a>
+             </li>
+           </ul>
+         </li>
+       </ul>
+     </div>
+   </div>
+   <div class="col-auto">
+     <router-outlet></router-outlet>
+   </div>
+ </div>
+</main>
