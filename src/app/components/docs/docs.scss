@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 .container {
   .docs-aside {
     .docs-aside-title {
@@ -6,10 +8,10 @@
     }
     .list-group-item {
       user-select: none;
-      color: black;
+      color: $black;
     }
     .list-group-item.active {
-      color: white;
+      color: $white;
     }
   }
 }
