@@ -8,16 +8,16 @@ import { Component } from '@angular/core';
 
 export class Docs {
   tabsOverview: any = [
-    {title: 'How to create project', url: 'create-project', id: 'create-project'},
-    {title: 'How to invite collaborators', id: 'invite-collaborator'},
-    {title: 'Manage subscription', id: 'manage-subscription'}
+    { title: 'How to create project', url: 'create-project', id: 'create-project' },
+    { title: 'How to invite collaborators', id: 'invite-collaborator' },
+    { title: 'Manage subscription', id: 'manage-subscription' }
   ];
   tabsSdk: any = [
-    {title: 'Ruby on Rails', url: 'ruby-on-rails'},
+    { title: 'Ruby on Rails', url: 'ruby-on-rails' },
     { title: 'JavaScript', isOpen: false,
       tabs: [
-        { title: 'browser-js', url: 'browser-js'},
-        { title: 'Angular', url: 'angular'}
+        { title: 'browser-js', url: 'browser-js' },
+        { title: 'Angular', url: 'angular', active: false }
       ]
     }
   ];

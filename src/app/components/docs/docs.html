@@ -26,6 +26,7 @@
              <li *ngFor="let subtab of tab.tabs">
                <a class="list-group-item child border-0 ml-3"
                   routerLinkActive="active"
+                  [ngClass]="{'disabled': subtab.active==false}"
                   [routerLink]="[subtab.url]">{{subtab.title}}</a>
              </li>
            </ul>
