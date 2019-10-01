@@ -2,22 +2,12 @@
 
 :host {
   .navigation-wrapper {
-    width: 100%;
     background-color: $alabaster;
   }
-  .col {
-    padding: 0;
-  }
-  .navigation {
-    padding-top: 24px;
-    width: 980px;
-  }
   .project-name {
-    font-weight: bold;
     font-size: 18px;
   }
   .nav-link {
-    padding: 8px 12px;
     color: $trout;
   }
   .active {
