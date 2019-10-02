@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {
-  Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
-  Event, ProjectEvents, ProjectAccess, ProjectSubscriptions,
-  ProjectIntegrations, Plans, EventTrace, EventRequestData, EventOccurrences,
-  Docs, DocsCreateProject, DocsBrowserJs, DocsRor, DocsAngular,
-} from './components';
+import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings, Event,
+         ProjectEvents, ProjectAccess, ProjectSubscriptions, ProjectIntegrations,
+         Plans, EventTrace, EventRequestData, EventOccurrences, Documentation,
+         DocumentationOverview, DocumentationBrowserJs, DocumentationRails } from './components';
 
 import { AuthGuard, PublicGuard } from './guards';
 
@@ -22,14 +20,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'docs',
-    component: Docs,
+    path: 'documentation',
+    component: Documentation,
     children: [
-      {path: '', redirectTo: 'create-project', pathMatch: 'full'},
-      {path: 'create-project', component: DocsCreateProject},
-      {path: 'ruby-on-rails', component: DocsRor},
-      {path: 'browser-js', component: DocsBrowserJs},
-      {path: 'angular', component: DocsAngular}
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
+      {path: 'overview', component: DocumentationOverview},
+      {path: 'rails', component: DocumentationRails},
+      {path: 'browser-js', component: DocumentationBrowserJs}
     ]
   },
   {

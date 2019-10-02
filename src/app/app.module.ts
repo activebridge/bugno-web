@@ -21,7 +21,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Landing, Dashboard, Docs, DocsCreateProject, DocsRor, DocsBrowserJs, DocsAngular,
+import { Landing, Dashboard, Documentation, DocumentationOverview, DocumentationRails, DocumentationBrowserJs,
          Navbar, ProjectCreate, ProjectForm, Project,
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal,
@@ -41,11 +41,10 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
     AppComponent,
     Landing,
     Dashboard,
-    Docs,
-    DocsCreateProject,
-    DocsRor,
-    DocsBrowserJs,
-    DocsAngular,
+    Documentation,
+    DocumentationOverview,
+    DocumentationRails,
+    DocumentationBrowserJs,
     Navbar,
     ProjectCreate,
     ProjectForm,

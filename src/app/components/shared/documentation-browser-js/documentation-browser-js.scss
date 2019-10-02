@@ -1,7 +1,6 @@
 @import '../../../../styles/variables';
 
-.docs-text {
-  max-width: 900px;
+:host {
   ::ng-deep {
     pre {
       background-color: $shark;

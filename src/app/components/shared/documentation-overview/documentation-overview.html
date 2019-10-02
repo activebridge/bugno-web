@@ -1,0 +1,24 @@
+<div class="container border-left vh-100 py-3">
+  <div class="row">
+    <div class="col-auto px-4">
+      <h1>Getting started</h1>
+      <h2 class="mt-4 mb-3">First of all
+        <span *ngIf="!localStorageService.currentUser" class="badge badge-success">create</span>
+        <a *ngIf="localStorageService.currentUser" [routerLink]='["/projects/new"]' class="btn btn-success btn-md">Create</a> a project</h2>
+      <h2>Invite collaborators</h2>
+      <ol class="py-2 pr-3 my-3 bg-dark text-white rounded">
+        <li>Navigate to project's access tab</li>
+        <li>Enter your collaborator email to invite or add by github email if he is signed up on Bugno.io already</li>
+        <li>Invited collaborator should sign up with registration token</li>
+      </ol>
+      <h2>Subscribe a <a [routerLink]="'/plans'">plan</a></h2>
+      <ol class="py-2 pr-3 my-3 bg-dark text-white rounded">
+        <li>Navigate to project's subscription tab</li>
+        <li>Choose most adorable plan</li>
+        <li>Enter your credit card credentials</li>
+      </ol>
+      <h2>And of course install sdk for <a [routerLink]="'/documentation/rails'">rails</a> or <a [routerLink]="'/documentation/browser-js'">javascript</a></h2>
+      <div class="border-bottom my-3"></div>
+    </div>
+  </div>
+</div>
