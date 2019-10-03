@@ -2,6 +2,7 @@
   <a class="navbar-brand" [routerLink]='["/"]'>
     <img src="assets/bugno-logo.svg" class="bugno-logo" alt="Bugno-logo">
   </a>
+  <a class="nav-link" [routerLink]="'documentation'">Documentation</a>
   <ul class="navbar-nav" *ngIf="!localStorageService.currentUser">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle cursor-default">

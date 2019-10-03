@@ -1,0 +1,19 @@
+@import '../../../../styles/variables';
+
+:host {
+  ::ng-deep {
+    pre {
+      background-color: $shark;
+      padding: 0.5em;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin: 25px 0;
+    }
+    h1:first-child {
+      margin-top: 1rem;
+    }
+    p {
+      margin: 15px 0;
+    }
+  }
+}

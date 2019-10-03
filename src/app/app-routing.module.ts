@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings,
-         Event, ProjectEvents, ProjectAccess, ProjectSubscriptions,
-         ProjectIntegrations, Plans, EventTrace, EventRequestData, EventOccurrences } from './components';
+import { Landing, Dashboard, ProjectCreate, Project, ProjectSettings, Event,
+         ProjectEvents, ProjectAccess, ProjectSubscriptions, ProjectIntegrations,
+         Plans, EventTrace, EventRequestData, EventOccurrences, Documentation,
+         DocumentationOverview, DocumentationBrowserJs, DocumentationRails } from './components';
+
 import { AuthGuard, PublicGuard } from './guards';
 
 const routes: Routes = [
@@ -16,6 +18,16 @@ const routes: Routes = [
     path: 'dashboard',
     component: Dashboard,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'documentation',
+    component: Documentation,
+    children: [
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
+      {path: 'overview', component: DocumentationOverview},
+      {path: 'rails', component: DocumentationRails},
+      {path: 'browser-js', component: DocumentationBrowserJs}
+    ]
   },
   {
     path: 'projects/new',

@@ -1,4 +1,4 @@
-<div class="px-2 mb-2">
+<div class="px-2 mb-1">
   <span class="font-weight-bold text-capitalize">{{status.key}}</span>
   <span class="badge badge-pill badge-secondary ml-1" tooltip="Total events" placement="bottom">{{eventCount}}</span>
 </div>
@@ -7,10 +7,10 @@
      (scrolled)="onScrollDown()"
      [sortablejs]="events"
      [sortablejsOptions]="sortableOptions"
-     class="event-list container-fluid"
+     class="event-list container-fluid px-1"
      [id]="status.key">
   <div *ngFor="let event of events"
-       class="row no-gutters event-list__item cursor-move"
+       class="row no-gutters event-list__item bg-white rounded my-1 p-2 cursor-move"
        [class.disabled]="isDisabled"
        [attr.data-event-id]="event.id">
     <div class="col d-flex flex-column">

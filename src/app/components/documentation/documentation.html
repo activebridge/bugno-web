@@ -1,0 +1,17 @@
+<main class="container">
+  <div class="row flex-nowrap">
+    <div class="col col-md-auto py-3 px-4 side-bar d-flex flex-column align-items-center">
+      <div *ngFor="let section of sections" class="w-100 mb-2 text-center">
+        <h5 class="my-2 text-uppercase text-muted">{{section.title}}</h5>
+        <ul *ngFor="let tab of section.tabs" class="nav nav-pills flex-column">
+          <li class="nav-item text-capitalize border-0">
+            <a routerLinkActive="active" [routerLink]="[tab.url]" class="nav-link">{{tab.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>

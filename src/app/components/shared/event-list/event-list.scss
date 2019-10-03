@@ -3,16 +3,10 @@
 :host {
   .event-list {
     height: calc(100% - 24px);
-    padding: 0 .5rem;
     overflow-y: auto;
     overflow-x: hidden;
     &__item {
-      background-color: white;
-      padding: .5rem;
-      margin: .5rem 0;
       border: 1px solid $geyser;
-      border-radius: .25rem;
-      font-size: 14px;
         a {
           color: rgb(18, 18, 18);
         }
