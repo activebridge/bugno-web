@@ -10,7 +10,7 @@
       <div *ngIf="eventService.event?.params" class="container-fluid">
         <div *ngFor="let item of eventService.event.params | keyvalue" class="row py-3 border-bottom">
           <div class="col-auto col-header-key">{{item.key}}:</div>
-          <div class="col preformatted">{{item.value | json}}</div>
+          <div class="col preformatted text-truncate">{{item.value | json}}</div>
         </div>
       </div>
       <div class="container-fluid">
