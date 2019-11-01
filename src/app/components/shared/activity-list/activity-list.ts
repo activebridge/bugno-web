@@ -40,7 +40,7 @@ export class ActivityList implements OnInit {
 
   private onGetActivitiesSuccess = (resp: any) => {
     this.activities = resp.activities;
-    this.activityTotalCount = resp.total_count;
+    this.activityTotalCount = resp.meta.total_count;
     this.loading = false;
   }
 
