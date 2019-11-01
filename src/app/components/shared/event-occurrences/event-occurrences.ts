@@ -43,7 +43,7 @@ export class EventOccurrences {
 
   private onGetOccurrencesSuccess = (resp) => {
     this.occurrencesService.occurrences = resp.events;
-    this.occurrencesService.occurrenceTotalCount = resp.total_count;
+    this.occurrencesService.occurrenceTotalCount = resp.meta.total_count;
   }
 
   private onGetOccurrencesError = (error) => {
