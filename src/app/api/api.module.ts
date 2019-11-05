@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ProjectAPI, EventAPI, ProjectUserAPI, SubscriptionAPI, PlanAPI, ActivityAPI, IntegrationsAPI } from '../api';
+import { ProjectAPI, EventAPI, ProjectUserAPI, SubscriptionAPI, PlanAPI, IntegrationsAPI } from '../api';
 
 @NgModule({
   providers: [
@@ -8,7 +8,6 @@ import { ProjectAPI, EventAPI, ProjectUserAPI, SubscriptionAPI, PlanAPI, Activit
    ProjectUserAPI,
    SubscriptionAPI,
    PlanAPI,
-   ActivityAPI,
    IntegrationsAPI
   ]
 })

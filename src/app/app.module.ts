@@ -26,7 +26,7 @@ import { Landing, Dashboard, Documentation, DocumentationOverview, Documentation
          ProjectList, ProjectsItem, ProjectSettings, DeleteConfirm, Event, ProjectEvents,
          EventList, ProjectAccess, MemberList, InviteMember, ConfirmModal,
          ProjectSubscriptions, ProjectIntegrations, AddSubscription, Subscription, Plans, SubscriptionForm,
-         ChangeSubscriptionPlan, ActivityList, ActivityEventItem, EventTrace, EventRequestData,
+         ChangeSubscriptionPlan, EventTrace, EventRequestData,
          EventOccurrences } from './components';
 import { environment } from '../environments/environment';
 import { AuthGuard, BaseGuard, PublicGuard } from './guards';
@@ -71,9 +71,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
     SubscriptionForm,
     Subscription,
     ChangeSubscriptionPlan,
-    Plans,
-    ActivityList,
-    ActivityEventItem,
+    Plans
   ],
   imports: [
     MarkdownModule.forRoot({
