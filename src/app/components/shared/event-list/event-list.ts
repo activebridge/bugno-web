@@ -141,7 +141,7 @@ export class EventList implements OnInit {
 
   private onGetEventsSuccess = (resp) => {
     this.events = this.events.concat(resp.events);
-    this.eventCount = resp.total_count;
+    this.eventCount = resp.meta.total_count;
   }
 
   private onGetEventsError = (error) => {
