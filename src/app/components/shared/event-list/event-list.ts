@@ -51,12 +51,14 @@ export class EventList implements OnInit {
     this.getEvents(this.projectId);
     this.globalEvents.subscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
     this.globalEvents.subscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.subscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.subscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
   }
 
   ngOnDestroy() {
     this.globalEvents.unsubscribe(ACTIONS.CREATE_EVENT, this.createEventHandle);
     this.globalEvents.unsubscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
+    this.globalEvents.unsubscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.unsubscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
   }
 
@@ -76,16 +78,23 @@ export class EventList implements OnInit {
     this.events.splice(oldIndex, 0, event);
   }
 
+  destroyEvent = (event) => {
+    this.isDisabled = true;
+    if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
+    this.prepareEventList(event);
+    this.isDisabled = false;
+  }
+
   createEventHandle = (event) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(event)) { return; }
+    if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
     if (event.status === this.status.key) { this.events.push(event); }
     this.isDisabled = false;
   }
 
   updateEventHandle = (data) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(data)) { return; }
+    if (!this.isProjectEvent(data)) { return this.isDisabled = false; }
     if (data.status === this.status.key) {
       this.prepareEventList(data);
       this.events.push(data);
@@ -137,6 +146,15 @@ export class EventList implements OnInit {
     this.eventAPI.update(this.projectId, id, {event: { ...params }}).subscribe(() => {}, (error) => {
       this.onUpdateStatusError(error, sortableEvent);
     });
+  }
+
+  deleteEvent(id) {
+    this.eventAPI.delete(this.projectId, id).subscribe(this.onDeleteSuccess, (error) => console.log(error));
+  }
+
+  private onDeleteSuccess = (resp) => {
+    this.prepareEventList(resp);
+    this.eventCount -= 1;
   }
 
   private onGetEventsSuccess = (resp) => {

@@ -1,19 +1,20 @@
 @import '../../../../styles/variables';
 
 :host {
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $silver;
+    border-radius: .25rem;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: .25rem;
+  }
   .event-list {
     height: calc(100% - 24px);
     overflow-y: auto;
     overflow-x: hidden;
-    &__item {
-      border: 1px solid $geyser;
-        a {
-          color: rgb(18, 18, 18);
-        }
-      }
-    &__item:hover {
-      box-shadow: 0 0 1px 2px rgba(27,31,35,.1)
-    }
   }
   .disabled {
     opacity: .7;
