@@ -2,49 +2,51 @@
   <a class="navbar-brand" [routerLink]='["/"]'>
     <img src="assets/bugno-logo.svg" class="bugno-logo filter-invert-75" alt="Bugno-logo">
   </a>
-  <div [class.show]="isOpen" class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav font-weight-bold mr-auto align-items-center">
-      <li class="nav-item navbar-text mx-1">{{localStorageService.currentUser.nickname}}</li>
-      <li class="nav-item navbar-text mx-1">/</li>
-      <li class="nav-item navbar-text mx-1">{{projectService.project?.name}}</li>
-      <img *ngIf="projectService.project?.slug" src="assets/arrow.svg" class="filter-invert-50 mx-1" alt="svg" width="20" height="20">
-      <li class="nav-item mx-1" *ngFor="let tab of tabs">
-        <a *ngIf="projectService.project?.slug" class="nav-link" routerLinkActive="text-white" [routerLink]="['/projects', projectService.project?.slug, tab.url]">{{tab.title}}</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav font-weight-bold mx-3 ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'documentation'">Documentation</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'plans'">Pricing</a>
-      </li>
-    </ul>
-
-    <a class="text-white ml-auto rounded py-2 px-3 border border-white cursor-pointer d-flex align-items-center" (click)="onSignInWithGithub();" *ngIf="!localStorageService.currentUser">
-      <img src="assets/mark-github.svg" alt="github_logo" class="sign-in-github-logo filter-invert-100 mr-2">
-      <span>Sign In</span>
-    </a>
-    <div class="btn-group" *ngIf="localStorageService.currentUser" dropdown placement="right">
-      <a id="user-avatar-basic" dropdownToggle class="dropdown-toggle text-white cursor-pointer d-flex align-items-center"
-              aria-controls="dropdown-basic">
-        <img [attr.src]="localStorageService.currentUser.image || 'assets/bugno-logo.svg'" [class.invert-color]="!localStorageService.currentUser.image" class="navbar-avatar rounded">
-        <span class="caret"></span>
-      </a>
-      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right user-dropdown-menu rounded"
-          role="menu" aria-labelledby="user-avatar-basic">
-        <span class="dropdown-menu-arrow"></span>
-        <li class="cursor-pointer">
-          <span class="dropdown-item">Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.nickname}}</span></span>
-        </li>
-        <div class="dropdown-divider my-0"></div>
-        <li class="dropdown-item cursor-pointer" (click)="signOut();">
-          <a (click)="false">
-            Sign Out
-          </a>
+  <div [class.show]="isOpen" class="collapse navbar-collapse justify-content-between" id="navbarNav">
+    <div class="navbar-left">
+      <ul *ngIf="localStorageService.currentUser" class="navbar-nav font-weight-bold mr-auto align-items-center">
+        <li class="nav-item navbar-text mx-1">{{localStorageService.currentUser.nickname}}</li>
+        <li class="nav-item navbar-text mx-1">/</li>
+        <li class="nav-item navbar-text mx-1">{{projectService.project?.name}}</li>
+        <img *ngIf="projectService.project?.slug" src="assets/arrow.svg" class="filter-invert-50 mx-1" alt="svg" width="20" height="20">
+        <li class="nav-item mx-1" *ngFor="let tab of tabs">
+          <a *ngIf="projectService.project?.slug" class="nav-link" routerLinkActive="text-white" [routerLink]="['/projects', projectService.project?.slug, tab.url]">{{tab.title}}</a>
         </li>
       </ul>
     </div>
-
+    <div class="navbar-right d-flex align-items-center">
+      <ul class="navbar-nav font-weight-bold mx-3">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'documentation'">Documentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'plans'">Pricing</a>
+        </li>
+      </ul>
+      <a class="text-white rounded py-2 px-3 border border-white cursor-pointer d-flex align-items-center" (click)="onSignInWithGithub();" *ngIf="!localStorageService.currentUser">
+        <img src="assets/mark-github.svg" alt="github_logo" class="sign-in-github-logo filter-invert-100 mr-2">
+        <span>Sign In</span>
+      </a>
+      <div class="btn-group" *ngIf="localStorageService.currentUser" dropdown placement="right">
+        <a id="user-avatar-basic" dropdownToggle class="dropdown-toggle text-white cursor-pointer d-flex align-items-center"
+                aria-controls="dropdown-basic">
+          <img [attr.src]="localStorageService.currentUser.image || 'assets/bugno-logo.svg'" [class.invert-color]="!localStorageService.currentUser.image" class="navbar-avatar rounded">
+          <span class="caret"></span>
+        </a>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right user-dropdown-menu rounded"
+            role="menu" aria-labelledby="user-avatar-basic">
+          <span class="dropdown-menu-arrow"></span>
+          <li class="cursor-pointer">
+            <span class="dropdown-item">Signed in as <span class="font-weight-bold">{{localStorageService.currentUser.nickname}}</span></span>
+          </li>
+          <div class="dropdown-divider my-0"></div>
+          <li class="dropdown-item cursor-pointer" (click)="signOut();">
+            <a (click)="false">
+              Sign Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>

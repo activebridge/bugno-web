@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { isEmpty } from 'lodash';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { EventService, OccurrencesService, NotificationService } from '../../../services';
 import { EventAPI } from '../../../api';
@@ -12,18 +11,32 @@ import { scrollToTop } from '../../../lib';
   styleUrls: ['./event-occurrences.scss']
 })
 
-export class EventOccurrences {
-  isEmpty = isEmpty;
+export class EventOccurrences implements OnInit {
+  eventGroups: any = [];
+  eventsTotalCount: number;
   occurrencesPage = 1;
+  projectId: string;
+  parentId: number;
+  loading = true;
 
-  constructor(public eventService: EventService,
-              public occurrencesService: OccurrencesService,
+  constructor(private occurrencesService: OccurrencesService,
               private eventAPI: EventAPI,
               private notifyService: NotificationService,
+              private router: ActivatedRoute,
               private redirect: Router) { }
 
-  get parentId() {
-    return this.eventService.event.parent_id || this.eventService.event.id;
+  ngOnInit() {
+    this.router.parent.parent.params.subscribe(params => {
+      if (params.id) {
+        this.projectId = params.id;
+      }
+    });
+    this.router.parent.params.subscribe(params => {
+      if (params.id) {
+        this.parentId = params.id;
+        this.getOccurrences();
+      }
+    });
   }
 
   get occurrencesParams() {
@@ -37,13 +50,15 @@ export class EventOccurrences {
   }
 
   getOccurrences() {
-    this.eventAPI.getOccurrences(this.eventService.event.project_id, this.parentId, this.occurrencesParams)
+    this.loading = true;
+    this.eventAPI.getOccurrences(this.projectId, this.parentId, this.occurrencesParams)
                  .subscribe(this.onGetOccurrencesSuccess, this.onGetOccurrencesError);
   }
 
   private onGetOccurrencesSuccess = (resp) => {
-    this.occurrencesService.occurrences = resp.events;
-    this.occurrencesService.occurrenceTotalCount = resp.meta.total_count;
+    this.eventGroups = this.occurrencesService.groupOccurrences(resp.events);
+    this.eventsTotalCount = resp.meta.total_count;
+    this.loading = false;
   }
 
   private onGetOccurrencesError = (error) => {

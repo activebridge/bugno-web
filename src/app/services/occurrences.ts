@@ -9,16 +9,12 @@ import { sortObjectByDesc } from '../lib';
 })
 
 export class OccurrencesService {
-  occurrencesByDate: any;
-  occurrenceTotalCount: number;
-  occurrencesLoading = true;
-
   constructor(private datePipe: DatePipe) {}
 
-  set occurrences(events) {
+  groupOccurrences(events) {
     events = this.addFormatedDateToEvents(events);
     events = groupBy(events, 'date');
-    this.occurrencesByDate = sortObjectByDesc(events);
+    return sortObjectByDesc(events);
   }
 
   private addFormatedDateToEvents(events) {
@@ -29,7 +25,6 @@ export class OccurrencesService {
   }
 
   private formatDate(datetime) {
-    const date = this.datePipe.transform(datetime, 'yyyy/MM/dd');
-    return date;
+    return this.datePipe.transform(datetime, 'yyyy/MM/dd');
   }
 }
