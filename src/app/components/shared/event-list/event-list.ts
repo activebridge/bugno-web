@@ -11,7 +11,7 @@ import { EventAPI } from '../../../api';
   styleUrls: ['./event-list.scss']
 })
 export class EventList implements OnInit {
-  @Input() projectId: any = {};
+  @Input() projectId: string;
   @Input() status: any;
   isDisabled = false;
   page = 1;

@@ -10,7 +10,7 @@ import { EventStatus } from '../../enums';
   styleUrls: ['./project-events.scss']
 })
 export class ProjectEvents implements OnInit {
-  projectId: any = {};
+  projectId: string;
   statuses = pickBy(EventStatus, isNumber);
 
   constructor(private router: ActivatedRoute) { }
