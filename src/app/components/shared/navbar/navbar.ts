@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularTokenService } from 'angular-token';
 
-import { LocalStorageService, ActionCableService } from '../../../services';
+import { LocalStorageService, ActionCableService, ProjectService } from '../../../services';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +13,17 @@ import { LocalStorageService, ActionCableService } from '../../../services';
 export class Navbar implements OnInit {
   registrationToken: string;
   isOpen: boolean;
+  tabs: any = [
+    {title: 'Events', url: 'events'},
+    {title: 'Access', url: 'access'},
+    {title: 'Settings', url: 'settings'},
+    {title: 'Subscriptions', url: 'subscriptions'},
+    {title: 'Integrations', url: 'integrations'}
+  ];
 
   constructor(public tokenService: AngularTokenService,
               public localStorageService: LocalStorageService,
+              public projectService: ProjectService,
               private actionCableService: ActionCableService,
               private redirect: Router,
               private router: ActivatedRoute) { }

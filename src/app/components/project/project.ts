@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SubscriptionStatus } from '../../enums';
@@ -12,7 +12,7 @@ import { ProjectAPI, ProjectUserAPI } from '../../api';
   styleUrls: ['./project.scss']
 })
 
-export class Project implements OnInit {
+export class Project implements OnInit, OnDestroy {
   subscriptionAlert = false;
   subscriptionExpiresSoon: boolean;
   subscriptionExpired: boolean;
@@ -45,6 +45,10 @@ export class Project implements OnInit {
         this.getProjectUsers();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.projectService.project = null;
   }
 
   getProject() {
