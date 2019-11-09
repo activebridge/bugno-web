@@ -24,7 +24,7 @@
         </li>
       </ul>
       <a class="text-white rounded py-2 px-3 border border-white cursor-pointer d-flex align-items-center" (click)="onSignInWithGithub();" *ngIf="!localStorageService.currentUser">
-        <img src="assets/mark-github.svg" alt="github_logo" class="sign-in-github-logo filter-invert-100 mr-2">
+        <img src="assets/github_octocat.svg" alt="github_logo" class="sign-in-github-logo filter-invert-100 mr-2">
         <span>Sign In</span>
       </a>
       <div class="btn-group" *ngIf="localStorageService.currentUser" dropdown placement="right">
