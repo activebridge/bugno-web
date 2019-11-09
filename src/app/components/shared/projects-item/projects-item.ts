@@ -4,8 +4,7 @@ import { isEmpty } from 'lodash';
 
 @Component({
   selector: 'app-projects-item',
-  templateUrl: './projects-item.html',
-  styleUrls: ['./projects-item.scss']
+  templateUrl: './projects-item.html'
 })
 
 export class ProjectsItem {

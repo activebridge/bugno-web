@@ -1,6 +1,6 @@
-<p class="mb-2">
-  <a [routerLink]="['/projects', project.slug]" class="font-weight-bold">
-    {{project.name}}
-  </a>
-  <span class="badge badge-pill badge-secondary ml-1" tooltip="Active events">{{project.active_event_count}}</span>
-</p>
+<a [routerLink]="['/projects', project.slug]" class="nav-item nav-link h-100 text-center bg-light shadow-sm hover-rounded">
+  <div class="d-flex flex-column justify-content-center align-items-center h-100">
+    <h3 class="font-weight-normal">{{project.name}}</h3>
+    <p class="font-italic">Active events: {{project.active_event_count}}</p>
+  </div>
+</a>

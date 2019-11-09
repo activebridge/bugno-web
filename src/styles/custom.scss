@@ -43,4 +43,8 @@
   .filter-invert-#{$i*25} {
     filter: invert(percentage($i*25/100));
   }
+
+  .hover-rounded:hover {
+    border-radius: .25rem;
+  }
 }
