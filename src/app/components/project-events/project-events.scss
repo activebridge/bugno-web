@@ -1,9 +1,7 @@
 @import '../../../styles/variables';
 
 :host {
-  .row {
-    height: calc(100vh - 4.5rem);
-  }
+  .row { height: calc(100vh - 4.5rem); }
   .col {
     max-width: 32%;
     background-color: $athens_gray;

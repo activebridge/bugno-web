@@ -32,14 +32,10 @@ export class Event implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.router.parent.params.subscribe(params => {
-      if (params.id) {
-        this.projectId = params.id;
-      }
+      if (params.id) { this.projectId = params.id; }
     });
     this.router.params.subscribe(params => {
-      if (params.id) {
-        this.getEvent(params.id);
-      }
+      if (params.id) { this.getEvent(params.id); }
     });
   }
 

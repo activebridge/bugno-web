@@ -80,8 +80,7 @@ export class EventList implements OnInit {
 
   destroyEvent = (event) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
-    this.prepareEventList(event);
+    if (this.isProjectEvent(event)) { this.prepareEventList(event); }
     this.isDisabled = false;
   }
 

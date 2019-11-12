@@ -27,9 +27,7 @@ export class EventOccurrences implements OnInit {
 
   ngOnInit() {
     this.router.parent.parent.params.subscribe(params => {
-      if (params.id) {
-        this.projectId = params.id;
-      }
+      if (params.id) { this.projectId = params.id; }
     });
     this.router.parent.params.subscribe(params => {
       if (params.id) {
