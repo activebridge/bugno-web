@@ -1,33 +1,15 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SubscriptionStatus } from '../../enums';
-import { EVENT_LIMIT_ALERT } from '../../constants';
 import { ProjectService, ProjectUserService, NotificationService } from '../../services';
 import { ProjectAPI, ProjectUserAPI } from '../../api';
 
 @Component({
   selector: 'app-project',
-  templateUrl: './project.html',
-  styleUrls: ['./project.scss']
+  templateUrl: './project.html'
 })
 
-export class Project implements OnInit {
-  subscriptionAlert = false;
-  subscriptionExpiresSoon: boolean;
-  subscriptionExpired: boolean;
-  subscriptionStatuses = SubscriptionStatus;
-  project: any = {};
-  loading: boolean;
-  projectId: number;
-  tabs: any = [
-    {title: 'Events', url: 'events'},
-    {title: 'Access', url: 'access'},
-    {title: 'Settings', url: 'settings'},
-    {title: 'Subscriptions', url: 'subscriptions'},
-    {title: 'Integrations', url: 'integrations'}
-  ];
-
+export class Project implements OnInit, OnDestroy {
   constructor(private projectAPI: ProjectAPI,
               private projectUserAPI: ProjectUserAPI,
               private projectService: ProjectService,
@@ -37,37 +19,29 @@ export class Project implements OnInit {
               private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.loading = true;
     this.router.params.subscribe(params => {
       if (params.id) {
-        this.projectId = params.id;
-        this.getProject();
-        this.getProjectUsers();
+        this.getProject(params.id);
+        this.getProjectUsers(params.id);
       }
     });
   }
 
-  getProject() {
-    this.projectAPI.get(this.projectId).subscribe(this.onGetProjectSuccess, this.onGetError);
+  ngOnDestroy() {
+    this.projectService.project = null;
+    this.projectUserService.projectUsers = null;
   }
 
-  getProjectUsers() {
-    this.projectUserAPI.query(this.projectId).subscribe(this.onGetProjectUsersSuccess, this.onGetError);
+  getProject(id) {
+    this.projectAPI.get(id).subscribe(this.onGetProjectSuccess, this.onGetError);
   }
 
-  checkSubscriptionState() {
-    if (this.project.subscription) {
-      this.subscriptionExpiresSoon = this.project.subscription.events <= EVENT_LIMIT_ALERT &&
-        this.project.subscription.status === this.subscriptionStatuses.active;
-      this.subscriptionExpired = this.project.subscription.status === this.subscriptionStatuses.expired;
-    }
-    this.subscriptionAlert = !this.project.subscription || this.subscriptionExpiresSoon || this.subscriptionExpired;
+  getProjectUsers(projectId) {
+    this.projectUserAPI.query(projectId).subscribe(this.onGetProjectUsersSuccess, this.onGetError);
   }
 
   private onGetProjectSuccess = (resp) => {
-    this.project = resp;
     this.projectService.project = resp;
-    this.checkSubscriptionState();
   }
 
   private onGetProjectUsersSuccess = (resp) => {

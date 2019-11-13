@@ -10,72 +10,81 @@
      class="event-list container-fluid px-1"
      [id]="status.key">
   <div *ngFor="let event of events"
-       class="row no-gutters event-list__item bg-white rounded my-1 p-2 cursor-move"
+       class="row no-gutters bg-white rounded my-1 p-2 cursor-move shadow-sm"
        [class.disabled]="isDisabled"
        [attr.data-event-id]="event.id">
     <div class="col d-flex flex-column">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="head-left d-flex align-items-center">
-          <a class="d-inline-block mw-100 text-truncate" [routerLink]="['/projects', projectId, 'event', event.id]">
-            {{event.title}}
-          </a>
-          <div class="d-flex align-items-center">
-            <span [class.badge-danger]="event.framework == 'rails'"
-            [class.badge-warning]="event.framework == 'browser-js'"
-            [class.badge-info]="event.framework == 'node-js'"
-            [class.badge-secondary]="event.framework == 'plain'"
-            class="badge ml-1">
-              {{event.framework}}
+      <div class="container-fluid px-0">
+        <div class="row justify-content-between align-items-center no-gutters flex-nowrap">
+          <div class="col-8 d-flex align-items-center">
+            <a class="d-inline-block mw-100 text-truncate text-dark"
+               [routerLink]="['/projects', projectId, 'event', event.id]"
+               [tooltip]="event.title.length >= 30 ? event.title : false" container="body" placement="bottom">
+              {{event.title}}
+            </a>
+            <div class="d-flex align-items-center">
+              <span [class.badge-danger]="event.framework == 'rails'"
+                    [class.badge-warning]="event.framework == 'browser-js'"
+                    [class.badge-info]="event.framework == 'node-js'"
+                    [class.badge-secondary]="event.framework == 'plain'"
+                    class="badge ml-1">
+                {{event.framework}}
+              </span>
+              <span *ngIf="event.occurrence_count"
+                    class="badge badge-pill badge-secondary cursor-default ml-1"
+                    tooltip="Total occurences"
+                    placement="bottom">
+                {{event.occurrence_count}}
+              </span>
+            </div>
+          </div>
+          <div class="col-auto">
+            <span class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer"
+                  tooltip="{{event.last_occurrence_at || event.created_at | date:'medium'}}"
+                  placement="bottom" container="body">
+              {{event.last_occurrence_at || event.created_at | timeAgo}}
             </span>
-            <span *ngIf="event.occurrence_count"
-                  class="badge badge-pill badge-secondary cursor-default ml-1"
-                  tooltip="Total occurences"
-                  placement="bottom">
-              {{event.occurrence_count}}
-            </span>
+            <span class="close cursor-pointer ml-2" (click)="deleteEvent(event.id)">&times;</span>
           </div>
         </div>
-      <span class="d-inline-block mw-100 text-truncate text-nowrap text-muted cursor-pointer"
-            tooltip="{{event.last_occurrence_at || event.created_at | date:'medium'}}"
-            placement="bottom">
-        {{event.last_occurrence_at || event.created_at | timeAgo}}
-      </span>
       </div>
-      <small class="d-inline-block mw-100 text-truncate" *ngIf="event.message">
-        {{event.message}}
-      </small>
-      <div *ngIf="projectUserService.projectUsers" class="d-flex align-items-center assign">
-        <span dropdown class="cursor-pointer">
-          <img dropdownToggle
-               [src]="event?.user?.image ? event.user.image : 'assets/bugno-logo.svg'"
-               aria-controls="basic-link-dropdown"
-               class="avatar rounded-circle hover-border"
-               id="basic-link">
-          <ul *dropdownMenu
-              role="menu"
-              aria-labelledby="basic-link"
-              class="dropdown-menu"
-              id="basic-link-dropdown">
-            <li *ngIf="event.user_id" role="menuitem" class="dropdown-item">
-              <a (click)="updateEvent(event.id, {user_id: null}, null);">Unassign</a>
-            </li>
-            <div *ngIf="event.user_id" class="dropdown-divider"></div>
-            <li *ngFor="let item of projectUserService.projectUsers"
-                (click)="updateEvent(event.id, {user_id: item.user_id}, null)"
-                role="menuitem"
-                class="dropdown-item"
-                [class.bg-primary]="event.id === item.user_id">
-              <img [src]="item?.user?.image ? item.user.image : 'assets/bugno-logo.svg'" class="avatar rounded-circle">
-              <a class="w-auto ml-2 cursor-pointer">{{item.user.nickname}}</a>
-            </li>
-          </ul>
-        </span>
-        <span (click)="assignCurrenUserOrUnassign(event)"
-              [tooltip]="event.user_id ? 'Unassign' : null"
-              placement="bottom"
-              class="ml-1 p-1 rounded hover-gray cursor-pointer">
-          {{event?.user?.nickname || 'Assign self'}}
-        </span>
+      <div *ngIf="!isFold" class="fold">
+        <small class="d-inline-block mw-100 text-truncate" *ngIf="event.message">
+          {{event.message}}
+        </small>
+        <div *ngIf="projectUserService.projectUsers" class="d-flex align-items-center assign">
+          <span dropdown class="cursor-pointer">
+            <img dropdownToggle
+                 [src]="event.user?.image || 'assets/bugno-logo.svg'"
+                 aria-controls="basic-link-dropdown"
+                 class="avatar rounded-circle hover-border"
+                 id="basic-link">
+            <ul *dropdownMenu
+                role="menu"
+                aria-labelledby="basic-link"
+                class="dropdown-menu"
+                id="basic-link-dropdown">
+              <li *ngIf="event.user_id" role="menuitem" class="dropdown-item">
+                <a (click)="updateEvent(event.id, {user_id: null}, null);">Unassign</a>
+              </li>
+              <div *ngIf="event.user_id" class="dropdown-divider"></div>
+              <li *ngFor="let item of projectUserService.projectUsers"
+                  (click)="updateEvent(event.id, {user_id: item.user_id}, null)"
+                  role="menuitem"
+                  class="dropdown-item"
+                  [class.bg-primary]="event.id === item.user_id">
+                <img [src]="item.user?.image || 'assets/bugno-logo.svg'" class="avatar rounded-circle">
+                <a class="w-auto ml-2 cursor-pointer">{{item.user.nickname}}</a>
+              </li>
+            </ul>
+          </span>
+          <span (click)="assignCurrenUserOrUnassign(event)"
+                [tooltip]="event.user_id ? 'Unassign' : null"
+                placement="bottom"
+                class="ml-1 p-1 rounded hover-gray cursor-pointer">
+            {{event.user?.nickname || 'Assign self'}}
+          </span>
+        </div>
       </div>
     </div>
   </div>

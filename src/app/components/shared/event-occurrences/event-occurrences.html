@@ -1,5 +1,5 @@
-<div *ngIf="occurrencesService.occurrencesByDate" [hidden]="occurrencesService.occurrencesLoading" class="container-fluid">
-  <div *ngFor="let group of occurrencesService.occurrencesByDate" class="row flex-column border-bottom">
+<div *ngIf="eventGroups.length" [hidden]="loading" class="container-fluid">
+  <div *ngFor="let group of eventGroups" class="row flex-column border-bottom">
     <div class="col-auto border-bottom">
       <h5 class="text-muted py-3 m-0">
         {{group[0] | date:'mediumDate'}}
@@ -8,7 +8,7 @@
     <div class="col-auto px-0">
       <div class="container-fluid">
         <div *ngFor="let occurrence of group[1]" class="row row-occurrence">
-          <a *ngIf="!isEmpty(eventService.event);" [routerLink]="['/projects', eventService.event.project_id, 'event', occurrence.id]" class="py-1 w-100">
+          <a [routerLink]="['/projects', projectId, 'event', occurrence.id]" class="py-1 w-100">
             <div class="container-fluid">
             <div class="row text-dark text-decoration-none">
               <div class="col-auto col-time text-left">
@@ -32,10 +32,10 @@
       </div>
     </div>
   </div>
-  <div *ngIf="occurrencesService.occurrenceTotalCount > 25" class="row justify-content-center py-3">
-    <pagination [disabled]="isEmpty(eventService.event)" [itemsPerPage]="25" [(ngModel)]="currentPage" [maxSize]="10" [totalItems]="occurrencesService.occurrenceTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
+  <div *ngIf="eventsTotalCount > 25" class="row justify-content-center py-3">
+    <pagination [itemsPerPage]="25" [(ngModel)]="currentPage" [maxSize]="10" [totalItems]="eventsTotalCount" (pageChanged)="occurrencesPageChanged($event)"></pagination>
   </div>
 </div>
-<div *ngIf="isEmpty(occurrencesService.occurrencesByDate)" [hidden]="occurrencesService.occurrencesLoading">
+<div *ngIf="!eventGroups.length" [hidden]="loading">
   <h3 class="display-4 my-5 text-center">There are no any occurrence yet.</h3>
 </div>

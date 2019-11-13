@@ -38,3 +38,13 @@
 .hover-border:hover {
   border: 2px solid $shuttle_gray;
 }
+
+@for $i from 1 through 4 {
+  .filter-invert-#{$i*25} {
+    filter: invert(percentage($i*25/100));
+  }
+
+  .hover-rounded:hover {
+    border-radius: .25rem;
+  }
+}

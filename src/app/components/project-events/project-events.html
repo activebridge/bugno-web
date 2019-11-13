@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <div class="row flex-nowrap justify-content-around">
-    <div class="col px-1 py-2 events-column" *ngFor="let status of statuses | keyvalue">
+  <div class="row flex-nowrap justify-content-around align-item-center mt-2">
+    <div class="col px-1 py-2 rounded shadow-sm" *ngFor="let status of statuses | keyvalue">
       <app-event-list [projectId]="projectId" [status]="status"></app-event-list>
     </div>
   </div>

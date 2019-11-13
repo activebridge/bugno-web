@@ -9,8 +9,6 @@ export * from './project-events/project-events';
 export * from './project-integrations/project-integrations';
 export * from './project-settings/project-settings';
 export * from './project-subscriptions/project-subscriptions';
-export * from './shared/activity-event-item/activity-event-item';
-export * from './shared/activity-list/activity-list';
 export * from './shared/add-subscription/add-subscription';
 export * from './shared/change-subscription-plan/change-subscription-plan';
 export * from './shared/confirm-modal/confirm-modal';

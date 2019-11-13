@@ -44,17 +44,16 @@ const routes: Routes = [
       {path: 'settings', component: ProjectSettings, canActivate: [AuthGuard]},
       {path: 'subscriptions', component: ProjectSubscriptions, canActivate: [AuthGuard]},
       {path: 'integrations', component: ProjectIntegrations, canActivate: [AuthGuard]},
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'projects/:projectId/event/:id',
-    component: Event,
-    children: [
-      {path: '', redirectTo: 'trace', pathMatch: 'full', canActivate: [AuthGuard]},
-      {path: 'trace', component: EventTrace, canActivate: [AuthGuard]},
-      {path: 'request-data', component: EventRequestData, canActivate: [AuthGuard]},
-      {path: 'occurrences', component: EventOccurrences, canActivate: [AuthGuard]},
+      {
+        path: 'event/:id',
+        component: Event,
+        children: [
+          {path: '', redirectTo: 'trace', pathMatch: 'full', canActivate: [AuthGuard]},
+          {path: 'trace', component: EventTrace, canActivate: [AuthGuard]},
+          {path: 'request-data', component: EventRequestData, canActivate: [AuthGuard]},
+          {path: 'occurrences', component: EventOccurrences, canActivate: [AuthGuard]},
+        ]
+      },
     ],
     canActivate: [AuthGuard]
   },
