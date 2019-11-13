@@ -55,7 +55,7 @@
         <div *ngIf="projectUserService.projectUsers" class="d-flex align-items-center assign">
           <span dropdown class="cursor-pointer">
             <img dropdownToggle
-                 [src]="event?.user?.image ? event.user.image : 'assets/bugno-logo.svg'"
+                 [src]="event.user?.image || 'assets/bugno-logo.svg'"
                  aria-controls="basic-link-dropdown"
                  class="avatar rounded-circle hover-border"
                  id="basic-link">
@@ -73,7 +73,7 @@
                   role="menuitem"
                   class="dropdown-item"
                   [class.bg-primary]="event.id === item.user_id">
-                <img [src]="item?.user?.image ? item.user.image : 'assets/bugno-logo.svg'" class="avatar rounded-circle">
+                <img [src]="item.user?.image || 'assets/bugno-logo.svg'" class="avatar rounded-circle">
                 <a class="w-auto ml-2 cursor-pointer">{{item.user.nickname}}</a>
               </li>
             </ul>
@@ -82,7 +82,7 @@
                 [tooltip]="event.user_id ? 'Unassign' : null"
                 placement="bottom"
                 class="ml-1 p-1 rounded hover-gray cursor-pointer">
-            {{event?.user?.nickname || 'Assign self'}}
+            {{event.user?.nickname || 'Assign self'}}
           </span>
         </div>
       </div>
