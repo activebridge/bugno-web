@@ -80,14 +80,17 @@ export class EventList implements OnInit {
 
   destroyEvent = (event) => {
     this.isDisabled = true;
-    if (this.isProjectEvent(event)) { this.prepareEventList(event); }
+    if (this.isProjectEvent(event)) { this.removeEventFromList(event); }
     this.isDisabled = false;
   }
 
   createEventHandle = (event) => {
     this.isDisabled = true;
     if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
-    if (event.status === this.status.key) { this.events.push(event); }
+    if (event.status === this.status.key) {
+      this.events.unshift(event);
+      this.updatePositionsByArrayIndex();
+    }
     this.isDisabled = false;
   }
 
@@ -95,22 +98,22 @@ export class EventList implements OnInit {
     this.isDisabled = true;
     if (!this.isProjectEvent(data)) { return this.isDisabled = false; }
     if (data.status === this.status.key) {
-      this.prepareEventList(data);
+      this.removeEventFromList(data);
       this.events.push(data);
       this.updatePositions(data);
       this.events = orderBy(this.events, ['position'], ['asc']);
     } else {
-      this.prepareEventList(data);
+      this.removeEventFromList(data);
     }
     this.isDisabled = false;
   }
 
-  prepareEventList(data) {
+  removeEventFromList(data) {
     this.events = this.events.filter((event) => event.id !== data.id);
-    this.updatePositionsByIndexArray();
+    this.updatePositionsByArrayIndex();
   }
 
-  updatePositionsByIndexArray() {
+  updatePositionsByArrayIndex() {
     this.events.forEach((event) => {
       const newPosition = this.events.findIndex((item) => {
         return item.id === event.id;
@@ -122,9 +125,7 @@ export class EventList implements OnInit {
   updatePositions(data) {
     this.events.forEach((event) => {
       if (event.id === data.id) { return; }
-      if (event.position >= data.position) {
-        event.position += 1;
-      }
+      if (event.position >= data.position) { event.position += 1; }
     });
   }
 
@@ -152,7 +153,7 @@ export class EventList implements OnInit {
   }
 
   private onDeleteSuccess = (resp) => {
-    this.prepareEventList(resp);
+    this.removeEventFromList(resp);
     this.eventCount -= 1;
   }
 
@@ -173,7 +174,7 @@ export class EventList implements OnInit {
     if (sortableEvent.from.id !== this.status.key) {
       this.globalEvents.publish(ACTIONS.PUSH_EVENT_BACK , { sortableEvent, event });
     } else {
-      this.prepareEventList(event);
+      this.removeEventFromList(event);
       this.events.splice(sortableEvent.oldIndex, 0, event);
     }
     this.isDisabled = false;
