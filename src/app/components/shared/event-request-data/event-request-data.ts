@@ -18,4 +18,9 @@ export class EventRequestData {
     return this.eventService.event.params || this.eventService.event.http_method
       || this.eventService.event.url || this.eventService.event.ip_address;
   }
+
+  get isExtraDataPresent() {
+    return !this.isParamsPresent && !this.eventService.event.person_data &&
+           !this.eventService.event.headers && !this.eventService.event.background_data;
+  }
 }
