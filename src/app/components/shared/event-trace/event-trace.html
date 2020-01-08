@@ -2,7 +2,7 @@
   <accordion class="col">
     <accordion-group *ngFor="let trace of eventService.event.backtrace; let i = index" class="mb-3 trace-group font-trace" [isOpen]="trace.project_error" [isDisabled]="eventService.event.framework == 'browser-js'">
       <div class="container-fluid text-truncate text-nowrap" accordion-heading>
-        <div class="row">
+        <div class="row overflow-auto">
           <div class="col-auto">
             <span *ngIf="eventService.event.framework == 'browser-js'" class="font-weight-bold">{{trace.method}}</span>
           </div>
