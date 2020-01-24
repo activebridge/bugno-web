@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AngularTokenModule } from 'angular-token';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -136,6 +137,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
     OccurrencesService,
     ProjectUserService,
     DatePipe,
+    TitleCasePipe,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: ErrorHandler, useClass: BugnoErrorHandler },
     { provide: BugnoService, useFactory: bugnoFactory }

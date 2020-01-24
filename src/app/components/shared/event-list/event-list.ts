@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
 import { uniqBy, orderBy } from 'lodash';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { ConfirmModal } from '../confirm-modal/confirm-modal';
 import { NotificationService, GlobalEvents, ProjectService, LocalStorageService, ProjectUserService } from '../../../services';
 
 import { ACTIONS } from '../../../constants';
@@ -21,7 +24,9 @@ export class EventList implements OnInit {
 
   constructor(public localStorageService: LocalStorageService,
               public projectUserService: ProjectUserService,
+              private titleCasePipe: TitleCasePipe,
               private eventAPI: EventAPI,
+              private modalService: BsModalService,
               private globalEvents: GlobalEvents,
               private projectService: ProjectService,
               private notifyService: NotificationService) {
@@ -150,6 +155,21 @@ export class EventList implements OnInit {
 
   deleteEvent(id) {
     this.eventAPI.delete(this.projectId, id).subscribe(this.onDeleteSuccess, (error) => console.log(error));
+  }
+
+  confirmDeleteCollection() {
+    if (this.events.length === 0) { return; }
+    const modal = this.modalService.show(ConfirmModal, {class: 'modal-sm', backdrop: true});
+    modal.content.onClose.subscribe(result => {
+      if (result) { this.deleteCollection(); }
+    });
+  }
+
+  deleteCollection() {
+    this.eventAPI.deleteCollection(this.projectId, { status: this.status.key }).subscribe(resp => {
+      this.eventCount = 0;
+      this.notifyService.showSuccess(`${this.titleCasePipe.transform(this.status.key)} exceptions were successfully deleted!`);
+    });
   }
 
   private onDeleteSuccess = (resp) => {
