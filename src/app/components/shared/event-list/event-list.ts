@@ -166,10 +166,18 @@ export class EventList implements OnInit {
   }
 
   deleteCollection() {
-    this.eventAPI.deleteCollection(this.projectId, { status: this.status.key }).subscribe(resp => {
-      this.eventCount = 0;
-      this.notifyService.showSuccess(`${this.titleCasePipe.transform(this.status.key)} exceptions were successfully deleted!`);
-    });
+    this.eventAPI.deleteCollection(this.projectId, { status: this.status.key })
+                 .subscribe(this.onDeleteCollectionSuccess, this.onDeleteCollectionError);
+  }
+
+  private onDeleteCollectionSuccess = () => {
+    this.eventCount = 0;
+    this.notifyService.showSuccess(`${this.titleCasePipe.transform(this.status.key)} exceptions were successfully deleted!`);
+  }
+
+  private onDeleteCollectionError = (err) => {
+    if (err.status !== 403) { return this.notifyService.showApiError(err); }
+    this.notifyService.showError('You cannot clean up this board as collaborator');
   }
 
   private onDeleteSuccess = (resp) => {
