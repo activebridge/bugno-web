@@ -26,4 +26,8 @@ export class EventAPI {
   delete(projectId, id) {
     return this.http.delete(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events/${id}`);
   }
+
+  deleteCollection(projectId, params = {}) {
+    return this.http.delete(`${environment.apiEndpoint}/api/v1/projects/${projectId}/events/`, { params });
+  }
 }
