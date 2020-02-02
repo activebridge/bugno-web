@@ -3,7 +3,7 @@
     <span class="font-weight-bold text-capitalize">{{status.key}}</span>
     <span class="badge badge-pill badge-secondary ml-1" tooltip="Total events" placement="bottom">{{eventCount}}</span>
   </div>
-  <img src="assets/broom.svg" [class.filter-invert-75]="this.events.length  === 0" class="filter-invert-25 mx-1 cursor-pointer" (click)="confirmDeleteCollection()" tooltip="Clean up this board" placement="bottom" alt="svg" width="17" height="17">
+  <img src="assets/broom.svg" [class.filter-invert-25]="this.events.length  === 0" class="filter-invert-75 mx-1 cursor-pointer" (click)="confirmDeleteCollection()" tooltip="Clean up this board" placement="bottom" alt="svg" width="17" height="17">
 </div>
 <div infinite-scroll
      [scrollWindow]="false"
@@ -13,14 +13,14 @@
      class="event-list container-fluid px-1"
      [id]="status.key">
   <div *ngFor="let event of events"
-       class="row no-gutters bg-white rounded my-1 p-2 cursor-move shadow-sm"
+       class="row no-gutters bg-secondary rounded my-1 p-2 cursor-move shadow-sm"
        [class.disabled]="isDisabled"
        [attr.data-event-id]="event.id">
     <div class="col d-flex flex-column">
       <div class="container-fluid px-0">
         <div class="row justify-content-between align-items-center no-gutters flex-nowrap">
           <div class="col-8 d-flex align-items-center">
-            <a class="d-inline-block mw-100 text-truncate text-dark"
+            <a class="d-inline-block mw-100 text-truncate text-decoration-none"
                [routerLink]="['/projects', projectId, 'event', event.id]"
                [tooltip]="event.title.length >= 30 ? event.title : false" container="body" placement="bottom">
               {{event.title}}
@@ -34,7 +34,7 @@
                 {{event.framework}}
               </span>
               <span *ngIf="event.occurrence_count"
-                    class="badge badge-pill badge-secondary cursor-default ml-1"
+                    class="badge badge-pill badge-primary cursor-default ml-1"
                     tooltip="Total occurences"
                     placement="bottom">
                 {{event.occurrence_count}}

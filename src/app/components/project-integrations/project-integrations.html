@@ -3,10 +3,10 @@
     <div class="col">
       <h5>Slack</h5>
       <p>Add webhooks to your workspace to be aware</p>
-      <button class="btn btn-dark btn-xl"
+      <button class="btn btn-primary btn-xl"
         (click)="onAddSlackIntegration();"
         *ngIf="projectUserService.isCurrentUserOwner">Add webhooks</button>
-      <button class="btn btn-dark btn-xl disabled"
+      <button class="btn btn-primary btn-xl disabled"
         *ngIf="!projectUserService.isCurrentUserOwner"
         tooltip="Only project owner can perform this action.">Add webhooks</button>
     </div>

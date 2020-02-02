@@ -2,7 +2,7 @@
 
 :host {
   input[type=radio]:checked + label > .card {
-    background: $athens_gray;
+    background: $secondary;
   }
   .card {
     width: 280px;

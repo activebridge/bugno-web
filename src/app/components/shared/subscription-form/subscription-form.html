@@ -17,7 +17,7 @@
                     <h1 class="card-text">{{plan.price}}$</h1>
                     <p class="card-text text-muted mb-0">{{plan.event_limit}} events</p>
                     <p class="text-muted">per month</p>
-                    <p class="card-text text-justify">{{plan.description}}</p>
+                    <p class="card-text text-center">{{plan.description}}</p>
                     <p class="btn btn-primary btn-block btn-xl cursor-pointer">Choose {{plan.name}}</p>
                   </div>
                 </div>
@@ -32,7 +32,7 @@
           <div id="card-element" class="border rounded p-3"></div>
           <div *ngIf="stripeElementsMounted">
             <div *ngIf="!card['_complete']" class="alert alert-warning my-3">Finish with entering your card credentials</div>
-            <button [disabled]="credentialsForm.invalid || !card['_complete'] || currentPlan?.id == credentialsForm.value.plan_id || submitDisabled" type="submit" class="btn btn-success btn-block my-3">
+            <button [disabled]="credentialsForm.invalid || !card['_complete'] || currentPlan?.id == credentialsForm.value.plan_id || submitDisabled" type="submit" class="btn btn-primary btn-block my-3">
               <span *ngIf="!submitDisabled">Subscribe</span>
               <span *ngIf="submitDisabled">Awaiting for transaction...</span>
             </button>

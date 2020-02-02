@@ -1,3 +1,18 @@
+<form [formGroup]="inviteForm" class="h-100">
+  <div class="d-flex flex-column justify-content-center align-items-center mx-auto h-100 nav-item nav-link text-center bg-primary rounded shadow-sm hover-rounded py-3">
+    <img src="assets/bugno-logo.svg" class="card-avatar rounded-circle">
+    <div class="w-75 font-weight-bold mb-3">
+      <input type="email"
+      formControlName="email"
+      placeholder="team@mate.com"
+      class="form-control bg-dark"
+      required>
+    </div>
+    <button type="submit" class="btn btn-dark w-75">Invite</button>
+  </div>
+</form>
+<!--
+
 <div class="p-3">
   <h2>Make your Team</h2>
   <h4>Add or invite collaborators</h4>
@@ -10,8 +25,8 @@
     class="form-control m-0"
     required>
     <div class="input-group-prepend">
-      <button type="submit" class="btn btn-success m-0">Invite</button>
+      <button type="submit" class="btn btn-primary m-0">Invite</button>
     </div>
   </div>
   <small class="form-text text-muted">User will be invited even if he \ she does not even registered yet.</small>
-</form>
+</form> -->

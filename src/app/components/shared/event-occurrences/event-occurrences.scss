@@ -1,13 +1,6 @@
-@import '../../../../styles/variables';
-
 :host {
   .row-occurrence {
     font-size: 13px;
-    a:hover {
-      text-decoration: none;
-    }
-    &:hover {
-      background-color: $athens_gray;
-    }
+    a:hover { text-decoration: none; }
   }
 }

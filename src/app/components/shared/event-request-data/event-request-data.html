@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="container-fluid">
-        <div *ngFor="let item of eventService.event.background_data | keyvalue" class="row py-3 border-bottom">
+        <div *ngFor="let item of eventService.event.background_data | keyvalue" class="row py-3">
           <div class="col-auto col-header-key">{{item.key}}:</div>
           <div class="col text-truncate">{{item.value}}</div>
         </div>
@@ -24,21 +24,21 @@
         </div>
       </div>
       <div *ngIf="eventService.event?.params" class="container-fluid">
-        <div *ngFor="let item of eventService.event.params | keyvalue" class="row py-3 border-bottom">
+        <div *ngFor="let item of eventService.event.params | keyvalue" class="row py-3">
           <div class="col-auto col-header-key">{{item.key}}:</div>
           <div class="col preformatted text-truncate">{{item.value | json}}</div>
         </div>
       </div>
       <div class="container-fluid">
-        <div *ngIf="eventService.event.http_method" class="row py-3 border-bottom">
+        <div *ngIf="eventService.event.http_method" class="row py-3">
           <div class="col-auto col-header-key">method:</div>
           <div class="col">{{eventService.event.http_method}}</div>
         </div>
-        <div *ngIf="eventService.event.url" class="row py-3 border-bottom">
+        <div *ngIf="eventService.event.url" class="row py-3">
           <div class="col-auto col-header-key">url:</div>
           <div class="col">{{eventService.event.url}}</div>
         </div>
-        <div *ngIf="eventService.event.ip_address" class="row py-3 border-bottom">
+        <div *ngIf="eventService.event.ip_address" class="row py-3">
           <div class="col-auto col-header-key">ip_address:</div>
           <div class="col">{{eventService.event.ip_address}}</div>
         </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="container-fluid">
-        <div *ngFor="let item of eventService.event.person_data | keyvalue" class="row py-3 border-bottom">
+        <div *ngFor="let item of eventService.event.person_data | keyvalue" class="row py-3">
           <div class="col-auto col-header-key">{{item.key}}:</div>
           <div class="col preformatted">{{item.value | json}}</div>
         </div>
@@ -70,7 +70,7 @@
         </div>
       </div>
       <div class="container-fluid">
-        <div *ngFor="let item of eventService.event.headers | keyvalue" class="row py-3 border-bottom">
+        <div *ngFor="let item of eventService.event.headers | keyvalue" class="row py-3">
           <div class="col-auto col-header-key">{{item.key}}:</div>
           <div class="col preformatted">{{item.value | json}}</div>
         </div>

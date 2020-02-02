@@ -1,8 +1,8 @@
-<div class="container-fluid navbar-light">
+<div class="container-fluid navbar-primary">
   <div class="row navbar-nav flex-row p-5">
     <app-projects-item *ngFor="let project of projects" [project]="project" class="col-auto mb-5"></app-projects-item>
     <div class="col-auto">
-      <a [routerLink]='["/projects/new"]' class="nav-item nav-link px-4 w-100 h-100 shadow-sm bg-light d-flex align-items-center justify-content-center hover-rounded">
+      <a [routerLink]='["/projects/new"]' class="nav-item nav-link px-4 w-100 h-100 shadow-sm bg-primary d-flex align-items-center justify-content-center hover-rounded">
         <h3 class="font-weight-normal font-italic">New project</h3>
       </a>
     </div>

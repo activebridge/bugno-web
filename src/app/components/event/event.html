@@ -7,13 +7,13 @@
         </h3>
         <div class="d-flex flex-column align-items-end">
           <div dropdown class="btn-group">
-            <button class="btn btn-outline-dark">
+            <button class="btn btn-primary">
               <span class="text-capitalize">{{event.status}}</span>
             </button>
             <button dropdownToggle
                     type="button"
                     aria-controls="dropdown-split"
-                    class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+                    class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                     id="button-split">
               <span class="caret"></span>
               <span class="sr-only">Split button!</span>
@@ -28,13 +28,13 @@
             <button (click)="assignCurrenUserOrUnassign()"
                     [tooltip]="event.user_id ? 'Unassign' : null"
                     placement="bottom"
-                    class="btn btn-outline-dark">
+                    class="btn btn-primary">
               <span class="text-capitalize">{{event?.user?.nickname || 'Assign self'}}</span>
             </button>
             <button dropdownToggle
                     type="button"
                     aria-controls="dropdown-split"
-                    class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+                    class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                     id="button-split">
               <span class="caret"></span>
               <span class="sr-only">Split button!</span>
@@ -54,7 +54,7 @@
       <p class="event-message">{{event.message}}</p>
       <p class="text-muted">{{event.created_at | date:'medium'}}</p>
       <div *ngIf="event.user_agent" class="user-agent">
-        <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
+        <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-primary mr-2">{{field.key}}: {{field.value}}</span>
       </div>
     </div>
   </div>

@@ -1,3 +1,5 @@
+@import './variables';
+
 .trace-group .panel-body.card-block.card-body {
   padding-left: 0;
   padding-right: 0;
@@ -16,4 +18,26 @@ app-project .subsciption-alert {
 
 .card-body {
   padding: 0 1.25rem;
+}
+
+.pagination-prev, .pagination-next {
+  &.disabled { background-color: $dark; }
+}
+
+.page-item {
+  color: $white;
+  .page-link {
+    background-color: $primary;
+    &:hover { background-color: $gray-700; }
+
+  }
+  &.active, &.disabled {
+    .page-link {
+      background-color: $dark;
+    }
+  }
+}
+
+.form-control {
+  @extend .bg-primary, .text-white;
 }

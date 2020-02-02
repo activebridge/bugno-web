@@ -32,11 +32,15 @@
   width: 25px;
   height: 25px;
 }
+.card-avatar {
+  width: 100px;
+  height: 100px;
+}
 .hover-gray:hover {
-  background-color: $athens_gray;
+  background-color: $primary;
 }
 .hover-border:hover {
-  border: 2px solid $shuttle_gray;
+  border: 2px solid $primary;
 }
 
 @for $i from 1 through 4 {
@@ -48,3 +52,5 @@
     border-radius: .25rem;
   }
 }
+
+.last-border-none:last-child { border: none; }

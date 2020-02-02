@@ -2,7 +2,8 @@
 
 :host {
   .navbar {
-    background-color: $shark;
+    background-color: $dark;
+    @media (preferes-color-schema: dark) { background-color: $primary; }
     min-height: 3.4rem;
     max-height: 3.4rem;
     padding: .5rem 1rem;

@@ -1,5 +1,5 @@
 <div *ngIf="eventGroups.length" [hidden]="loading" class="container-fluid">
-  <div *ngFor="let group of eventGroups" class="row flex-column border-bottom">
+  <div *ngFor="let group of eventGroups" class="row bg-primary flex-column rounded">
     <div class="col-auto border-bottom">
       <h5 class="text-muted py-3 m-0">
         {{group[0] | date:'mediumDate'}}
@@ -10,7 +10,7 @@
         <div *ngFor="let occurrence of group[1]" class="row row-occurrence">
           <a [routerLink]="['/projects', projectId, 'event', occurrence.id]" class="py-1 w-100">
             <div class="container-fluid">
-            <div class="row text-dark text-decoration-none">
+            <div class="row text-decoration-none">
               <div class="col-auto col-time text-left">
                 {{occurrence.created_at | date:'mediumTime'}}
               </div>
