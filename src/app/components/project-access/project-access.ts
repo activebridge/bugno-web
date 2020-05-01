@@ -26,10 +26,6 @@ export class ProjectAccess implements OnInit {
     });
   }
 
-  onInviteSuccess(projectUser) {
-    this.projectUsers.push(projectUser);
-  }
-
   getProjectUsers(projectId) {
     this.projectUserAPI.query(projectId).subscribe(this.onGetSuccess, this.onGetError);
   }

@@ -27,6 +27,10 @@ export class MemberList implements OnInit {
     return find(this.projectUsers, { user_id: this.currentUser.id, role: 'owner'});
   }
 
+  onInviteSuccess(projectUser) {
+    this.projectUsers.push(projectUser);
+  }
+
   onDeleteProjectUser(projectUserId) {
     this.projectUserAPI.delete(this.projectId, projectUserId).subscribe(
       () => {

@@ -1,17 +1,13 @@
-<div class="p-3">
-  <h2>Make your Team</h2>
-  <h4>Add or invite collaborators</h4>
-</div>
-<form class="form-group" (ngSubmit)="onInviteSumbit()" [formGroup]="inviteForm">
-  <div class="input-group">
-    <input type="email"
-    formControlName="email"
-    placeholder="By email"
-    class="form-control m-0"
-    required>
-    <div class="input-group-prepend">
-      <button type="submit" class="btn btn-success m-0">Invite</button>
+<form [formGroup]="inviteForm" (ngSubmit)="onInviteSumbit()" class="h-100">
+  <div class="d-flex flex-column justify-content-between align-items-center mx-auto h-100 nav-item nav-link text-center bg-light rounded shadow-sm hover-rounded py-3">
+    <img src="assets/bugno-logo.svg" class="card-avatar rounded-circle">
+    <div class="w-75 font-weight-bold mb-3">
+      <input type="email"
+      formControlName="email"
+      placeholder="new@member.org"
+      class="form-control"
+      required>
     </div>
+    <button type="submit" class="btn btn-success w-75">Invite</button>
   </div>
-  <small class="form-text text-muted">User will be invited even if he \ she does not even registered yet.</small>
 </form>

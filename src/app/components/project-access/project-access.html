@@ -1,8 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-8">
-      <app-invite-member [projectId]="projectId" (invited)="onInviteSuccess($event);" class="border-top border-bottom border-success"></app-invite-member>
-      <div class="my-4 border-bottom"></div>
+    <div class="col py-3">
       <app-member-list [projectUsers]="projectUsers" [projectId]="projectId"></app-member-list>
     </div>
   </div>
