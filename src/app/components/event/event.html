@@ -52,6 +52,11 @@
         </div>
       </div>
       <p class="event-message">{{event.message}}</p>
+      <div class="frequently-used-data mb-2">
+        <div *ngIf="event.user_email?.length" class="text-muted">User email: {{event.user_email}}</div>
+        <div *ngIf="event.url?.length" class="text-muted">Requested url: {{event.url}}</div>
+        <div *ngIf="event.url?.length" class="text-muted">Refer url: {{event.refer_url}}</div>
+      </div>
       <p class="text-muted">{{event.created_at | date:'medium'}}</p>
       <div *ngIf="event.user_agent" class="user-agent">
         <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
