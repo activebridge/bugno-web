@@ -62,7 +62,9 @@
     <div class="col">
       <ul class="nav nav-tabs">
         <li class="nav-item" *ngFor="let tab of tabs">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">
+            {{tab.title}}
+            <span class="badge badge-primary" *ngIf="tab.url == 'occurrences'">{{event.occurrence_count}}</span>
           </a>
         </li>
       </ul>
