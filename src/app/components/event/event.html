@@ -52,6 +52,20 @@
         </div>
       </div>
       <p class="event-message">{{event.message}}</p>
+      <div class="frequently-used-data mb-2">
+        <div *ngIf="event.user_email?.length">
+          <img src="assets/mail.svg" alt="User Email" tooltip="User Email">
+          <span> {{event.user_email}}</span>
+        </div>
+        <div *ngIf="event.url?.length">
+          <img src="assets/arrow-right.svg" alt="Requested URL" tooltip="Requested URL">
+          <span> {{event.url}}</span>
+        </div>
+        <div *ngIf="event.refer_url?.length">
+          <img src="assets/arrow-left.svg" alt="Refer URL" tooltip="Refer URL">
+          <span> {{event.refer_url}}</span>
+        </div>
+      </div>
       <p class="text-muted">{{event.created_at | date:'medium'}}</p>
       <div *ngIf="event.user_agent" class="user-agent">
         <span *ngFor="let field of event.user_agent | keyvalue" class="badge badge-dark mr-2">{{field.key}}: {{field.value}}</span>
@@ -62,7 +76,9 @@
     <div class="col">
       <ul class="nav nav-tabs">
         <li class="nav-item" *ngFor="let tab of tabs">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">{{tab.title}}
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[tab.url]">
+            {{tab.title}}
+            <span class="badge badge-primary" *ngIf="tab.url == 'occurrences'">{{event.occurrence_count}}</span>
           </a>
         </li>
       </ul>
