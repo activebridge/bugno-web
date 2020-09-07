@@ -54,16 +54,16 @@
       <p class="event-message">{{event.message}}</p>
       <div class="frequently-used-data mb-2">
         <div *ngIf="event.user_email?.length">
-          <img src="assets/mail.svg" alt="User Email" tooltip="User Email">
-          <span> {{event.user_email}}</span>
+          <img src="assets/mail.svg" alt="User Email" tooltip="User Email" class="icon">
+          <span class="ml-2"> {{event.user_email}}</span>
         </div>
         <div *ngIf="event.url?.length">
-          <img src="assets/arrow-right.svg" alt="Requested URL" tooltip="Requested URL">
-          <span> {{event.url}}</span>
+          <img src="assets/arrow-right.svg" alt="Requested URL" tooltip="Requested URL" class="icon">
+          <span class="ml-2"> {{event.url}}</span>
         </div>
         <div *ngIf="event.refer_url?.length">
-          <img src="assets/arrow-left.svg" alt="Refer URL" tooltip="Refer URL">
-          <span> {{event.refer_url}}</span>
+          <img src="assets/arrow-left.svg" alt="Refer URL" tooltip="Refer URL" class="icon">
+          <span class="ml-2"> {{event.refer_url}}</span>
         </div>
       </div>
       <p class="text-muted">{{event.created_at | date:'medium'}}</p>
