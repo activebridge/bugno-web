@@ -6,7 +6,7 @@ import { ConfirmModal } from '../confirm-modal/confirm-modal';
 import { NotificationService, GlobalEvents, ProjectService, LocalStorageService, ProjectUserService } from '../../../services';
 
 import { ACTIONS } from '../../../constants';
-import { EventAPI } from '../../../api';
+import { EventAPI, EventCollectionsAPI } from '../../../api';
 
 @Component({
   selector: 'app-event-list',
@@ -16,6 +16,12 @@ import { EventAPI } from '../../../api';
 export class EventList implements OnInit {
   @Input() projectId: string;
   @Input() status: any;
+  sortItems = [
+    { name: 'Last Occurrence', direction: 'asc', paramsKey: 'created_at' },
+    { name: 'Last Occurrence', direction: 'desc', paramsKey: 'created_at' },
+    { name: 'Occurrence Count', direction: 'asc', paramsKey: 'occurrence_count' },
+    { name: 'Occurrence Count', direction: 'desc', paramsKey: 'occurrence_count' },
+  ]
   isDisabled = false;
   page = 1;
   events: any = [];
@@ -26,6 +32,7 @@ export class EventList implements OnInit {
               public projectUserService: ProjectUserService,
               private titleCasePipe: TitleCasePipe,
               private eventAPI: EventAPI,
+              private eventCollectionsAPI: EventCollectionsAPI,
               private modalService: BsModalService,
               private globalEvents: GlobalEvents,
               private projectService: ProjectService,
@@ -151,6 +158,18 @@ export class EventList implements OnInit {
     this.eventAPI.update(this.projectId, id, {event: { ...params }}).subscribe(() => {}, (error) => {
       this.onUpdateStatusError(error, sortableEvent);
     });
+  }
+
+  bulkPositionUpdate(column, direction) {
+    let params = { status: this.status.key, column: column, direction: direction }
+    this.eventCollectionsAPI
+        .updatePosition(this.projectId, params)
+        .subscribe(
+          (resp: any) => {
+            this.events = resp.event_collections;
+            this.eventCount = resp.meta.total_count;
+          },
+          this.onGetEventsError);
   }
 
   deleteEvent(id) {
