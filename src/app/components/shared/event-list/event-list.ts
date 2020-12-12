@@ -65,6 +65,7 @@ export class EventList implements OnInit {
     this.globalEvents.subscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
     this.globalEvents.subscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.subscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
+    this.globalEvents.subscribe(ACTIONS.BULK_UPDATE, this.bulkUpdate);
   }
 
   ngOnDestroy() {
@@ -72,6 +73,7 @@ export class EventList implements OnInit {
     this.globalEvents.unsubscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
     this.globalEvents.unsubscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.unsubscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
+    this.globalEvents.unsubscribe(ACTIONS.BULK_UPDATE, this.bulkUpdate);
   }
 
   pushEventBack = (data) => {
@@ -92,13 +94,13 @@ export class EventList implements OnInit {
 
   destroyEvent = (event) => {
     this.isDisabled = true;
-    if (this.isProjectEvent(event)) { this.removeEventFromList(event); }
+    if (this.isProjectEvent(event.project_id)) { this.removeEventFromList(event); }
     this.isDisabled = false;
   }
 
   createEventHandle = (event) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
+    if (!this.isProjectEvent(event.project_id)) { return this.isDisabled = false; }
     if (event.status === this.status.key) {
       this.events.unshift(event);
       this.updatePositionsByArrayIndex();
@@ -108,7 +110,7 @@ export class EventList implements OnInit {
 
   updateEventHandle = (data) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(data)) { return this.isDisabled = false; }
+    if (!this.isProjectEvent(data.project_id)) { return this.isDisabled = false; }
     if (data.status === this.status.key) {
       this.removeEventFromList(data);
       this.events.push(data);
@@ -141,8 +143,8 @@ export class EventList implements OnInit {
     });
   }
 
-  isProjectEvent(event) {
-    return this.projectService.project.id === event.project_id;
+  isProjectEvent(projectId) {
+    return this.projectService.project.id === projectId;
   }
 
   updateEventHandler = (event: any) => {
@@ -160,16 +162,16 @@ export class EventList implements OnInit {
     });
   }
 
+  bulkUpdate = (data) => {
+    if (!this.isProjectEvent(data.project_id) || data.status != this.status.key) { return; }
+    this.events = data.events;
+  }
+
   bulkPositionUpdate(column, direction) {
-    let params = { status: this.status.key, column: column, direction: direction }
+    const params = { status: this.status.key, column: column, direction: direction }
     this.eventCollectionsAPI
         .updatePosition(this.projectId, params)
-        .subscribe(
-          (resp: any) => {
-            this.events = resp.event_collections;
-            this.eventCount = resp.meta.total_count;
-          },
-          this.onGetEventsError);
+        .subscribe(() => {});
   }
 
   deleteEvent(id) {
