@@ -1,30 +1,28 @@
 @import '../../../../styles/variables';
 
 :host {
-  ::-webkit-scrollbar {
-    width: 7px;
-  }
+  ::-webkit-scrollbar { width: 7px; }
+
+  ::-webkit-scrollbar-track { border-radius: .25rem; }
+
   ::-webkit-scrollbar-thumb {
     background: $silver;
     border-radius: .25rem;
   }
-  ::-webkit-scrollbar-track {
-    border-radius: .25rem;
-  }
+
   .event-list {
     height: calc(100% - 24px);
     overflow-y: auto;
     overflow-x: hidden;
   }
-  .disabled {
-    opacity: .7;
-  }
+
+  .disabled { opacity: .7; }
+
   .assign {
     font-size: 12px;
+
     .dropdown-menu{
-      * {
-        font-size: 12px;
-      }
+      * { font-size: 12px; }
     }
   }
 }

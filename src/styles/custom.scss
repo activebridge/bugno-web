@@ -44,6 +44,10 @@
 }
 
 @for $i from 1 through 4 {
+  .rotate-#{$i*90} {
+    transform: rotate(#{$i*90}deg);
+  }
+
   .filter-invert-#{$i*25} {
     filter: invert(percentage($i*25/100));
   }

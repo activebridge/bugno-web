@@ -6,7 +6,7 @@ import { ConfirmModal } from '../confirm-modal/confirm-modal';
 import { NotificationService, GlobalEvents, ProjectService, LocalStorageService, ProjectUserService } from '../../../services';
 
 import { ACTIONS } from '../../../constants';
-import { EventAPI } from '../../../api';
+import { EventAPI, EventCollectionsAPI } from '../../../api';
 
 @Component({
   selector: 'app-event-list',
@@ -16,6 +16,12 @@ import { EventAPI } from '../../../api';
 export class EventList implements OnInit {
   @Input() projectId: string;
   @Input() status: any;
+  sortItems = [
+    { name: 'Last Occurrence', direction: 'asc', paramsKey: 'created_at' },
+    { name: 'Last Occurrence', direction: 'desc', paramsKey: 'created_at' },
+    { name: 'Occurrence Count', direction: 'asc', paramsKey: 'occurrence_count' },
+    { name: 'Occurrence Count', direction: 'desc', paramsKey: 'occurrence_count' },
+  ]
   isDisabled = false;
   page = 1;
   events: any = [];
@@ -26,6 +32,7 @@ export class EventList implements OnInit {
               public projectUserService: ProjectUserService,
               private titleCasePipe: TitleCasePipe,
               private eventAPI: EventAPI,
+              private eventCollectionsAPI: EventCollectionsAPI,
               private modalService: BsModalService,
               private globalEvents: GlobalEvents,
               private projectService: ProjectService,
@@ -58,6 +65,7 @@ export class EventList implements OnInit {
     this.globalEvents.subscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
     this.globalEvents.subscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.subscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
+    this.globalEvents.subscribe(ACTIONS.BULK_UPDATE, this.bulkUpdate);
   }
 
   ngOnDestroy() {
@@ -65,6 +73,7 @@ export class EventList implements OnInit {
     this.globalEvents.unsubscribe(ACTIONS.UPDATE_EVENT, this.updateEventHandle);
     this.globalEvents.unsubscribe(ACTIONS.DESTROY_EVENT, this.destroyEvent);
     this.globalEvents.unsubscribe(ACTIONS.PUSH_EVENT_BACK, this.pushEventBack);
+    this.globalEvents.unsubscribe(ACTIONS.BULK_UPDATE, this.bulkUpdate);
   }
 
   pushEventBack = (data) => {
@@ -85,13 +94,13 @@ export class EventList implements OnInit {
 
   destroyEvent = (event) => {
     this.isDisabled = true;
-    if (this.isProjectEvent(event)) { this.removeEventFromList(event); }
+    if (this.isProjectEvent(event.project_id)) { this.removeEventFromList(event); }
     this.isDisabled = false;
   }
 
   createEventHandle = (event) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(event)) { return this.isDisabled = false; }
+    if (!this.isProjectEvent(event.project_id)) { return this.isDisabled = false; }
     if (event.status === this.status.key) {
       this.events.unshift(event);
       this.updatePositionsByArrayIndex();
@@ -101,7 +110,7 @@ export class EventList implements OnInit {
 
   updateEventHandle = (data) => {
     this.isDisabled = true;
-    if (!this.isProjectEvent(data)) { return this.isDisabled = false; }
+    if (!this.isProjectEvent(data.project_id)) { return this.isDisabled = false; }
     if (data.status === this.status.key) {
       this.removeEventFromList(data);
       this.events.push(data);
@@ -134,8 +143,8 @@ export class EventList implements OnInit {
     });
   }
 
-  isProjectEvent(event) {
-    return this.projectService.project.id === event.project_id;
+  isProjectEvent(projectId) {
+    return this.projectService.project.id === projectId;
   }
 
   updateEventHandler = (event: any) => {
@@ -151,6 +160,18 @@ export class EventList implements OnInit {
     this.eventAPI.update(this.projectId, id, {event: { ...params }}).subscribe(() => {}, (error) => {
       this.onUpdateStatusError(error, sortableEvent);
     });
+  }
+
+  bulkUpdate = (data) => {
+    if (!this.isProjectEvent(data.project_id) || data.status != this.status.key) { return; }
+    this.events = data.events;
+  }
+
+  bulkPositionUpdate(column, direction) {
+    const params = { status: this.status.key, column: column, direction: direction }
+    this.eventCollectionsAPI
+        .updatePosition(this.projectId, params)
+        .subscribe(() => {});
   }
 
   deleteEvent(id) {
