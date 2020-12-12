@@ -4,13 +4,13 @@
     <span class="badge badge-pill badge-secondary ml-1" tooltip="Total events" placement="bottom">{{eventCount}}</span>
   </div>
   <div class="bulk-actions">
-    <span dropdown class="position-relative ml-2">
-      <button dropdownToggle role="menu" id="sort-dropdown-toggler" aria-controls="sort-dropdown-menu" class="btn btn-outline-dark border-0 mb-0 dropdown-toggle">Sort</button>
-      <ul *dropdownMenu aria-labelledby="sort-dropdown-toggler" class="dropdown-menu mt-2" id="sort-dropdown-menu" role="menu">
+    <span dropdown class="position-relative mr-2">
+      <img src="assets/arrow-switch.svg" role="menu" [class.filter-invert-75]="this.events.length === 0" dropdownToggle role="menu" id="sort-dropdown-toggler" aria-controls="sort-dropdown-menu" class="filter-invert-25 cursor-pointer border-0 mb-0 dropdown-toggle rotate-90" tooltip="Sort" width="17" height="17">
+      <ul *dropdownMenu aria-labelledby="sort-dropdown-toggler" class="dropdown-menu dropdown-menu-right mt-2" id="sort-dropdown-menu" role="menu">
         <li *ngFor="let item of sortItems" role="menuitem" class="cursor-pointer dropdown-item" (click)="bulkPositionUpdate(item.paramsKey, item.direction);">{{item.name}} ({{item.direction}})</li>
       </ul>
     </span>
-    <img src="assets/broom.svg" [class.filter-invert-75]="this.events.length  === 0" class="filter-invert-25 mx-1 cursor-pointer" (click)="confirmDeleteCollection()" tooltip="Clean up this board" placement="bottom" alt="svg" width="17" height="17">
+    <img src="assets/broom.svg" [class.filter-invert-75]="this.events.length === 0" class="filter-invert-25 mx-1 cursor-pointer" (click)="confirmDeleteCollection()" tooltip="Clean up this board" placement="bottom" alt="svg" width="17" height="17">
   </div>
 </div>
 <div infinite-scroll
