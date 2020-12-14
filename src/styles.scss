@@ -4,6 +4,10 @@
 @import './styles/custom';
 @import './styles/overrides';
 
+body {
+  background-color: $athens_gray;
+}
+
 ul {
   list-style-type: none;
 }

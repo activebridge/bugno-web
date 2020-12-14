@@ -4,8 +4,7 @@ import { NotificationService } from '../../../services';
 
 @Component({
   selector: 'app-subscription',
-  templateUrl: './subscription.html',
-  styleUrls: ['./subscription.scss']
+  templateUrl: './subscription.html'
 })
 
 export class Subscription {

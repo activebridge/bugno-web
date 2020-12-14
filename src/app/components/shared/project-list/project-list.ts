@@ -5,8 +5,7 @@ import { ProjectAPI } from '../../../api';
 
 @Component({
   selector: 'app-project-list',
-  templateUrl: './project-list.html',
-  styleUrls: ['./project-list.scss']
+  templateUrl: './project-list.html'
 })
 
 export class ProjectList implements OnInit {

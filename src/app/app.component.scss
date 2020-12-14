@@ -1,0 +1,14 @@
+:host {
+  .main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-wrapper {
+    flex-grow: 1;
+    height: 1px;
+  }
+
+  .navbar-wrapper { flex: 0 1 3.4rem; }
+}

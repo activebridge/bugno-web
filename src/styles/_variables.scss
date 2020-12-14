@@ -15,3 +15,11 @@ $chablis: #FFEEF0;
 // override bootstrap
 
 $font-size-base: 0.875rem;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 800px,
+  lg: 1000px,
+  xl: 1220px,
+  xxl: 1660px,
+) !default;
