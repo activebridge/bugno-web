@@ -26,7 +26,7 @@
     "bootstrap": "^4.3.1",
     "bugno-js": "git+https://github.com/activebridge/bugno-js.git",
     "core-js": "^3.2.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "ng2-validation": "^4.2.0",
     "ngx-bootstrap": "^5.1.1",
     "ngx-clipboard": "^12.2.1",
